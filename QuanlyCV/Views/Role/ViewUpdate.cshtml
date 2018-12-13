@@ -1,8 +1,9 @@
-﻿@model QuanlyCV.Models.ManagerZone
+﻿@model QuanlyCV.Models.Role
 @{
-    ViewBag.Title = "Update";
+    ViewBag.Title = "ViewUpdate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <div class="main-grid">
     <div class="agile-grids">
@@ -19,17 +20,17 @@
                             <h4>Sửa Thông Tin Chức Vụ</h4>
                         </div>
                         <div class="form-body">
-                            <form action="@Url.Action("Update","ManagerZones")" method="post">
-                                <input type="hidden" name="ManagerZoneId" id="ManagerZoneId" value="@Model.ManagerZoneId" />
+                            <form action="@Url.Action("Update","Role")" method="post">
+                                <input type="hidden" name="RoleId" id="RoleId" value="@Model.RoleId" />
                                 <div class="form-group">
-                                    <label for="ManagerZoneName">Tên chức vụ</label>
-                                    <input type="text" name="ManagerZoneName" class="form-control" id="ManagerZoneName" placeholder="Tên chức vụ" required value="@Model.ManagerZoneName">
+                                    <label for="rolename">Tên chức vụ</label>
+                                    <input type="text" name="RoleName" class="form-control" id="RoleName" placeholder="Tên chức vụ" required value="@Model.RoleName">
                                 </div>
                                 <div class="form-group">
-                                    <label for="ManagerZoneStatus">Trạng thái</label>
-                                    <select name="ManagerZoneStatus" class="form-control">
-                                        <option value="1" @(Model.ManagerZoneStatus == 1 ? "selected" : "")>Kích hoạt</option>
-                                        <option value="2" @(Model.ManagerZoneStatus == 2 ? "selected" : "")>Không kích hoạt</option>
+                                    <label for="rolestatus">Trạng thái</label>
+                                    <select name="rolestatus" class="form-control">
+                                        <option value="1" @(Model.RoleStatus == 1 ? "selected" : "")>Kích hoạt</option>
+                                        <option value="2" @(Model.RoleStatus == 2 ? "selected" : "")>Không kích hoạt</option>
                                     </select>
                                 </div>
 
@@ -43,4 +44,5 @@
         <!-- //input-forms -->
     </div>
 </div>
+
 

@@ -1,6 +1,6 @@
-﻿@model IEnumerable<QuanlyCV.Models.Department>
+﻿
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "ViewCreate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,34 +9,25 @@
         <!-- input-forms -->
         <div class="grids">
             <div class="progressbar-heading grids-heading">
-                <h2>Thêm Mới Phòng Ban</h2>
+                <h2>Thêm Mới Chức Vụ</h2>
                 <h4 style="color:darkred">@TempData["error"]</h4>
             </div>
             <div class="panel panel-widget forms-panel">
                 <div class="forms">
                     <div class="form-grids widget-shadow" data-example-id="basic-forms">
                         <div class="form-title">
-                            <h4>Thêm Mới Phòng Ban</h4>
+                            <h4>Thêm Mới Chức Vụ</h4>
                         </div>
                         <div class="form-body">
-                            <form action="@Url.Action("Create","Department")" method="post">
+                            <form action="@Url.Action("Create", "Role")" method="post">
                                 <div class="form-group">
-                                    <label for="departmentname">Tên phòng ban</label>
-                                    <input type="text" name="DepartmentName" class="form-control" id="DepartmentName" placeholder="Tên phòng ban" required>
+                                    <label for="rolename">Tên chức vụ</label>
+                                    <input type="text" name="RoleName" class="form-control" id="RoleName" placeholder="Tên chức vụ">
                                 </div>
                                 <div class="form-group">
-                                    <label for="parentdepartment">Phòng ban cha</label>
-                                    <select name="DepartmentId" id="DepartmentId" class="form-control" required>
-                                        <option value="0">Không có</option>
-                                        @foreach (var item in Model)
-                                        {
-                                            <option value="@item.DepartmentId">@item.DepartmentName</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="departmentstatus">Trạng thái</label>
-                                    <select name="DepartmentStatus" id="DepartmentStatus" class="form-control" required>
+                                    <label for="rolestatus">Trạng thái</label>
+                                    <select name="RoleStatus" id="RoleStatus" class="form-control">
+                                        <option value="0"><===== Chọn phòng trạng thái =====></option>
                                         <option value="1">Kích hoạt</option>
                                         <option value="2">Không kích hoạt</option>
                                     </select>

@@ -1,8 +1,11 @@
 ﻿@model QuanlyCV.Models.Department
 @{
-    ViewBag.Title = "Update";
+    ViewBag.Title = "ViewUpdate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
 
 <div class="main-grid">
     <div class="agile-grids">
@@ -20,7 +23,7 @@
                         </div>
                         <div class="form-body">
                             <form action="u" method="post">
-                                <input type="hidden" id="DepartmentId" name="DepartmentId" value="@Model.DepartmentId"/>
+                                <input type="hidden" id="DepartmentId" name="DepartmentId" value="@Model.DepartmentId" />
                                 <div class="form-group">
                                     <label for="departmentname">Tên phòng ban</label>
                                     <input type="text" name="DepartmentName" class="form-control" id="DepartmentName" placeholder="Tên phòng ban" required value="@Model.DepartmentName">
@@ -30,12 +33,13 @@
                                     <select name="ParentId" class="form-control">
                                         @if (Model.ParentId == 0)
                                         {
-                                            <option value="0" >Không Có</option>
-                                        }else
+                                            <option value="0">Không Có</option>
+                                        }
+                                        else
                                         {
                                             foreach (var item in ViewBag.lstDepartment)
                                             {
-                                                <option value="@item.DepartmentId" @(Model.ParentId == item.DepartmentId ? "selected":"")>@item.DepartmentName</option>
+                                                <option value="@item.DepartmentId" @(Model.ParentId == item.DepartmentId ? "selected" : "")>@item.DepartmentName</option>
                                             }
                                         }
                                     </select>
@@ -47,8 +51,8 @@
                                 <div class="form-group">
                                     <label for="departmentstatus">Trạng thái</label>
                                     <select name="DepartmentStatus" id="DepartmentStatus" class="form-control">
-                                        <option value="1" @(Model.DepartmentStatus == 1 ? "checked":"")>Kích hoạt</option>
-                                        <option value="2" @(Model.DepartmentStatus == 2 ? "checked":"")>Không kích hoạt</option>
+                                        <option value="1" @(Model.DepartmentStatus == 1 ? "checked" : "")>Kích hoạt</option>
+                                        <option value="2" @(Model.DepartmentStatus == 2 ? "checked" : "")>Không kích hoạt</option>
                                     </select>
                                 </div>
 
@@ -62,3 +66,5 @@
         <!-- //input-forms -->
     </div>
 </div>
+
+

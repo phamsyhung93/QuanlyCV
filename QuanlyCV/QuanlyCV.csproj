@@ -510,20 +510,15 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\content.html" />
-    <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
-    <Content Include="Views\Department\Update.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\loadListEmployeeByDepartment.cshtml" />
     <Content Include="Views\Employee\loadModelEditEmployee.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Infomation\ChangePassword.cshtml" />
     <Content Include="Views\Infomation\Index.cshtml" />
-    <Content Include="Views\Login\ForgotPassword.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
@@ -540,10 +535,15 @@
     <Content Include="Views\Statistical\Index.cshtml" />
     <Content Include="Views\TimeLine\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
-    <Content Include="Views\Role\Update.cshtml" />
     <Content Include="Views\ManagerZones\Index.cshtml" />
-    <Content Include="Views\ManagerZones\Update.cshtml" />
+    <Content Include="Views\Department\ViewUpdate.cshtml" />
+    <Content Include="Views\Infomation\ViewChangePassword.cshtml" />
+    <Content Include="Views\Login\ViewRegister.cshtml" />
+    <Content Include="Views\Login\ViewForgotPassword.cshtml" />
+    <Content Include="Views\ManagerZones\ViewUpdate.cshtml" />
+    <Content Include="Views\Department\ViewCreate.cshtml" />
+    <Content Include="Views\Role\ViewCreate.cshtml" />
+    <Content Include="Views\Role\ViewUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
