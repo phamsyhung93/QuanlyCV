@@ -133,7 +133,7 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        public ActionResult ChangePassword()
+        public ActionResult ViewChangePassword()
         {
             return View();
         }

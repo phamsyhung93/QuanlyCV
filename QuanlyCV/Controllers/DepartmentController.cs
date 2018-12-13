@@ -16,7 +16,7 @@ namespace QuanlyCV.Controllers
             var lstDepartment = db.Departments.Where(x => x.DepartmentStatus == 1).ToList();
             return View(lstDepartment);
         }
-        public ActionResult Create()
+        public ActionResult ViewCreate()
         {
             var d = db.Departments.Where(x => x.DepartmentStatus == 1).ToList();
             return View(d);
@@ -43,7 +43,7 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        public ActionResult Update(int id)
+        public ActionResult ViewUpdate(int id)
         {
             Department d = db.Departments.Find(id);
             ViewBag.lstDepartment = db.Departments.Where(x => x.DepartmentStatus == 1).ToList();

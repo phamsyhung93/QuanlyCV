@@ -12,7 +12,7 @@
             <h2>Danh Sách Phòng Ban</h2>
             <h4 style="color:darkred">@TempData["error"]</h4>
         </div>
-        <a href="@Url.Action("Create","Department")"><img src="~/Content/images/add-member-icon-32.png" /></a>
+        <a href="@Url.Action("ViewCreate","Department")"><img src="~/Content/images/add-member-icon-32.png" /></a>
         <div class="agile-tables">
             <div class="w3l-table-info">
                 <table id="table">
@@ -35,7 +35,7 @@
                                     <td class="text-center">@(item.DepartmentStatus == 1 ? "Hiện" : "Ẩn")</td>
                                     <td class="text-center">
                                         <ul style="display: flex; flex-direction: row; list-style: none; justify-content: center;">
-                                            <li><a href="@Url.Action("Update","Department",new {id = item.DepartmentId })" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"/></a></li>
+                                            <li><a href="@Url.Action("ViewUpdate","Department",new {id = item.DepartmentId })" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"/></a></li>
                                             &nbsp;
                                             <li><a href="@Url.Action("Delete","Department",new {id = item.DepartmentId })" title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
                                         </ul>

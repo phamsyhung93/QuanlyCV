@@ -40,7 +40,7 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        public ActionResult Register()
+        public ActionResult ViewRegister()
         {
             return View();
         }
@@ -65,7 +65,7 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        public ActionResult ForgotPassword()
+        public ActionResult ViewForgotPassword()
         {
             return View();
         }
