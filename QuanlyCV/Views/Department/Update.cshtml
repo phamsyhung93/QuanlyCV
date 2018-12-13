@@ -1,0 +1,64 @@
+﻿@model QuanlyCV.Models.Department
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- input-forms -->
+        <div class="grids">
+            <div class="progressbar-heading grids-heading">
+                <h2>Sửa Thông Tin Phòng Ban</h2>
+                <h4 style="color:darkred">@TempData["error"]</h4>
+            </div>
+            <div class="panel panel-widget forms-panel">
+                <div class="forms">
+                    <div class="form-grids widget-shadow" data-example-id="basic-forms">
+                        <div class="form-title">
+                            <h4>Sửa Thông Tin Phòng Ban</h4>
+                        </div>
+                        <div class="form-body">
+                            <form action="u" method="post">
+                                <input type="hidden" id="DepartmentId" name="DepartmentId" value="@Model.DepartmentId"/>
+                                <div class="form-group">
+                                    <label for="departmentname">Tên phòng ban</label>
+                                    <input type="text" name="DepartmentName" class="form-control" id="DepartmentName" placeholder="Tên phòng ban" required value="@Model.DepartmentName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="parentdepartment">Phòng ban cha</label>
+                                    <select name="ParentId" class="form-control">
+                                        @if (Model.ParentId == 0)
+                                        {
+                                            <option value="0" >Không Có</option>
+                                        }else
+                                        {
+                                            foreach (var item in ViewBag.lstDepartment)
+                                            {
+                                                <option value="@item.DepartmentId" @(Model.ParentId == item.DepartmentId ? "selected":"")>@item.DepartmentName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <label for="address">Địa chỉ</label>
+                                    <textarea name="address" id="address" placeholder="Địa chỉ"></textarea>
+                                </div>  -->
+                                <div class="form-group">
+                                    <label for="departmentstatus">Trạng thái</label>
+                                    <select name="DepartmentStatus" id="DepartmentStatus" class="form-control">
+                                        <option value="1" @(Model.DepartmentStatus == 1 ? "checked":"")>Kích hoạt</option>
+                                        <option value="2" @(Model.DepartmentStatus == 2 ? "checked":"")>Không kích hoạt</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-default w3ls-button">Cập nhật</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //input-forms -->
+    </div>
+</div>

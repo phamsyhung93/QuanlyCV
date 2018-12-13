@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5A292E96-9BEF-4C1F-BC52-8DADCDEF6970}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QuanlyCV</RootNamespace>
+    <AssemblyName>QuanlyCV</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.0.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.0.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.0.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.0.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.0.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\MailHelper.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfomationController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Chat.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChatDetail.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DepartmentEmployee.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Emotion.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\File.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Folder.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Form.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Forward.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GrantPermission.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Group.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupChat.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupChatDetail.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupChatMember.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupMember.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Like.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManagerZone.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MemberDiscussion.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Note.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Permission.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Plan.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Post.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PostImage.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Project.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectDiscussion.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProjectMember.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyCV.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyCV.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyCV.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuanLyCV.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyCV.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Remind.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Report.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SetPermission.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Share.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SmallStep.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SmallStepMember.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAllEmployeeByDepartment_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmployeeByDepartmentWhereDepartmentId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmployeeByDepartmentWhereEmployeeIds_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmployeeByDepartmentWhereEmployeeId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Step.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StepMember.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TimeLine.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TimeLineDetail.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TimeLineImage.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unti\Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\aaf5c053.proton.css" />
+    <Content Include="Content\css\basictable.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\examples.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font.css" />
+    <Content Include="Content\css\grouppage.css" />
+    <Content Include="Content\css\ladda.min.css" />
+    <Content Include="Content\css\lightslider.css" />
+    <Content Include="Content\css\lsb.css" />
+    <Content Include="Content\css\monthly.css" />
+    <Content Include="Content\css\morris.css" />
+    <Content Include="Content\css\myfolder.css" />
+    <Content Include="Content\css\mystyle.css" />
+    <Content Include="Content\css\mystyle2.css" />
+    <Content Include="Content\css\mystyle3.css" />
+    <Content Include="Content\css\myworking.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\table-style.css" />
+    <Content Include="Content\css\typo.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\images\1.png" />
+    <Content Include="Content\images\2.png" />
+    <Content Include="Content\images\3.png" />
+    <Content Include="Content\images\add-folder-32.png" />
+    <Content Include="Content\images\add-member-48.png" />
+    <Content Include="Content\images\add-member-icon-32.png" />
+    <Content Include="Content\images\add-new-project-24.png" />
+    <Content Include="Content\images\add-new-project-32.png" />
+    <Content Include="Content\images\add-new-project-48.png" />
+    <Content Include="Content\images\add-new-project-64.png" />
+    <Content Include="Content\images\avatar\avatar_defaulte.png" />
+    <Content Include="Content\images\back-icon-24.png" />
+    <Content Include="Content\images\controls.png" />
+    <Content Include="Content\images\coverPicture\anh_bia.jpg" />
+    <Content Include="Content\images\delete-32.png" />
+    <Content Include="Content\images\delete-foder-32.png" />
+    <Content Include="Content\images\delete-icon-24.png" />
+    <Content Include="Content\images\detail-icon-16.png" />
+    <Content Include="Content\images\detail-icon-24.png" />
+    <Content Include="Content\images\discussion-icon-32.png" />
+    <Content Include="Content\images\edit-folder-32.png" />
+    <Content Include="Content\images\error-bg.jpg" />
+    <Content Include="Content\images\error.png" />
+    <Content Include="Content\images\facebook-like-icon.png" />
+    <Content Include="Content\images\file-icon-32.png" />
+    <Content Include="Content\images\folder-icon-32.png" />
+    <Content Include="Content\images\folder.png" />
+    <Content Include="Content\images\form-icon-32.png" />
+    <Content Include="Content\images\g1.jpg" />
+    <Content Include="Content\images\g2.jpg" />
+    <Content Include="Content\images\g3.jpg" />
+    <Content Include="Content\images\g4.jpg" />
+    <Content Include="Content\images\g5.jpg" />
+    <Content Include="Content\images\g6.jpg" />
+    <Content Include="Content\images\grant-permission-32.png" />
+    <Content Include="Content\images\icon-cam-xuc-16.png" />
+    <Content Include="Content\images\icon-card-16.png" />
+    <Content Include="Content\images\icon-card-32.png" />
+    <Content Include="Content\images\icon-chat-32.png" />
+    <Content Include="Content\images\icon-check-16.png" />
+    <Content Include="Content\images\icon-check-24.png" />
+    <Content Include="Content\images\icon-clock-16.png" />
+    <Content Include="Content\images\icon-description-32.png" />
+    <Content Include="Content\images\icon-dinh-kem-16.png" />
+    <Content Include="Content\images\icon-edit-16.png" />
+    <Content Include="Content\images\icon-kinh-32.png" />
+    <Content Include="Content\images\icon-mat-30.png" />
+    <Content Include="Content\images\icon-mui-ten-phai-16.png" />
+    <Content Include="Content\images\icon-save-16.png" />
+    <Content Include="Content\images\icon-smile-24.png" />
+    <Content Include="Content\images\icon-tag-16.png" />
+    <Content Include="Content\images\icon-thumsup-30.png" />
+    <Content Include="Content\images\icon-user-16.png" />
+    <Content Include="Content\images\icon-view-16.png" />
+    <Content Include="Content\images\icon-warning-24.png" />
+    <Content Include="Content\images\kitchen_adventurer_caramel.jpg" />
+    <Content Include="Content\images\kitchen_adventurer_cheesecake_brownie.jpg" />
+    <Content Include="Content\images\kitchen_adventurer_donut.jpg" />
+    <Content Include="Content\images\kitchen_adventurer_lemon.jpg" />
+    <Content Include="Content\images\list-32.png" />
+    <Content Include="Content\images\logo-hitech.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo2.png" />
+    <Content Include="Content\images\next-icon-24.png" />
+    <Content Include="Content\images\note-icon-32.png" />
+    <Content Include="Content\images\phung-de-mac-1.jpg" />
+    <Content Include="Content\images\phung-de-mac-2.jpg" />
+    <Content Include="Content\images\phung-de-mac-3.jpg" />
+    <Content Include="Content\images\phung-de-mac-4.jpg" />
+    <Content Include="Content\images\s1.jpg" />
+    <Content Include="Content\images\set-permissions-32.png" />
+    <Content Include="Content\images\tuong-giai-an-1.jpg" />
+    <Content Include="Content\images\tuong-giai-an-2.jfif" />
+    <Content Include="Content\images\tuong-giai-an-3.jpg" />
+    <Content Include="Content\images\tuong-giai-an-4.jpg" />
+    <Content Include="Content\images\tuong-giai-an-5.jfif" />
+    <Content Include="Content\images\tuong-giai-an-6.jfif" />
+    <Content Include="Content\images\tuong-giai-an-7.jpg" />
+    <Content Include="Content\images\tuong-giai-an-8.jfif" />
+    <Content Include="Content\images\tuong-giai-an-9.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\QuanLyCV.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyCV.edmx</DependentUpon>
+      <LastGenOutput>QuanLyCV.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QuanLyCV.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QuanLyCV.edmx</DependentUpon>
+      <LastGenOutput>QuanLyCV.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\ai.0.22.9-build00167.js" />
+    <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\css\grouppage.css.map" />
+    <Content Include="Content\css\grouppage.scss" />
+    <EntityDeploy Include="Models\QuanLyCV.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QuanLyCV.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QuanLyCV.edmx.diagram">
+      <DependentUpon>QuanLyCV.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\bootstrap.js" />
+    <Content Include="Scripts\js\gmaps.js" />
+    <Content Include="Scripts\js\graph.js" />
+    <Content Include="Scripts\js\jquery-ui.min.js" />
+    <Content Include="Scripts\js\jquery.basictable.min.js" />
+    <Content Include="Scripts\js\jquery.cookie.js" />
+    <Content Include="Scripts\js\jquery.countdown.min.js" />
+    <Content Include="Scripts\js\jquery.geocomplete.js" />
+    <Content Include="Scripts\js\jquery.min.js" />
+    <Content Include="Scripts\js\jquery.vmap.js" />
+    <Content Include="Scripts\js\jquery.vmap.sampledata.js" />
+    <Content Include="Scripts\js\jquery.vmap.world.js" />
+    <Content Include="Scripts\js\jquery1.9.1.min.js" />
+    <Content Include="Scripts\js\jquery2.0.3.min.js" />
+    <Content Include="Scripts\js\lightslider.js" />
+    <Content Include="Scripts\js\logger.js" />
+    <Content Include="Scripts\js\lsb.js" />
+    <Content Include="Scripts\js\modernizr.js" />
+    <Content Include="Scripts\js\monthly.js" />
+    <Content Include="Scripts\js\morris.js" />
+    <Content Include="Scripts\js\myfolder.js" />
+    <Content Include="Scripts\js\myscript.js" />
+    <Content Include="Scripts\js\myworking.js" />
+    <Content Include="Scripts\js\raphael-min.js" />
+    <Content Include="Scripts\js\screenfull.js" />
+    <Content Include="Scripts\js\skycons.js" />
+    <Content Include="Scripts\js\valida.2.1.6.min.js" />
+    <Content Include="Scripts\js\validator.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Template\content.html" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Login\ForgotPassword.cshtml" />
+    <Content Include="Views\Infomation\Index.cshtml" />
+    <Content Include="Views\Infomation\ChangePassword.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Update.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\loadModelEditEmployee.cshtml" />
+    <Content Include="Views\Employee\loadListEmployeeByDepartment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52119</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52119/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

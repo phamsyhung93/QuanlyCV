@@ -1,0 +1,109 @@
+.working-left .working-left-top{
+  background: #EEE;
+  max-height: 420px;
+  min-height: 420px;
+  overflow: auto; 
+  width: 100%}
+  .working-left .working-left-bottom {
+  width: 100%;
+  height: 40px;
+  background: #FF0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  line-height: 40px; }
+  .working-left .working-left-bottom button {
+    border: none;
+    background: transparent;
+  }
+  .working-left ul {
+    padding-left: 20px;
+    list-style: none; }
+    .working-left ul li {
+      padding: 8px 0; }
+      .working-left ul li .list-sub-working {
+        display: none; }
+      .working-left ul li .list-action {
+        display: none;
+        flex-direction: column;
+        border: 1px solid #CCC; }
+        .working-left ul li .list-action a {
+          padding: 5px 40px; }
+          .working-left ul li .list-action a:hover {
+            background: #EEE; }
+        .working-left ul li .list-action hr {
+          color: #CCC; }
+      .working-left ul li a {
+        width: 100%;
+        color: #000;
+        padding: 7px 20px; }
+        .working-left ul li a:hover {
+          text-decoration: none; }
+        .working-left ul li a i {
+          margin-right: 5px; }
+
+.working-right .list-option {
+  margin: 20px 0; }
+  .working-right .list-option ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    float: right;
+    align-items: center; }
+    .working-right .list-option ul li:first-child {
+      margin-right: 15px; }
+    .working-right .list-option ul li a {
+      font-size: 25px;
+      color: #AAA;
+      padding: 0 5px;
+      border: 1px solid #CCC; }
+    .working-right .list-option ul li .view-selected {
+      background: #EEE; }
+    .working-right .list-option ul li .search-working {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: #FFF;
+      border-radius: 10px;
+      border: 1px solid #CCC; }
+      .working-right .list-option ul li .search-working input {
+        margin-right: 5px;
+        border: transparent;
+        border-radius: 10px; }
+        .working-right .list-option ul li .search-working input:focus {
+          outline: none; }
+.working-right .list-working-right {
+  max-height: 460px;
+  overflow-y: auto;}
+  .working-right .list-working-right ul {
+    list-style: none; }
+    .working-right .list-working-right ul li {
+      margin-top: 10px; }
+      .working-right .list-working-right ul li .wrap-right-item-working {
+        padding: 10px 20px;
+        border-radius: 10px; }
+        .working-right .list-working-right ul li .wrap-right-item-working a {
+          color: #FFF;
+          border-radius: 10px; }
+          .working-right .list-working-right ul li .wrap-right-item-working a .working-name {
+            font-size: 18px; }
+          .working-right .list-working-right ul li .wrap-right-item-working a p {
+            margin-bottom: 0; }
+          .working-right .list-working-right ul li .wrap-right-item-working a:hover {
+            text-decoration: none; }
+
+.active {
+  background: #27ae60; }
+
+.isdoing {
+  background: #3b5998; }
+
+.isslowing {
+  background: #ff9900; }
+
+.isoutofdate {
+  background: #ff0000; }
+
+.isdone {
+  background: #00a78e; }

@@ -1,0 +1,1503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WorkManagermentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChatDetails">
+    <Key>
+      <PropertyRef Name="ChatDetailId" />
+    </Key>
+    <Property Name="ChatDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChatId" Type="int" Nullable="false" />
+    <Property Name="Content" Type="ntext" Nullable="false" />
+    <Property Name="Sender" Type="int" Nullable="false" />
+    <Property Name="SendTime" Type="datetime" Nullable="false" />
+    <Property Name="ChatDetailStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chats">
+    <Key>
+      <PropertyRef Name="ChatId" />
+    </Key>
+    <Property Name="ChatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstMember" Type="int" Nullable="false" />
+    <Property Name="SecondMember" Type="int" Nullable="false" />
+    <Property Name="ChatStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommentContent" Type="ntext" Nullable="false" />
+    <Property Name="CommentImage" Type="varchar" MaxLength="250" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" />
+    <Property Name="TimeLineDetailId" Type="int" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="CommentTime" Type="datetime" Nullable="false" />
+    <Property Name="CommentStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DepartmentEmployees">
+    <Key>
+      <PropertyRef Name="DepartmentEmployeeId" />
+    </Key>
+    <Property Name="DepartmentEmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="DepartmentEmployeeStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="DepartmentStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Emotions">
+    <Key>
+      <PropertyRef Name="EmotionId" />
+    </Key>
+    <Property Name="EmotionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmotionType" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="EmotionIcon" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="EmotionStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeFullname" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="EmployeeBirthday" Type="date" Nullable="false" />
+    <Property Name="EmployeeIdCard" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="EmployeePhone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="EmployeeAddress" Type="ntext" />
+    <Property Name="EmployeeEmail" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="EmployeePassword" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="EmployeeAvatar" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="EmployeeCoverPicture" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="EmployeeStatus" Type="int" Nullable="false" />
+    <Property Name="EmployeeGender" Type="int" />
+  </EntityType>
+  <EntityType Name="Files">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="FolderId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="FileStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Folders">
+    <Key>
+      <PropertyRef Name="FolderId" />
+    </Key>
+    <Property Name="FolderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FolderName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="FolderStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Forms">
+    <Key>
+      <PropertyRef Name="FormId" />
+    </Key>
+    <Property Name="FormId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FormContent" Type="ntext" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="FormStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Forwards">
+    <Key>
+      <PropertyRef Name="ForwardId" />
+    </Key>
+    <Property Name="ForwardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SmallStepId" Type="int" />
+    <Property Name="SendStepId" Type="int" />
+    <Property Name="ReceiverStepId" Type="int" Nullable="false" />
+    <Property Name="TypeSend" Type="int" Nullable="false" />
+    <Property Name="ForwardStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GrantPermissions">
+    <Key>
+      <PropertyRef Name="GrantPermissionId" />
+    </Key>
+    <Property Name="GrantPermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="DepartmentEmployeeId" Type="int" Nullable="false" />
+    <Property Name="GrantPermissionStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupChatDetails">
+    <Key>
+      <PropertyRef Name="GroupChatDetailId" />
+    </Key>
+    <Property Name="GroupChatDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupChatMemberId" Type="int" Nullable="false" />
+    <Property Name="GroupChatDetailContent" Type="ntext" Nullable="false" />
+    <Property Name="GroupChatDetailTime" Type="datetime" Nullable="false" />
+    <Property Name="GroupChatMemberStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupChatMembers">
+    <Key>
+      <PropertyRef Name="GroupChatMemberId" />
+    </Key>
+    <Property Name="GroupChatMemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupChatId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="Adder" Type="int" Nullable="false" />
+    <Property Name="AddedTime" Type="datetime" Nullable="false" />
+    <Property Name="GroupChatMemberStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupChats">
+    <Key>
+      <PropertyRef Name="GroupChatId" />
+    </Key>
+    <Property Name="GroupChatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupChatName" Type="nvarchar" MaxLength="250" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="GroupChatStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupMembers">
+    <Key>
+      <PropertyRef Name="GroupMemberId" />
+    </Key>
+    <Property Name="GroupMemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="GroupRole" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="GroupMemberStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="CreatedTime" Type="datetime" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="GroupType" Type="int" Nullable="false" />
+    <Property Name="GroupStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Likes">
+    <Key>
+      <PropertyRef Name="LikeId" />
+    </Key>
+    <Property Name="LikeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommentId" Type="int" />
+    <Property Name="PostId" Type="int" />
+    <Property Name="TimeLineDetailId" Type="int" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="EmotionId" Type="int" Nullable="false" />
+    <Property Name="LikeStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ManagerZones">
+    <Key>
+      <PropertyRef Name="ManagerZoneId" />
+    </Key>
+    <Property Name="ManagerZoneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ManagerZoneName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ManagerZoneStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MemberDiscussions">
+    <Key>
+      <PropertyRef Name="MemberDiscussionId" />
+    </Key>
+    <Property Name="MemberDiscussionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="ProjectMemberId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="MemberDiscussionStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="NoteId" />
+    </Key>
+    <Property Name="NoteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NoteContent" Type="ntext" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="SmallStepMemberId" Type="int" />
+    <Property Name="NoteStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permissions">
+    <Key>
+      <PropertyRef Name="PermissionId" />
+    </Key>
+    <Property Name="PermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermissionName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="PermissionStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Plans">
+    <Key>
+      <PropertyRef Name="PlanId" />
+    </Key>
+    <Property Name="PlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlanContent" Type="ntext" Nullable="false" />
+    <Property Name="GrantPermissionId" Type="int" Nullable="false" />
+    <Property Name="PlanStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PostImages">
+    <Key>
+      <PropertyRef Name="PostImageId" />
+    </Key>
+    <Property Name="PostImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="PostImage" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="PostImageStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="GroupMemberId" Type="int" Nullable="false" />
+    <Property Name="PostContent" Type="ntext" Nullable="false" />
+    <Property Name="PostedTime" Type="datetime" Nullable="false" />
+    <Property Name="PostStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectDiscussions">
+    <Key>
+      <PropertyRef Name="ProjectDiscussionId" />
+    </Key>
+    <Property Name="ProjectDiscussionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberDiscussionId" Type="int" Nullable="false" />
+    <Property Name="DiscussionContent" Type="ntext" Nullable="false" />
+    <Property Name="ProjectDiscussionStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectMembers">
+    <Key>
+      <PropertyRef Name="ProjectMemberId" />
+    </Key>
+    <Property Name="ProjectMemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="GrantPermissionId" Type="int" Nullable="false" />
+    <Property Name="ProjectMemberStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="ProjectDescription" Type="ntext" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="ProjectStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reminds">
+    <Key>
+      <PropertyRef Name="RemindId" />
+    </Key>
+    <Property Name="RemindId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RemindContent" Type="ntext" Nullable="false" />
+    <Property Name="RemindTime" Type="datetime" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="RemindStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reports">
+    <Key>
+      <PropertyRef Name="ReportId" />
+    </Key>
+    <Property Name="ReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportContent" Type="ntext" Nullable="false" />
+    <Property Name="ReportTime" Type="datetime" Nullable="false" />
+    <Property Name="ReportStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="RoleStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SetPermissions">
+    <Key>
+      <PropertyRef Name="SetPermissionId" />
+    </Key>
+    <Property Name="SetPermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermissionId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="ManagerZoneId" Type="int" Nullable="false" />
+    <Property Name="SetPermissionStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shares">
+    <Key>
+      <PropertyRef Name="ShareId" />
+    </Key>
+    <Property Name="ShareId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="TimeLineId" Type="int" />
+    <Property Name="TimeLineDetailId" Type="int" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="PostId" Type="int" />
+    <Property Name="ShareType" Type="int" Nullable="false" />
+    <Property Name="SharePrivacy" Type="int" Nullable="false" />
+    <Property Name="ShareStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmallStepMembers">
+    <Key>
+      <PropertyRef Name="SmallStepMemberId" />
+    </Key>
+    <Property Name="SmallStepMemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SmallStepId" Type="int" Nullable="false" />
+    <Property Name="StepMemberId" Type="int" Nullable="false" />
+    <Property Name="SmallStepMemberStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SmallSteps">
+    <Key>
+      <PropertyRef Name="SmallStepId" />
+    </Key>
+    <Property Name="SmallStepId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StepId" Type="int" Nullable="false" />
+    <Property Name="SmallStepDescription" Type="ntext" Nullable="false" />
+    <Property Name="SmallStepStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StepMembers">
+    <Key>
+      <PropertyRef Name="StepMemberId" />
+    </Key>
+    <Property Name="StepMemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StepId" Type="int" Nullable="false" />
+    <Property Name="ProjectMemberId" Type="int" Nullable="false" />
+    <Property Name="StepMemberStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Steps">
+    <Key>
+      <PropertyRef Name="StepId" />
+    </Key>
+    <Property Name="StepId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="StepName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="StepDescription" Type="ntext" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="StepStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimeLineDetails">
+    <Key>
+      <PropertyRef Name="TimeLineDetailId" />
+    </Key>
+    <Property Name="TimeLineDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimeLineId" Type="int" Nullable="false" />
+    <Property Name="TimeLineDetailContent" Type="ntext" Nullable="false" />
+    <Property Name="TimeLineDetailPostedTime" Type="datetime" Nullable="false" />
+    <Property Name="TimeLineDetailType" Type="int" Nullable="false" />
+    <Property Name="TimeLineDetailStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimeLineImages">
+    <Key>
+      <PropertyRef Name="TimeLineImageId" />
+    </Key>
+    <Property Name="TimeLineImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimeLineDetailId" Type="int" Nullable="false" />
+    <Property Name="TimeLineImage" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="TimeLineImageStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimeLines">
+    <Key>
+      <PropertyRef Name="TimeLineId" />
+    </Key>
+    <Property Name="TimeLineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="TimeLineStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__ChatDetai__ChatI__2645B050">
+    <End Role="Chats" Type="Self.Chats" Multiplicity="1" />
+    <End Role="ChatDetails" Type="Self.ChatDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chats">
+        <PropertyRef Name="ChatId" />
+      </Principal>
+      <Dependent Role="ChatDetails">
+        <PropertyRef Name="ChatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Chats__FirstMemb__2180FB33">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Chats" Type="Self.Chats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Chats">
+        <PropertyRef Name="FirstMember" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Chats__SecondMem__22751F6C">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Chats" Type="Self.Chats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Chats">
+        <PropertyRef Name="SecondMember" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__Employ__10566F31">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__PostId__0E6E26BF">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__TimeLi__0F624AF8">
+    <End Role="TimeLineDetails" Type="Self.TimeLineDetails" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeLineDetails">
+        <PropertyRef Name="TimeLineDetailId" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="TimeLineDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Departmen__Depar__1BFD2C07">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="DepartmentEmployees" Type="Self.DepartmentEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="DepartmentEmployees">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Departmen__Emplo__1CF15040">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="DepartmentEmployees" Type="Self.DepartmentEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="DepartmentEmployees">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Files__EmployeeI__59FA5E80">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Files" Type="Self.Files" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Files">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Files__FolderId__59063A47">
+    <End Role="Folders" Type="Self.Folders" Multiplicity="0..1" />
+    <End Role="Files" Type="Self.Files" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Folders">
+        <PropertyRef Name="FolderId" />
+      </Principal>
+      <Dependent Role="Files">
+        <PropertyRef Name="FolderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Files__ProjectId__5AEE82B9">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="Files" Type="Self.Files" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="Files">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Folders__Employe__5441852A">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Folders" Type="Self.Folders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Folders">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Folders__Project__5535A963">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="Folders" Type="Self.Folders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="Folders">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Forms__Departmen__4BAC3F29">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Forms" Type="Self.Forms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Forms">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Forwards__Receiv__503BEA1C">
+    <End Role="Steps" Type="Self.Steps" Multiplicity="1" />
+    <End Role="Forwards" Type="Self.Forwards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Steps">
+        <PropertyRef Name="StepId" />
+      </Principal>
+      <Dependent Role="Forwards">
+        <PropertyRef Name="ReceiverStepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Forwards__SendSt__4F47C5E3">
+    <End Role="Steps" Type="Self.Steps" Multiplicity="0..1" />
+    <End Role="Forwards" Type="Self.Forwards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Steps">
+        <PropertyRef Name="StepId" />
+      </Principal>
+      <Dependent Role="Forwards">
+        <PropertyRef Name="SendStepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Forwards__SmallS__4E53A1AA">
+    <End Role="SmallSteps" Type="Self.SmallSteps" Multiplicity="0..1" />
+    <End Role="Forwards" Type="Self.Forwards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmallSteps">
+        <PropertyRef Name="SmallStepId" />
+      </Principal>
+      <Dependent Role="Forwards">
+        <PropertyRef Name="SmallStepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GrantPerm__Depar__32E0915F">
+    <End Role="DepartmentEmployees" Type="Self.DepartmentEmployees" Multiplicity="1" />
+    <End Role="GrantPermissions" Type="Self.GrantPermissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmentEmployees">
+        <PropertyRef Name="DepartmentEmployeeId" />
+      </Principal>
+      <Dependent Role="GrantPermissions">
+        <PropertyRef Name="DepartmentEmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GrantPerm__RoleI__31EC6D26">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="GrantPermissions" Type="Self.GrantPermissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="GrantPermissions">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__Adder__5BAD9CC8">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="GroupChatMembers" Type="Self.GroupChatMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="GroupChatMembers">
+        <PropertyRef Name="Adder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__Emplo__55009F39">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="GroupChats" Type="Self.GroupChats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="GroupChats">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__Emplo__5AB9788F">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="GroupChatMembers" Type="Self.GroupChatMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="GroupChatMembers">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__Group__59C55456">
+    <End Role="GroupChats" Type="Self.GroupChats" Multiplicity="1" />
+    <End Role="GroupChatMembers" Type="Self.GroupChatMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupChats">
+        <PropertyRef Name="GroupChatId" />
+      </Principal>
+      <Dependent Role="GroupChatMembers">
+        <PropertyRef Name="GroupChatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupChat__Group__607251E5">
+    <End Role="GroupChatMembers" Type="Self.GroupChatMembers" Multiplicity="1" />
+    <End Role="GroupChatDetails" Type="Self.GroupChatDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupChatMembers">
+        <PropertyRef Name="GroupChatMemberId" />
+      </Principal>
+      <Dependent Role="GroupChatDetails">
+        <PropertyRef Name="GroupChatMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupMemb__Emplo__73BA3083">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="GroupMembers">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupMemb__Group__72C60C4A">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+    <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="GroupMembers">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Groups__Employee__6E01572D">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Groups">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Likes__CommentId__19DFD96B">
+    <End Role="Comments" Type="Self.Comments" Multiplicity="0..1" />
+    <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comments">
+        <PropertyRef Name="CommentId" />
+      </Principal>
+      <Dependent Role="Likes">
+        <PropertyRef Name="CommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Likes__EmotionId__1DB06A4F">
+    <End Role="Emotions" Type="Self.Emotions" Multiplicity="1" />
+    <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Emotions">
+        <PropertyRef Name="EmotionId" />
+      </Principal>
+      <Dependent Role="Likes">
+        <PropertyRef Name="EmotionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Likes__EmployeeI__1CBC4616">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Likes">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Likes__PostId__1AD3FDA4">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="0..1" />
+    <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="Likes">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Likes__TimeLineD__1BC821DD">
+    <End Role="TimeLineDetails" Type="Self.TimeLineDetails" Multiplicity="0..1" />
+    <End Role="Likes" Type="Self.Likes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeLineDetails">
+        <PropertyRef Name="TimeLineDetailId" />
+      </Principal>
+      <Dependent Role="Likes">
+        <PropertyRef Name="TimeLineDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MemberDis__Emplo__440B1D61">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="MemberDiscussions" Type="Self.MemberDiscussions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="MemberDiscussions">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MemberDis__Proje__4222D4EF">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+    <End Role="MemberDiscussions" Type="Self.MemberDiscussions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="MemberDiscussions">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MemberDis__Proje__4316F928">
+    <End Role="ProjectMembers" Type="Self.ProjectMembers" Multiplicity="1" />
+    <End Role="MemberDiscussions" Type="Self.MemberDiscussions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectMembers">
+        <PropertyRef Name="ProjectMemberId" />
+      </Principal>
+      <Dependent Role="MemberDiscussions">
+        <PropertyRef Name="ProjectMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notes__EmployeeI__3F115E1A">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notes__SmallStep__40058253">
+    <End Role="SmallStepMembers" Type="Self.SmallStepMembers" Multiplicity="0..1" />
+    <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmallStepMembers">
+        <PropertyRef Name="SmallStepMemberId" />
+      </Principal>
+      <Dependent Role="Notes">
+        <PropertyRef Name="SmallStepMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Plans__GrantPerm__4F7CD00D">
+    <End Role="GrantPermissions" Type="Self.GrantPermissions" Multiplicity="1" />
+    <End Role="Plans" Type="Self.Plans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrantPermissions">
+        <PropertyRef Name="GrantPermissionId" />
+      </Principal>
+      <Dependent Role="Plans">
+        <PropertyRef Name="GrantPermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostImage__PostI__7F2BE32F">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+    <End Role="PostImages" Type="Self.PostImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="PostImages">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Posts__GroupId__787EE5A0">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+    <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="Posts">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Posts__GroupMemb__797309D9">
+    <End Role="GroupMembers" Type="Self.GroupMembers" Multiplicity="1" />
+    <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupMembers">
+        <PropertyRef Name="GroupMemberId" />
+      </Principal>
+      <Dependent Role="Posts">
+        <PropertyRef Name="GroupMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProjectDi__Membe__47DBAE45">
+    <End Role="MemberDiscussions" Type="Self.MemberDiscussions" Multiplicity="1" />
+    <End Role="ProjectDiscussions" Type="Self.ProjectDiscussions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberDiscussions">
+        <PropertyRef Name="MemberDiscussionId" />
+      </Principal>
+      <Dependent Role="ProjectDiscussions">
+        <PropertyRef Name="MemberDiscussionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProjectMe__Grant__3E52440B">
+    <End Role="GrantPermissions" Type="Self.GrantPermissions" Multiplicity="1" />
+    <End Role="ProjectMembers" Type="Self.ProjectMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GrantPermissions">
+        <PropertyRef Name="GrantPermissionId" />
+      </Principal>
+      <Dependent Role="ProjectMembers">
+        <PropertyRef Name="GrantPermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProjectMe__Proje__3D5E1FD2">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+    <End Role="ProjectMembers" Type="Self.ProjectMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="ProjectMembers">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Projects__Depart__398D8EEE">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Projects">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reminds__Departm__4A8310C6">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+    <End Role="Reminds" Type="Self.Reminds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Reminds">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reminds__Employe__489AC854">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Reminds" Type="Self.Reminds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Reminds">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reminds__Project__498EEC8D">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+    <End Role="Reminds" Type="Self.Reminds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="Reminds">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SetPermis__Manag__2E1BDC42">
+    <End Role="ManagerZones" Type="Self.ManagerZones" Multiplicity="1" />
+    <End Role="SetPermissions" Type="Self.SetPermissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ManagerZones">
+        <PropertyRef Name="ManagerZoneId" />
+      </Principal>
+      <Dependent Role="SetPermissions">
+        <PropertyRef Name="ManagerZoneId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SetPermis__Permi__2C3393D0">
+    <End Role="Permissions" Type="Self.Permissions" Multiplicity="1" />
+    <End Role="SetPermissions" Type="Self.SetPermissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Permissions">
+        <PropertyRef Name="PermissionId" />
+      </Principal>
+      <Dependent Role="SetPermissions">
+        <PropertyRef Name="PermissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SetPermis__RoleI__2D27B809">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="SetPermissions" Type="Self.SetPermissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="SetPermissions">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Shares__Employee__02FC7413">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Shares" Type="Self.Shares" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="Shares">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Shares__GroupId__05D8E0BE">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+    <End Role="Shares" Type="Self.Shares" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="Shares">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Shares__PostId__06CD04F7">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="0..1" />
+    <End Role="Shares" Type="Self.Shares" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="PostId" />
+      </Principal>
+      <Dependent Role="Shares">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Shares__TimeLine__03F0984C">
+    <End Role="TimeLines" Type="Self.TimeLines" Multiplicity="0..1" />
+    <End Role="Shares" Type="Self.Shares" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeLines">
+        <PropertyRef Name="TimeLineId" />
+      </Principal>
+      <Dependent Role="Shares">
+        <PropertyRef Name="TimeLineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Shares__TimeLine__04E4BC85">
+    <End Role="TimeLineDetails" Type="Self.TimeLineDetails" Multiplicity="0..1" />
+    <End Role="Shares" Type="Self.Shares" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeLineDetails">
+        <PropertyRef Name="TimeLineDetailId" />
+      </Principal>
+      <Dependent Role="Shares">
+        <PropertyRef Name="TimeLineDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SmallStep__Small__3A4CA8FD">
+    <End Role="SmallSteps" Type="Self.SmallSteps" Multiplicity="1" />
+    <End Role="SmallStepMembers" Type="Self.SmallStepMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmallSteps">
+        <PropertyRef Name="SmallStepId" />
+      </Principal>
+      <Dependent Role="SmallStepMembers">
+        <PropertyRef Name="SmallStepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SmallStep__StepI__367C1819">
+    <End Role="Steps" Type="Self.Steps" Multiplicity="1" />
+    <End Role="SmallSteps" Type="Self.SmallSteps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Steps">
+        <PropertyRef Name="StepId" />
+      </Principal>
+      <Dependent Role="SmallSteps">
+        <PropertyRef Name="StepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SmallStep__StepM__3B40CD36">
+    <End Role="StepMembers" Type="Self.StepMembers" Multiplicity="1" />
+    <End Role="SmallStepMembers" Type="Self.SmallStepMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StepMembers">
+        <PropertyRef Name="StepMemberId" />
+      </Principal>
+      <Dependent Role="SmallStepMembers">
+        <PropertyRef Name="StepMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StepMembe__Proje__32AB8735">
+    <End Role="ProjectMembers" Type="Self.ProjectMembers" Multiplicity="1" />
+    <End Role="StepMembers" Type="Self.StepMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectMembers">
+        <PropertyRef Name="ProjectMemberId" />
+      </Principal>
+      <Dependent Role="StepMembers">
+        <PropertyRef Name="ProjectMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StepMembe__StepI__31B762FC">
+    <End Role="Steps" Type="Self.Steps" Multiplicity="1" />
+    <End Role="StepMembers" Type="Self.StepMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Steps">
+        <PropertyRef Name="StepId" />
+      </Principal>
+      <Dependent Role="StepMembers">
+        <PropertyRef Name="StepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Steps__ProjectId__2BFE89A6">
+    <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+    <End Role="Steps" Type="Self.Steps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="ProjectId" />
+      </Principal>
+      <Dependent Role="Steps">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TimeLineD__TimeL__628FA481">
+    <End Role="TimeLines" Type="Self.TimeLines" Multiplicity="1" />
+    <End Role="TimeLineDetails" Type="Self.TimeLineDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeLines">
+        <PropertyRef Name="TimeLineId" />
+      </Principal>
+      <Dependent Role="TimeLineDetails">
+        <PropertyRef Name="TimeLineId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TimeLineI__TimeL__693CA210">
+    <End Role="TimeLineDetails" Type="Self.TimeLineDetails" Multiplicity="1" />
+    <End Role="TimeLineImages" Type="Self.TimeLineImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TimeLineDetails">
+        <PropertyRef Name="TimeLineDetailId" />
+      </Principal>
+      <Dependent Role="TimeLineImages">
+        <PropertyRef Name="TimeLineDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TimeLines__Emplo__5EBF139D">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="TimeLines" Type="Self.TimeLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="TimeLines">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_GetAllEmployeeByDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getEmployeeByDepartmentWhereDepartmentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getEmployeeByDepartmentWhereEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getEmployeeByDepartmentWhereEmployeeIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="WorkManagermentModelStoreContainer">
+    <EntitySet Name="ChatDetails" EntityType="Self.ChatDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Chats" EntityType="Self.Chats" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartmentEmployees" EntityType="Self.DepartmentEmployees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Emotions" EntityType="Self.Emotions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Folders" EntityType="Self.Folders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Forms" EntityType="Self.Forms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Forwards" EntityType="Self.Forwards" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GrantPermissions" EntityType="Self.GrantPermissions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupChatDetails" EntityType="Self.GroupChatDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupChatMembers" EntityType="Self.GroupChatMembers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupChats" EntityType="Self.GroupChats" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupMembers" EntityType="Self.GroupMembers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Likes" EntityType="Self.Likes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ManagerZones" EntityType="Self.ManagerZones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemberDiscussions" EntityType="Self.MemberDiscussions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Plans" EntityType="Self.Plans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostImages" EntityType="Self.PostImages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectDiscussions" EntityType="Self.ProjectDiscussions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectMembers" EntityType="Self.ProjectMembers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reminds" EntityType="Self.Reminds" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SetPermissions" EntityType="Self.SetPermissions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shares" EntityType="Self.Shares" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SmallStepMembers" EntityType="Self.SmallStepMembers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SmallSteps" EntityType="Self.SmallSteps" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StepMembers" EntityType="Self.StepMembers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Steps" EntityType="Self.Steps" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TimeLineDetails" EntityType="Self.TimeLineDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TimeLineImages" EntityType="Self.TimeLineImages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TimeLines" EntityType="Self.TimeLines" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ChatDetai__ChatI__2645B050" Association="Self.FK__ChatDetai__ChatI__2645B050">
+      <End Role="Chats" EntitySet="Chats" />
+      <End Role="ChatDetails" EntitySet="ChatDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Chats__FirstMemb__2180FB33" Association="Self.FK__Chats__FirstMemb__2180FB33">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Chats" EntitySet="Chats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Chats__SecondMem__22751F6C" Association="Self.FK__Chats__SecondMem__22751F6C">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Chats" EntitySet="Chats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__Employ__10566F31" Association="Self.FK__Comments__Employ__10566F31">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__PostId__0E6E26BF" Association="Self.FK__Comments__PostId__0E6E26BF">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__TimeLi__0F624AF8" Association="Self.FK__Comments__TimeLi__0F624AF8">
+      <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Departmen__Depar__1BFD2C07" Association="Self.FK__Departmen__Depar__1BFD2C07">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="DepartmentEmployees" EntitySet="DepartmentEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Departmen__Emplo__1CF15040" Association="Self.FK__Departmen__Emplo__1CF15040">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="DepartmentEmployees" EntitySet="DepartmentEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Files__EmployeeI__59FA5E80" Association="Self.FK__Files__EmployeeI__59FA5E80">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Files" EntitySet="Files" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Files__FolderId__59063A47" Association="Self.FK__Files__FolderId__59063A47">
+      <End Role="Folders" EntitySet="Folders" />
+      <End Role="Files" EntitySet="Files" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Files__ProjectId__5AEE82B9" Association="Self.FK__Files__ProjectId__5AEE82B9">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Files" EntitySet="Files" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Folders__Employe__5441852A" Association="Self.FK__Folders__Employe__5441852A">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Folders" EntitySet="Folders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Folders__Project__5535A963" Association="Self.FK__Folders__Project__5535A963">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Folders" EntitySet="Folders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Forms__Departmen__4BAC3F29" Association="Self.FK__Forms__Departmen__4BAC3F29">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Forms" EntitySet="Forms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Forwards__Receiv__503BEA1C" Association="Self.FK__Forwards__Receiv__503BEA1C">
+      <End Role="Steps" EntitySet="Steps" />
+      <End Role="Forwards" EntitySet="Forwards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Forwards__SendSt__4F47C5E3" Association="Self.FK__Forwards__SendSt__4F47C5E3">
+      <End Role="Steps" EntitySet="Steps" />
+      <End Role="Forwards" EntitySet="Forwards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Forwards__SmallS__4E53A1AA" Association="Self.FK__Forwards__SmallS__4E53A1AA">
+      <End Role="SmallSteps" EntitySet="SmallSteps" />
+      <End Role="Forwards" EntitySet="Forwards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GrantPerm__Depar__32E0915F" Association="Self.FK__GrantPerm__Depar__32E0915F">
+      <End Role="DepartmentEmployees" EntitySet="DepartmentEmployees" />
+      <End Role="GrantPermissions" EntitySet="GrantPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GrantPerm__RoleI__31EC6D26" Association="Self.FK__GrantPerm__RoleI__31EC6D26">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="GrantPermissions" EntitySet="GrantPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__Adder__5BAD9CC8" Association="Self.FK__GroupChat__Adder__5BAD9CC8">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="GroupChatMembers" EntitySet="GroupChatMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__Emplo__55009F39" Association="Self.FK__GroupChat__Emplo__55009F39">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="GroupChats" EntitySet="GroupChats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__Emplo__5AB9788F" Association="Self.FK__GroupChat__Emplo__5AB9788F">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="GroupChatMembers" EntitySet="GroupChatMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__Group__59C55456" Association="Self.FK__GroupChat__Group__59C55456">
+      <End Role="GroupChats" EntitySet="GroupChats" />
+      <End Role="GroupChatMembers" EntitySet="GroupChatMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupChat__Group__607251E5" Association="Self.FK__GroupChat__Group__607251E5">
+      <End Role="GroupChatMembers" EntitySet="GroupChatMembers" />
+      <End Role="GroupChatDetails" EntitySet="GroupChatDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupMemb__Emplo__73BA3083" Association="Self.FK__GroupMemb__Emplo__73BA3083">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="GroupMembers" EntitySet="GroupMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupMemb__Group__72C60C4A" Association="Self.FK__GroupMemb__Group__72C60C4A">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="GroupMembers" EntitySet="GroupMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Groups__Employee__6E01572D" Association="Self.FK__Groups__Employee__6E01572D">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Groups" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Likes__CommentId__19DFD96B" Association="Self.FK__Likes__CommentId__19DFD96B">
+      <End Role="Comments" EntitySet="Comments" />
+      <End Role="Likes" EntitySet="Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Likes__EmotionId__1DB06A4F" Association="Self.FK__Likes__EmotionId__1DB06A4F">
+      <End Role="Emotions" EntitySet="Emotions" />
+      <End Role="Likes" EntitySet="Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Likes__EmployeeI__1CBC4616" Association="Self.FK__Likes__EmployeeI__1CBC4616">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Likes" EntitySet="Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Likes__PostId__1AD3FDA4" Association="Self.FK__Likes__PostId__1AD3FDA4">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Likes" EntitySet="Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Likes__TimeLineD__1BC821DD" Association="Self.FK__Likes__TimeLineD__1BC821DD">
+      <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
+      <End Role="Likes" EntitySet="Likes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MemberDis__Emplo__440B1D61" Association="Self.FK__MemberDis__Emplo__440B1D61">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="MemberDiscussions" EntitySet="MemberDiscussions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MemberDis__Proje__4222D4EF" Association="Self.FK__MemberDis__Proje__4222D4EF">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="MemberDiscussions" EntitySet="MemberDiscussions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MemberDis__Proje__4316F928" Association="Self.FK__MemberDis__Proje__4316F928">
+      <End Role="ProjectMembers" EntitySet="ProjectMembers" />
+      <End Role="MemberDiscussions" EntitySet="MemberDiscussions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notes__EmployeeI__3F115E1A" Association="Self.FK__Notes__EmployeeI__3F115E1A">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notes__SmallStep__40058253" Association="Self.FK__Notes__SmallStep__40058253">
+      <End Role="SmallStepMembers" EntitySet="SmallStepMembers" />
+      <End Role="Notes" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Plans__GrantPerm__4F7CD00D" Association="Self.FK__Plans__GrantPerm__4F7CD00D">
+      <End Role="GrantPermissions" EntitySet="GrantPermissions" />
+      <End Role="Plans" EntitySet="Plans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostImage__PostI__7F2BE32F" Association="Self.FK__PostImage__PostI__7F2BE32F">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="PostImages" EntitySet="PostImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Posts__GroupId__787EE5A0" Association="Self.FK__Posts__GroupId__787EE5A0">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Posts" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Posts__GroupMemb__797309D9" Association="Self.FK__Posts__GroupMemb__797309D9">
+      <End Role="GroupMembers" EntitySet="GroupMembers" />
+      <End Role="Posts" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProjectDi__Membe__47DBAE45" Association="Self.FK__ProjectDi__Membe__47DBAE45">
+      <End Role="MemberDiscussions" EntitySet="MemberDiscussions" />
+      <End Role="ProjectDiscussions" EntitySet="ProjectDiscussions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProjectMe__Grant__3E52440B" Association="Self.FK__ProjectMe__Grant__3E52440B">
+      <End Role="GrantPermissions" EntitySet="GrantPermissions" />
+      <End Role="ProjectMembers" EntitySet="ProjectMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProjectMe__Proje__3D5E1FD2" Association="Self.FK__ProjectMe__Proje__3D5E1FD2">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="ProjectMembers" EntitySet="ProjectMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Projects__Depart__398D8EEE" Association="Self.FK__Projects__Depart__398D8EEE">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Projects" EntitySet="Projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reminds__Departm__4A8310C6" Association="Self.FK__Reminds__Departm__4A8310C6">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Reminds" EntitySet="Reminds" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reminds__Employe__489AC854" Association="Self.FK__Reminds__Employe__489AC854">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Reminds" EntitySet="Reminds" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reminds__Project__498EEC8D" Association="Self.FK__Reminds__Project__498EEC8D">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Reminds" EntitySet="Reminds" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SetPermis__Manag__2E1BDC42" Association="Self.FK__SetPermis__Manag__2E1BDC42">
+      <End Role="ManagerZones" EntitySet="ManagerZones" />
+      <End Role="SetPermissions" EntitySet="SetPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SetPermis__Permi__2C3393D0" Association="Self.FK__SetPermis__Permi__2C3393D0">
+      <End Role="Permissions" EntitySet="Permissions" />
+      <End Role="SetPermissions" EntitySet="SetPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SetPermis__RoleI__2D27B809" Association="Self.FK__SetPermis__RoleI__2D27B809">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="SetPermissions" EntitySet="SetPermissions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Shares__Employee__02FC7413" Association="Self.FK__Shares__Employee__02FC7413">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Shares" EntitySet="Shares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Shares__GroupId__05D8E0BE" Association="Self.FK__Shares__GroupId__05D8E0BE">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Shares" EntitySet="Shares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Shares__PostId__06CD04F7" Association="Self.FK__Shares__PostId__06CD04F7">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Shares" EntitySet="Shares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Shares__TimeLine__03F0984C" Association="Self.FK__Shares__TimeLine__03F0984C">
+      <End Role="TimeLines" EntitySet="TimeLines" />
+      <End Role="Shares" EntitySet="Shares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Shares__TimeLine__04E4BC85" Association="Self.FK__Shares__TimeLine__04E4BC85">
+      <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
+      <End Role="Shares" EntitySet="Shares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SmallStep__Small__3A4CA8FD" Association="Self.FK__SmallStep__Small__3A4CA8FD">
+      <End Role="SmallSteps" EntitySet="SmallSteps" />
+      <End Role="SmallStepMembers" EntitySet="SmallStepMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SmallStep__StepI__367C1819" Association="Self.FK__SmallStep__StepI__367C1819">
+      <End Role="Steps" EntitySet="Steps" />
+      <End Role="SmallSteps" EntitySet="SmallSteps" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SmallStep__StepM__3B40CD36" Association="Self.FK__SmallStep__StepM__3B40CD36">
+      <End Role="StepMembers" EntitySet="StepMembers" />
+      <End Role="SmallStepMembers" EntitySet="SmallStepMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StepMembe__Proje__32AB8735" Association="Self.FK__StepMembe__Proje__32AB8735">
+      <End Role="ProjectMembers" EntitySet="ProjectMembers" />
+      <End Role="StepMembers" EntitySet="StepMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StepMembe__StepI__31B762FC" Association="Self.FK__StepMembe__StepI__31B762FC">
+      <End Role="Steps" EntitySet="Steps" />
+      <End Role="StepMembers" EntitySet="StepMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Steps__ProjectId__2BFE89A6" Association="Self.FK__Steps__ProjectId__2BFE89A6">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="Steps" EntitySet="Steps" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TimeLineD__TimeL__628FA481" Association="Self.FK__TimeLineD__TimeL__628FA481">
+      <End Role="TimeLines" EntitySet="TimeLines" />
+      <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TimeLineI__TimeL__693CA210" Association="Self.FK__TimeLineI__TimeL__693CA210">
+      <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
+      <End Role="TimeLineImages" EntitySet="TimeLineImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TimeLines__Emplo__5EBF139D" Association="Self.FK__TimeLines__Emplo__5EBF139D">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="TimeLines" EntitySet="TimeLines" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

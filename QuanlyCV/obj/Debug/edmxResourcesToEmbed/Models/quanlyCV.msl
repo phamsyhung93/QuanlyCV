@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WorkManagermentModelStoreContainer" CdmEntityContainer="WorkManagermentEntities">
+    <EntitySetMapping Name="ChatDetails">
+      <EntityTypeMapping TypeName="WorkManagermentModel.ChatDetail">
+        <MappingFragment StoreEntitySet="ChatDetails">
+          <ScalarProperty Name="ChatDetailId" ColumnName="ChatDetailId" />
+          <ScalarProperty Name="ChatId" ColumnName="ChatId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="ChatDetailStatus" ColumnName="ChatDetailStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chats">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Chat">
+        <MappingFragment StoreEntitySet="Chats">
+          <ScalarProperty Name="ChatId" ColumnName="ChatId" />
+          <ScalarProperty Name="FirstMember" ColumnName="FirstMember" />
+          <ScalarProperty Name="SecondMember" ColumnName="SecondMember" />
+          <ScalarProperty Name="ChatStatus" ColumnName="ChatStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+          <ScalarProperty Name="CommentImage" ColumnName="CommentImage" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="TimeLineDetailId" ColumnName="TimeLineDetailId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="CommentTime" ColumnName="CommentTime" />
+          <ScalarProperty Name="CommentStatus" ColumnName="CommentStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepartmentEmployees">
+      <EntityTypeMapping TypeName="WorkManagermentModel.DepartmentEmployee">
+        <MappingFragment StoreEntitySet="DepartmentEmployees">
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Department">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emotions">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Emotion">
+        <MappingFragment StoreEntitySet="Emotions">
+          <ScalarProperty Name="EmotionId" ColumnName="EmotionId" />
+          <ScalarProperty Name="EmotionType" ColumnName="EmotionType" />
+          <ScalarProperty Name="EmotionIcon" ColumnName="EmotionIcon" />
+          <ScalarProperty Name="EmotionStatus" ColumnName="EmotionStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Files">
+      <EntityTypeMapping TypeName="WorkManagermentModel.File">
+        <MappingFragment StoreEntitySet="Files">
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="FileStatus" ColumnName="FileStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Folders">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Folder">
+        <MappingFragment StoreEntitySet="Folders">
+          <ScalarProperty Name="FolderId" ColumnName="FolderId" />
+          <ScalarProperty Name="FolderName" ColumnName="FolderName" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="FolderStatus" ColumnName="FolderStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Forms">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Form">
+        <MappingFragment StoreEntitySet="Forms">
+          <ScalarProperty Name="FormId" ColumnName="FormId" />
+          <ScalarProperty Name="FormContent" ColumnName="FormContent" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Forwards">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Forward">
+        <MappingFragment StoreEntitySet="Forwards">
+          <ScalarProperty Name="ForwardId" ColumnName="ForwardId" />
+          <ScalarProperty Name="SmallStepId" ColumnName="SmallStepId" />
+          <ScalarProperty Name="SendStepId" ColumnName="SendStepId" />
+          <ScalarProperty Name="ReceiverStepId" ColumnName="ReceiverStepId" />
+          <ScalarProperty Name="TypeSend" ColumnName="TypeSend" />
+          <ScalarProperty Name="ForwardStatus" ColumnName="ForwardStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GrantPermissions">
+      <EntityTypeMapping TypeName="WorkManagermentModel.GrantPermission">
+        <MappingFragment StoreEntitySet="GrantPermissions">
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupChatDetails">
+      <EntityTypeMapping TypeName="WorkManagermentModel.GroupChatDetail">
+        <MappingFragment StoreEntitySet="GroupChatDetails">
+          <ScalarProperty Name="GroupChatDetailId" ColumnName="GroupChatDetailId" />
+          <ScalarProperty Name="GroupChatMemberId" ColumnName="GroupChatMemberId" />
+          <ScalarProperty Name="GroupChatDetailContent" ColumnName="GroupChatDetailContent" />
+          <ScalarProperty Name="GroupChatDetailTime" ColumnName="GroupChatDetailTime" />
+          <ScalarProperty Name="GroupChatMemberStatus" ColumnName="GroupChatMemberStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupChatMembers">
+      <EntityTypeMapping TypeName="WorkManagermentModel.GroupChatMember">
+        <MappingFragment StoreEntitySet="GroupChatMembers">
+          <ScalarProperty Name="GroupChatMemberId" ColumnName="GroupChatMemberId" />
+          <ScalarProperty Name="GroupChatId" ColumnName="GroupChatId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="Adder" ColumnName="Adder" />
+          <ScalarProperty Name="AddedTime" ColumnName="AddedTime" />
+          <ScalarProperty Name="GroupChatMemberStatus" ColumnName="GroupChatMemberStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupChats">
+      <EntityTypeMapping TypeName="WorkManagermentModel.GroupChat">
+        <MappingFragment StoreEntitySet="GroupChats">
+          <ScalarProperty Name="GroupChatId" ColumnName="GroupChatId" />
+          <ScalarProperty Name="GroupChatName" ColumnName="GroupChatName" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="GroupChatStatus" ColumnName="GroupChatStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupMembers">
+      <EntityTypeMapping TypeName="WorkManagermentModel.GroupMember">
+        <MappingFragment StoreEntitySet="GroupMembers">
+          <ScalarProperty Name="GroupMemberId" ColumnName="GroupMemberId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="GroupRole" ColumnName="GroupRole" />
+          <ScalarProperty Name="GroupMemberStatus" ColumnName="GroupMemberStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Group">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="CreatedTime" ColumnName="CreatedTime" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="GroupType" ColumnName="GroupType" />
+          <ScalarProperty Name="GroupStatus" ColumnName="GroupStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Likes">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Like">
+        <MappingFragment StoreEntitySet="Likes">
+          <ScalarProperty Name="LikeId" ColumnName="LikeId" />
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="TimeLineDetailId" ColumnName="TimeLineDetailId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmotionId" ColumnName="EmotionId" />
+          <ScalarProperty Name="LikeStatus" ColumnName="LikeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ManagerZones">
+      <EntityTypeMapping TypeName="WorkManagermentModel.ManagerZone">
+        <MappingFragment StoreEntitySet="ManagerZones">
+          <ScalarProperty Name="ManagerZoneId" ColumnName="ManagerZoneId" />
+          <ScalarProperty Name="ManagerZoneName" ColumnName="ManagerZoneName" />
+          <ScalarProperty Name="ManagerZoneStatus" ColumnName="ManagerZoneStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberDiscussions">
+      <EntityTypeMapping TypeName="WorkManagermentModel.MemberDiscussion">
+        <MappingFragment StoreEntitySet="MemberDiscussions">
+          <ScalarProperty Name="MemberDiscussionId" ColumnName="MemberDiscussionId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="MemberDiscussionStatus" ColumnName="MemberDiscussionStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Note">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="NoteId" ColumnName="NoteId" />
+          <ScalarProperty Name="NoteContent" ColumnName="NoteContent" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="SmallStepMemberId" ColumnName="SmallStepMemberId" />
+          <ScalarProperty Name="NoteStatus" ColumnName="NoteStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Permission">
+        <MappingFragment StoreEntitySet="Permissions">
+          <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+          <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
+          <ScalarProperty Name="PermissionStatus" ColumnName="PermissionStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plans">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Plan">
+        <MappingFragment StoreEntitySet="Plans">
+          <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+          <ScalarProperty Name="PlanContent" ColumnName="PlanContent" />
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="PlanStatus" ColumnName="PlanStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostImages">
+      <EntityTypeMapping TypeName="WorkManagermentModel.PostImage">
+        <MappingFragment StoreEntitySet="PostImages">
+          <ScalarProperty Name="PostImageId" ColumnName="PostImageId" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="PostImage1" ColumnName="PostImage" />
+          <ScalarProperty Name="PostImageStatus" ColumnName="PostImageStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Post">
+        <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupMemberId" ColumnName="GroupMemberId" />
+          <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+          <ScalarProperty Name="PostedTime" ColumnName="PostedTime" />
+          <ScalarProperty Name="PostStatus" ColumnName="PostStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectDiscussions">
+      <EntityTypeMapping TypeName="WorkManagermentModel.ProjectDiscussion">
+        <MappingFragment StoreEntitySet="ProjectDiscussions">
+          <ScalarProperty Name="ProjectDiscussionId" ColumnName="ProjectDiscussionId" />
+          <ScalarProperty Name="MemberDiscussionId" ColumnName="MemberDiscussionId" />
+          <ScalarProperty Name="DiscussionContent" ColumnName="DiscussionContent" />
+          <ScalarProperty Name="ProjectDiscussionStatus" ColumnName="ProjectDiscussionStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectMembers">
+      <EntityTypeMapping TypeName="WorkManagermentModel.ProjectMember">
+        <MappingFragment StoreEntitySet="ProjectMembers">
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="ProjectMemberStatus" ColumnName="ProjectMemberStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Project">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reminds">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Remind">
+        <MappingFragment StoreEntitySet="Reminds">
+          <ScalarProperty Name="RemindId" ColumnName="RemindId" />
+          <ScalarProperty Name="RemindContent" ColumnName="RemindContent" />
+          <ScalarProperty Name="RemindTime" ColumnName="RemindTime" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="RemindStatus" ColumnName="RemindStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reports">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Report">
+        <MappingFragment StoreEntitySet="Reports">
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="ReportContent" ColumnName="ReportContent" />
+          <ScalarProperty Name="ReportTime" ColumnName="ReportTime" />
+          <ScalarProperty Name="ReportStatus" ColumnName="ReportStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SetPermissions">
+      <EntityTypeMapping TypeName="WorkManagermentModel.SetPermission">
+        <MappingFragment StoreEntitySet="SetPermissions">
+          <ScalarProperty Name="SetPermissionId" ColumnName="SetPermissionId" />
+          <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ManagerZoneId" ColumnName="ManagerZoneId" />
+          <ScalarProperty Name="SetPermissionStatus" ColumnName="SetPermissionStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shares">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Share">
+        <MappingFragment StoreEntitySet="Shares">
+          <ScalarProperty Name="ShareId" ColumnName="ShareId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="TimeLineId" ColumnName="TimeLineId" />
+          <ScalarProperty Name="TimeLineDetailId" ColumnName="TimeLineDetailId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="ShareType" ColumnName="ShareType" />
+          <ScalarProperty Name="SharePrivacy" ColumnName="SharePrivacy" />
+          <ScalarProperty Name="ShareStatus" ColumnName="ShareStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SmallStepMembers">
+      <EntityTypeMapping TypeName="WorkManagermentModel.SmallStepMember">
+        <MappingFragment StoreEntitySet="SmallStepMembers">
+          <ScalarProperty Name="SmallStepMemberId" ColumnName="SmallStepMemberId" />
+          <ScalarProperty Name="SmallStepId" ColumnName="SmallStepId" />
+          <ScalarProperty Name="StepMemberId" ColumnName="StepMemberId" />
+          <ScalarProperty Name="SmallStepMemberStatus" ColumnName="SmallStepMemberStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SmallSteps">
+      <EntityTypeMapping TypeName="WorkManagermentModel.SmallStep">
+        <MappingFragment StoreEntitySet="SmallSteps">
+          <ScalarProperty Name="SmallStepId" ColumnName="SmallStepId" />
+          <ScalarProperty Name="StepId" ColumnName="StepId" />
+          <ScalarProperty Name="SmallStepDescription" ColumnName="SmallStepDescription" />
+          <ScalarProperty Name="SmallStepStatus" ColumnName="SmallStepStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StepMembers">
+      <EntityTypeMapping TypeName="WorkManagermentModel.StepMember">
+        <MappingFragment StoreEntitySet="StepMembers">
+          <ScalarProperty Name="StepMemberId" ColumnName="StepMemberId" />
+          <ScalarProperty Name="StepId" ColumnName="StepId" />
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="StepMemberStatus" ColumnName="StepMemberStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Steps">
+      <EntityTypeMapping TypeName="WorkManagermentModel.Step">
+        <MappingFragment StoreEntitySet="Steps">
+          <ScalarProperty Name="StepId" ColumnName="StepId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="StepName" ColumnName="StepName" />
+          <ScalarProperty Name="StepDescription" ColumnName="StepDescription" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StepStatus" ColumnName="StepStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeLineDetails">
+      <EntityTypeMapping TypeName="WorkManagermentModel.TimeLineDetail">
+        <MappingFragment StoreEntitySet="TimeLineDetails">
+          <ScalarProperty Name="TimeLineDetailId" ColumnName="TimeLineDetailId" />
+          <ScalarProperty Name="TimeLineId" ColumnName="TimeLineId" />
+          <ScalarProperty Name="TimeLineDetailContent" ColumnName="TimeLineDetailContent" />
+          <ScalarProperty Name="TimeLineDetailPostedTime" ColumnName="TimeLineDetailPostedTime" />
+          <ScalarProperty Name="TimeLineDetailType" ColumnName="TimeLineDetailType" />
+          <ScalarProperty Name="TimeLineDetailStatus" ColumnName="TimeLineDetailStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeLineImages">
+      <EntityTypeMapping TypeName="WorkManagermentModel.TimeLineImage">
+        <MappingFragment StoreEntitySet="TimeLineImages">
+          <ScalarProperty Name="TimeLineImageId" ColumnName="TimeLineImageId" />
+          <ScalarProperty Name="TimeLineDetailId" ColumnName="TimeLineDetailId" />
+          <ScalarProperty Name="TimeLineImage1" ColumnName="TimeLineImage" />
+          <ScalarProperty Name="TimeLineImageStatus" ColumnName="TimeLineImageStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeLines">
+      <EntityTypeMapping TypeName="WorkManagermentModel.TimeLine">
+        <MappingFragment StoreEntitySet="TimeLines">
+          <ScalarProperty Name="TimeLineId" ColumnName="TimeLineId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="TimeLineStatus" ColumnName="TimeLineStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAllEmployeeByDepartment" FunctionName="WorkManagermentModel.Store.sp_GetAllEmployeeByDepartment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_GetAllEmployeeByDepartment_Result">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeId_Result">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentId1" ColumnName="DepartmentId1" />
+          <ScalarProperty Name="EmployeeId1" ColumnName="EmployeeId1" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeIds" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeIds">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeIds_Result">
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereDepartmentId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereDepartmentId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result">
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

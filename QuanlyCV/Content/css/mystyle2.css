@@ -1,0 +1,407 @@
+.a-hover-pointer:hover {
+	cursor: pointer;
+}
+
+/*Slide công việc*/
+.index-slide-jobs .content-slider ul{
+	list-style: none outside none;
+	padding-left: 0;
+	margin: 0;
+}
+.index-slide-jobs .item-slide-job{
+	margin-bottom: 60px;
+}
+.content-slider li{
+	background-color: #3b5998;
+	padding: 0px 20px;
+	color: #FFF;
+}
+.content-slider .working-slide-item {
+	margin: 0;
+	/*padding: 40px 0;*/
+	height: 150px;
+	max-height: 150px;
+	padding-top: 20px;
+}
+.index-slide-jobs{
+	width: 100%;
+}
+#content-slider .working-slide-item {
+	width: 100%;
+}
+
+#content-slider .working-slide-item .working-slide-item-name h3{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#content-slider .working-slide-item .working-slide-item-creater {
+	font-size: 14px;
+	margin-top: 5px;
+}
+
+#content-slider .working-slide-item .working-slide-item-creater span {
+	font-weight: bold;
+}
+
+#content-slider .working-slide-item .working-slide-item-time {
+	font-size: 14px;
+	margin-top: 5px;
+}
+
+#content-slider .working-slide-item .working-slide-item-time span {
+	font-weight: bold;
+}
+
+#content-slider .working-slide-item .working-slide-item-department {
+	font-size: 14px;
+	margin-top: 5px;
+}
+
+/*//////Slide công việc*/
+
+#progress-working #progress-working-top ul li{
+	list-style: none;
+	display: inline;
+}
+
+#progress-working #progress-working-bottom {
+	margin-top: 30px;
+	width: 100%;
+}
+
+#progress-working #progress-working-bottom #progress-working-bottom-content {
+    width: 100%;
+    white-space: nowrap;
+    overflow: auto;
+}
+
+#progress-working #progress-working-bottom .progress-working-bottom-item {
+    display: inline-block;
+    width: 250px;
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.02);
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#progress-working #progress-working-bottom .progress-working-bottom-item .progress-working-bottom-item-top {
+	height: 30px;
+	max-height: 30px;
+	width: 100%;;
+}
+
+#progress-working #progress-working-bottom .progress-working-bottom-item .progress-working-bottom-item-middle {
+	height: 333px;
+	max-height: 333px;
+	width: 100%;
+	/*padding: 0px 15px;*/
+}
+
+#progress-working #progress-working-bottom .progress-working-bottom-item 
+.progress-working-bottom-item-middle-content {
+	height: 200px;
+	max-height: 200px;
+	overflow: scroll;
+}
+
+#progress-working #progress-working-bottom .progress-working-bottom-item .progress-working-bottom-item-bottom {
+	height: 37px;
+	max-height: 37px;
+	background: #ccc;
+	line-height: 37px;
+}
+
+.edit-working-action {
+	visibility: hidden;
+}
+
+.edit-working:hover > .edit-working-action {
+	visibility: visible;
+}
+
+.add-note-working textarea:focus {
+	outline: none;
+}
+
+/*#index-working-note {
+	white-space: nowrap;
+	overflow: auto;
+}
+
+#index-working-note .index-list-working-note {
+	white-space: nowrap;
+}
+
+#index-working-note .index-list-working-note .index-working-note-item {
+	width: 250px;
+	max-width: 250px;
+	max-height: 400px;
+	height: 400px;
+	background: #CCC;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#index-working-note #index-btn-addnew-notes {
+	width: 150px;
+	max-width: 150px;
+	min-height: 200px;
+	display: inline-block;
+}
+
+#index-working-note #index-btn-addnew-notes a {
+	width: 100%;
+}
+
+#index-working-note .working-note {
+	display: inline-block;
+	vertical-align: top;
+}*/
+
+/*css cho các modal index*/
+	/*modal folder*/
+	.modal-folder {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0,0.4);
+	}
+	.modal-folder-content {
+		background-color: #fefefe;
+		margin: 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 90%;
+	}
+	.close-modal-folder {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.close-modal-folder:hover,
+	.close-modal-folder:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	/* /////modal folder*/
+
+	/*modal discussion*/
+	.modal-discussion {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0,0.4);
+	}
+	.modal-discussion-content {
+		background-color: #fefefe;
+		margin: 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+	}
+	.close-modal-discussion {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.close-modal-discussion:hover,
+	.close-modal-discussion:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	#modal-discussion .modal-discussion-content .title {
+		font-size: 20px;
+		color: #00bcd4;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-content {
+		margin-top: 30px;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-content .container-discussion-content {
+		width: 100%;
+		max-height: 200px;
+		height: 200px;
+		overflow-y: scroll;
+	}
+
+	.container-discussion-content ul li {
+		list-style: none;
+	}
+
+	.container-discussion-content>ul {
+		margin-top: 10px;
+	}
+
+	.container-discussion-content .discussion-action {
+		font-size: 12px;
+	}
+
+	.container-discussion-content .discussion-action:hover {
+		cursor: pointer;
+		text-decoration: underline;
+	}
+
+	.container-discussion-content .discussion-fullname {
+		font-size: 15px;
+		font-weight: bold;
+		padding-left: 5px;
+	}
+
+	.container-discussion-content .discussion-fullname:hover {
+		cursor: pointer;
+	}
+
+	.container-discussion-content .discussion-content-text {
+		font-size: 15px;
+	}
+
+	#timeline-input-comment-content {
+		background: #EEE;
+		border-radius: 10px;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input {
+		margin-top: 30px;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input .container-input-discussion {
+		border: 1px solid #ccc;
+		border-radius: 10px;
+		display: flex;
+		flex-direction: row;
+		align-items: flex-end;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input .container-input-discussion div {
+		width: 120px;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input .btn-comment {
+		color: #666;
+		font-size: 20px;
+		padding: 5px 10px;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input .btn-comment:hover {
+		background: #555;
+		border-radius: 5px;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input textarea {
+		border: 0px;
+		resize: none;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input textarea:focus {
+		outline: none;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input ul li {
+		list-style: none;
+		display: inline;
+		padding: 5px 10px;
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input ul li:hover {
+		background: #555;
+		border-radius: 5px;
+		/*animation-duration: */
+	}
+
+	#modal-discussion .modal-discussion-content .discussion-input ul li a {
+		color: #666;
+		font-size: 20px;
+	}
+
+	/* /////modal discussion*/
+
+	/*modal file*/
+	.modal-file {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0,0.4);
+	}
+	.modal-file-content {
+		background-color: #fefefe;
+		margin: 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+	}
+	.close-modal-file {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.close-modal-file:hover,
+	.close-modal-file:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	/* /////modal file*/
+
+	/*modal add-member*/
+	.modal-add-member {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0,0.4);
+	}
+	.modal-add-member-content {
+		background-color: #fefefe;
+		margin: 15% auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 80%;
+	}
+	.close-modal-add-member {
+		color: #aaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.close-modal-add-member:hover,
+	.close-modal-add-member:focus {
+		color: black;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	/* /////modal add-member*/
+
+/*/////css cho các modal index*/
