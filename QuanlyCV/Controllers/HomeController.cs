@@ -9,6 +9,7 @@ namespace QuanlyCV.Controllers
 {
     public class HomeController : Controller
     {
+       
         WorkManagermentEntities db = new WorkManagermentEntities();
         public ActionResult Index()
         {
@@ -46,6 +47,10 @@ namespace QuanlyCV.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult Error()
+        {
             return View();
         }
     }

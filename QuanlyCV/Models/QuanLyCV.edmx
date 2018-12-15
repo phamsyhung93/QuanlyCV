@@ -233,6 +233,7 @@
           <Property Name="PermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PermissionName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="PermissionStatus" Type="int" Nullable="false" />
+          <Property Name="ManagerZoneID" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Plans">
           <Key>
@@ -1193,7 +1194,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_getAllDepartmentByEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="so" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetAllEmployeeByDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getAllPermissionsNameByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="so" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_getEmployeeByDepartmentWhereDepartmentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="so" Type="int" Mode="In" />
         </Function>
@@ -1201,6 +1208,10 @@
           <Parameter Name="so" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_getEmployeeByDepartmentWhereEmployeeIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="so" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getEmployeeByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getEmployeeByRoleByDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="so" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="WorkManagermentModelStoreContainer">
@@ -1810,6 +1821,7 @@
           <Property Name="PermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PermissionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PermissionStatus" Type="Int32" Nullable="false" />
+          <Property Name="ManagerZoneID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SetPermissions" Relationship="Self.FK__SetPermis__Permi__2C3393D0" FromRole="Permissions" ToRole="SetPermissions" />
         </EntityType>
         <EntityType Name="Plan">
@@ -3128,17 +3140,31 @@
             <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
             <End Role="TimeLineImages" EntitySet="TimeLineImages" />
           </AssociationSet>
+          <FunctionImport Name="sp_getAllDepartmentByEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getAllDepartmentByEmployeeId_Result)">
+          <Parameter Name="so" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_GetAllEmployeeByDepartment" ReturnType="Collection(WorkManagermentModel.sp_GetAllEmployeeByDepartment_Result)" />
+          <FunctionImport Name="sp_getEmployeeByDepartmentWhereDepartmentId" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result)">
+          <Parameter Name="so" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_getEmployeeByDepartmentWhereEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeId_Result)">
           <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_getEmployeeByDepartmentWhereEmployeeIds" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeIds_Result)">
           <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_getEmployeeByDepartmentWhereDepartmentId" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result)">
+          <FunctionImport Name="sp_getEmployeeByRole" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByRole_Result)" />
+          <FunctionImport Name="sp_getEmployeeByRoleByDepartment" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByRoleByDepartment_Result)">
           <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_getAllPermissionsNameByRoleId" ReturnType="Collection(String)">
+            <Parameter Name="so" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="sp_getAllDepartmentByEmployeeId_Result">
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="sp_GetAllEmployeeByDepartment_Result">
           <Property Type="Int32" Name="EmployeeId" Nullable="false" />
           <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
@@ -3152,31 +3178,50 @@
           <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
           <Property Type="Int32" Name="EmployeeStatus" Nullable="false" />
           <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
           <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
           <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
           <Property Type="Int32" Name="ParentId" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="sp_getEmployeeByDepartmentWhereEmployeeId_Result">
-          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
-          <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
-          <Property Type="DateTime" Name="EmployeeBirthday" Nullable="false" />
-          <Property Type="String" Name="EmployeeIdCard" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
+        <ComplexType Name="sp_getEmployeeByDepartmentWhereDepartmentId_Result">
           <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
-          <Property Type="String" Name="EmployeeEmail" Nullable="false" MaxLength="250" />
-          <Property Type="String" Name="EmployeePassword" Nullable="false" MaxLength="250" />
           <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+          <Property Type="DateTime" Name="EmployeeBirthday" Nullable="false" />
           <Property Type="String" Name="EmployeeCoverPicture" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeEmail" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeIdCard" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="EmployeePassword" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
           <Property Type="Int32" Name="EmployeeStatus" Nullable="false" />
           <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
-          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
           <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
-          <Property Type="Int32" Name="ParentId" Nullable="false" />
           <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
+          <Property Type="Int32" Name="ParentId" Nullable="false" />
           <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
-          <Property Type="Int32" Name="DepartmentId1" Nullable="false" />
-          <Property Type="Int32" Name="EmployeeId1" Nullable="false" />
           <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_getEmployeeByDepartmentWhereEmployeeId_Result">
+          <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+          <Property Type="DateTime" Name="EmployeeBirthday" Nullable="false" />
+          <Property Type="String" Name="EmployeeCoverPicture" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeEmail" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeIdCard" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="EmployeePassword" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="EmployeeStatus" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
+          <Property Type="Int32" Name="ParentId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
         </ComplexType>
         <ComplexType Name="sp_getEmployeeByDepartmentWhereEmployeeIds_Result">
           <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
@@ -3198,25 +3243,53 @@
           <Property Type="Int32" Name="DepartmentId" Nullable="false" />
           <Property Type="Int32" Name="EmployeeId" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="sp_getEmployeeByDepartmentWhereDepartmentId_Result">
+        <ComplexType Name="sp_getEmployeeByRole_Result">
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
           <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
           <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
           <Property Type="DateTime" Name="EmployeeBirthday" Nullable="false" />
           <Property Type="String" Name="EmployeeCoverPicture" Nullable="false" MaxLength="250" />
           <Property Type="String" Name="EmployeeEmail" Nullable="false" MaxLength="250" />
           <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
           <Property Type="String" Name="EmployeeIdCard" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="EmployeePassword" Nullable="false" MaxLength="250" />
           <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
           <Property Type="Int32" Name="EmployeeStatus" Nullable="false" />
-          <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
           <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
           <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
           <Property Type="Int32" Name="ParentId" Nullable="false" />
           <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
           <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
-          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="RoleStatus" Nullable="false" />
+          <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_getEmployeeByRoleByDepartment_Result">
           <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+          <Property Type="DateTime" Name="EmployeeBirthday" Nullable="false" />
+          <Property Type="String" Name="EmployeeCoverPicture" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeEmail" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
+          <Property Type="String" Name="EmployeeIdCard" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="EmployeePassword" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="EmployeeStatus" Nullable="false" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
+          <Property Type="Int32" Name="ParentId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="RoleStatus" Nullable="false" />
+          <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3472,6 +3545,7 @@
                 <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
                 <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
                 <ScalarProperty Name="PermissionStatus" ColumnName="PermissionStatus" />
+                <ScalarProperty Name="ManagerZoneID" ColumnName="ManagerZoneID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3672,6 +3746,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAllDepartmentByEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getAllDepartmentByEmployeeId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllDepartmentByEmployeeId_Result">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetAllEmployeeByDepartment" FunctionName="WorkManagermentModel.Store.sp_GetAllEmployeeByDepartment">
             <ResultMapping>
               <ComplexTypeMapping TypeName="WorkManagermentModel.sp_GetAllEmployeeByDepartment_Result">
@@ -3687,59 +3769,10 @@
                 <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
                 <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
                 <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeId">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeId_Result">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
-                <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
-                <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
-                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
-                <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
-                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
-                <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
-                <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
-                <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
-                <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
-                <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
-                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
-                <ScalarProperty Name="DepartmentId1" ColumnName="DepartmentId1" />
-                <ScalarProperty Name="EmployeeId1" ColumnName="EmployeeId1" />
-                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeIds" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeIds">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeIds_Result">
-                <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
-                <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
-                <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
-                <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
-                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
-                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
-                <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
-                <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
-                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
-                <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
-                <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
-                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -3767,6 +3800,111 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeId_Result">
+                <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+                <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+                <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+                <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+                <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+                <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+                <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeIds" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeIds">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeIds_Result">
+                <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+                <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+                <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+                <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+                <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+                <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+                <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getEmployeeByRole" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByRole">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByRole_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+                <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+                <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+                <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+                <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+                <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+                <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+                <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getEmployeeByRoleByDepartment" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByRoleByDepartment">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByRoleByDepartment_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+                <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+                <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+                <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+                <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+                <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+                <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+                <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+                <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+                <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAllPermissionsNameByRoleId" FunctionName="WorkManagermentModel.Store.sp_getAllPermissionsNameByRoleId" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

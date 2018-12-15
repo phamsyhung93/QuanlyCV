@@ -1,24 +1,75 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/font.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/mystyle.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/myfolder.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/myworking.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/morris.css" />
+    <title>Trang chủ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Colored Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Content/css/font.css" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/myfolder.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/myworking.css">
+    <script src="~/Scripts/js/jquery2.0.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/css/table-style.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/css/basictable.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/css/grouppage.css">
+    <script type="text/javascript" src="~/Scripts/js/jquery.basictable.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#table').basictable();
+
+      $('#table-breakpoint').basictable({
+        breakpoint: 768
+      });
+
+      $('#table-swap-axis').basictable({
+        swapAxis: true
+      });
+
+      $('#table-force-off').basictable({
+        forceResponsive: false
+      });
+
+      $('#table-no-resize').basictable({
+        noResize: true
+      });
+
+      $('#table-two-axis').basictable();
+
+      $('#table-max-height').basictable({
+        tableWrapper: true
+      });
+    });
+    </script>
+    <script>
+        $(function () {
+            $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+            if (!screenfull.enabled) {
+                return false;
+            }
+
+            $('#toggle').click(function () {
+                screenfull.toggle($('#container')[0]);
+            });
+        });
+    </script>
+
 </head>
-<body>
+<body class="dashboard-page">
+    <script>
+        var theme = $.cookie('protonTheme') || 'default';
+        $('body').removeClass(function (index, css) {
+            return (css.match(/\btheme-\S+/g) || []).join(' ');
+        });
+        if (theme !== 'default') $('body').addClass(theme);
+    </script>
     @{
         string controllerName = ViewContext.RouteData.Values["controller"].ToString();
         string actionName = ViewContext.RouteData.Values["action"].ToString();
@@ -257,8 +308,8 @@
         @RenderBody()
 
         @*<div class="footer">
-            <p>© 2018 HiTech . Đã Đăng Ký Bản Quyền . Thiết kế bởi <a href="index.html">HiTech</a></p>
-        </div>*@
+                <p>© 2018 HiTech . Đã Đăng Ký Bản Quyền . Thiết kế bởi <a href="index.html">HiTech</a></p>
+            </div>*@
         <div class="chat-sidebar-open">
             <span class="text-open-sidebar-chat" style="padding-left: 10px; color: #FFF;">Danh sách chat</span>
             <a class="a-hover-pointer open-chat-sidebar" onclick="openChatSidebar();" title="Mở khung chat"><span><i class="fa fa-chevron-up"></i></span></a>

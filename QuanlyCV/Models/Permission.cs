@@ -23,6 +23,7 @@ namespace QuanlyCV.Models
         public int PermissionId { get; set; }
         public string PermissionName { get; set; }
         public int PermissionStatus { get; set; }
+        public string ManagerZoneID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SetPermission> SetPermissions { get; set; }

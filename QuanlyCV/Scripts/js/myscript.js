@@ -865,3 +865,6 @@ $(".do-move-job").click(function() {
 function blockInputLevel2(){
 	$(".input-discussion-level-2").css("display","block");
 }
+$(".form-demo").click(function () {
+    $(this).children("input").prop("checked", true);
+});

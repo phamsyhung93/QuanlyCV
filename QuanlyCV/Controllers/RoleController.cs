@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace QuanlyCV.Controllers
 {
+    //[AuthorizePermissions]
     public class RoleController : Controller
     {
         WorkManagermentEntities db = new WorkManagermentEntities();

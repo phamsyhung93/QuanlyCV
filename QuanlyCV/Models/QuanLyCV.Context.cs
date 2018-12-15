@@ -68,9 +68,27 @@ namespace QuanlyCV.Models
         public virtual DbSet<TimeLineImage> TimeLineImages { get; set; }
         public virtual DbSet<TimeLine> TimeLines { get; set; }
     
+        public virtual ObjectResult<sp_getAllDepartmentByEmployeeId_Result> sp_getAllDepartmentByEmployeeId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllDepartmentByEmployeeId_Result>("sp_getAllDepartmentByEmployeeId", soParameter);
+        }
+    
         public virtual ObjectResult<sp_GetAllEmployeeByDepartment_Result> sp_GetAllEmployeeByDepartment()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllEmployeeByDepartment_Result>("sp_GetAllEmployeeByDepartment");
+        }
+    
+        public virtual ObjectResult<sp_getEmployeeByDepartmentWhereDepartmentId_Result> sp_getEmployeeByDepartmentWhereDepartmentId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByDepartmentWhereDepartmentId_Result>("sp_getEmployeeByDepartmentWhereDepartmentId", soParameter);
         }
     
         public virtual ObjectResult<sp_getEmployeeByDepartmentWhereEmployeeId_Result> sp_getEmployeeByDepartmentWhereEmployeeId(Nullable<int> so)
@@ -91,13 +109,27 @@ namespace QuanlyCV.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByDepartmentWhereEmployeeIds_Result>("sp_getEmployeeByDepartmentWhereEmployeeIds", soParameter);
         }
     
-        public virtual ObjectResult<sp_getEmployeeByDepartmentWhereDepartmentId_Result> sp_getEmployeeByDepartmentWhereDepartmentId(Nullable<int> so)
+        public virtual ObjectResult<sp_getEmployeeByRole_Result> sp_getEmployeeByRole()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByRole_Result>("sp_getEmployeeByRole");
+        }
+    
+        public virtual ObjectResult<sp_getEmployeeByRoleByDepartment_Result> sp_getEmployeeByRoleByDepartment(Nullable<int> so)
         {
             var soParameter = so.HasValue ?
                 new ObjectParameter("so", so) :
                 new ObjectParameter("so", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByDepartmentWhereDepartmentId_Result>("sp_getEmployeeByDepartmentWhereDepartmentId", soParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByRoleByDepartment_Result>("sp_getEmployeeByRoleByDepartment", soParameter);
+        }
+    
+        public virtual ObjectResult<string> sp_getAllPermissionsNameByRoleId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_getAllPermissionsNameByRoleId", soParameter);
         }
     }
 }

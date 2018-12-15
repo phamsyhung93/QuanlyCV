@@ -27,7 +27,7 @@ namespace QuanlyCV.Controllers
                 {
                     Session["EmployeeId"] = e.EmployeeId;
                     Session["EmployeeName"] = e.EmployeeFullname;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ChooseDepartment");
                 }else
                 {
                     return RedirectToAction("Index");
@@ -39,6 +39,33 @@ namespace QuanlyCV.Controllers
                 return RedirectToAction("Index");
                 throw;
             }
+        }
+        public ActionResult ChooseDepartment()
+        {
+            if (Session["EmployeeId"] != null)
+            {
+                int id = (int)Session["EmployeeId"];
+                var lstDepartmentByEmployee = db.sp_getAllDepartmentByEmployeeId(id);
+                ViewBag.lstDepartmentByEmployee = lstDepartmentByEmployee;
+                return View();
+            }else
+            {
+                return RedirectToAction("login");
+            }
+            
+        }
+        [HttpPost]
+        public ActionResult getDepartmentId(int DepartmentId)
+        {
+            if(DepartmentId > 0 || DepartmentId != null)
+            {
+                Session["DepartmentId"] = DepartmentId;
+                return RedirectToAction("Index", "Home");
+            }else
+            {
+                return RedirectToAction("ChooseDepartment");
+            }
+            
         }
         public ActionResult ViewRegister()
         {
@@ -54,6 +81,11 @@ namespace QuanlyCV.Controllers
                 e.EmployeeStatus = 1;
                 e.EmployeeGender = 1;
                 db.Employees.Add(e);
+                db.SaveChanges();
+                TimeLine t = new TimeLine();
+                t.EmployeeId = e.EmployeeId;
+                t.TimeLineStatus = 1;
+                db.TimeLines.Add(t);
                 db.SaveChanges();
                 TempData["error"] = "đăng ký thành công"; 
                 return RedirectToAction("Index");

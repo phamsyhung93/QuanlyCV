@@ -13,25 +13,23 @@ namespace QuanlyCV.Models
     
     public partial class sp_getEmployeeByDepartmentWhereEmployeeId_Result
     {
-        public int EmployeeId { get; set; }
-        public string EmployeeFullname { get; set; }
-        public System.DateTime EmployeeBirthday { get; set; }
-        public string EmployeeIdCard { get; set; }
-        public string EmployeePhone { get; set; }
         public string EmployeeAddress { get; set; }
-        public string EmployeeEmail { get; set; }
-        public string EmployeePassword { get; set; }
         public string EmployeeAvatar { get; set; }
+        public System.DateTime EmployeeBirthday { get; set; }
         public string EmployeeCoverPicture { get; set; }
+        public string EmployeeEmail { get; set; }
+        public string EmployeeFullname { get; set; }
+        public string EmployeeIdCard { get; set; }
+        public string EmployeePassword { get; set; }
+        public string EmployeePhone { get; set; }
         public int EmployeeStatus { get; set; }
         public Nullable<int> EmployeeGender { get; set; }
-        public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
-        public int ParentId { get; set; }
         public int DepartmentStatus { get; set; }
+        public int ParentId { get; set; }
         public int DepartmentEmployeeId { get; set; }
-        public int DepartmentId1 { get; set; }
-        public int EmployeeId1 { get; set; }
         public int DepartmentEmployeeStatus { get; set; }
+        public int DepartmentId { get; set; }
+        public int EmployeeId { get; set; }
     }
 }

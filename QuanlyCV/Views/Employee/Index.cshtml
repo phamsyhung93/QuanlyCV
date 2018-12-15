@@ -20,6 +20,7 @@
                 <option value="@item.DepartmentId">@item.DepartmentName</option>
             }
         </select>
+        <a class="text-right" href="@Url.Action("Index","GrantPermissions")">Sét Chức Vụ</a>
         <div id="modalAddEmployee" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
@@ -92,6 +93,7 @@
                                     <ul class="ul-table-content-employee">
                                         <li><a title="Chi tiết" data-id="@item.EmployeeId" onclick="openModalEditEmployee(this)"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
                                         <li><a href="@Url.Action("deleteEmployee", "Employee", new { id = item.EmployeeId})"  title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
+                                        <li><a href="@Url.Action("setGrantPermissions","GrantPermissions",new { id = @item.EmployeeId,idDepartment = @item.DepartmentId })" title="Chi tiết">Cấp Quyền</a></li>
                                     </ul>
                                 </td>
                             </tr>

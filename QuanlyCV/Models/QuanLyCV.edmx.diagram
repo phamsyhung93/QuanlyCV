@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="43cf174211b44c258c5a19c598c402aa" Name="Diagram1">
+      <Diagram DiagramId="54602ad83ab2480abd993411ee0cfead" Name="Diagram1">
         <EntityTypeShape EntityType="WorkManagermentModel.ChatDetail" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Chat" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Comment" Width="1.5" PointX="7.5" PointY="39.75" IsExpanded="true" />
@@ -23,10 +23,10 @@
         <EntityTypeShape EntityType="WorkManagermentModel.GroupMember" Width="1.5" PointX="5.25" PointY="36.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Group" Width="1.5" PointX="3" PointY="48.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Like" Width="1.5" PointX="9.75" PointY="39.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.ManagerZone" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.ManagerZone" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.MemberDiscussion" Width="1.5" PointX="12.75" PointY="25.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Note" Width="1.5" PointX="17.25" PointY="25.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.Permission" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Permission" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Plan" Width="1.5" PointX="10.5" PointY="26.375" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.PostImage" Width="1.5" PointX="9.75" PointY="44.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Post" Width="1.5" PointX="7.5" PointY="44.25" IsExpanded="true" />

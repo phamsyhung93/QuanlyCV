@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace QuanlyCV.Controllers
 {
+    //[AuthorizePermissions]
     public class ManagerZonesController : Controller
     {
         WorkManagermentEntities db = new WorkManagermentEntities();
@@ -31,7 +32,6 @@ namespace QuanlyCV.Controllers
                 ReflectionController reflectionController = new ReflectionController();
                 List<Type> lstController = reflectionController.GetController("QuanlyCV");
                 List<string> listCurrentController = db.ManagerZones.Select(c => c.ManagerZoneName).ToList();
-                List<string> listCurrentPermisson = db.Permissions.Select(p => p.PermissionName).ToList();
                 foreach (var item in lstController)
                 {
                     if (!listCurrentController.Contains(item.Name)){
@@ -39,17 +39,6 @@ namespace QuanlyCV.Controllers
                         m.ManagerZoneName = item.Name;
                         m.ManagerZoneStatus = 1;
                         db.ManagerZones.Add(m);
-                    }
-                    List<String> listPermisson = reflectionController.GetAction(item);
-                    foreach (var item1 in listPermisson)
-                    {
-                        if (!listCurrentPermisson.Contains(item.Name + "-" + item1))
-                        {
-                            Permission permisson = new Permission();
-                            permisson.PermissionName = item.Name + "-" + item1;
-                            permisson.PermissionStatus = 1;
-                            db.Permissions.Add(permisson);
-                        }
                     }
                 }
                 db.SaveChanges();

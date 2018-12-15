@@ -228,6 +228,7 @@
     <Property Name="PermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PermissionName" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="PermissionStatus" Type="int" Nullable="false" />
+    <Property Name="ManagerZoneID" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Plans">
     <Key>
@@ -1188,7 +1189,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_getAllDepartmentByEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_GetAllEmployeeByDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getAllPermissionsNameByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_getEmployeeByDepartmentWhereDepartmentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
@@ -1196,6 +1203,10 @@
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_getEmployeeByDepartmentWhereEmployeeIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getEmployeeByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getEmployeeByRoleByDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="WorkManagermentModelStoreContainer">

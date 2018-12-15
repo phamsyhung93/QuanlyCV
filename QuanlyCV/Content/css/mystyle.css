@@ -2839,3 +2839,7 @@ select::-ms-expand {
 	border-radius: 4px;
 	color: #fff;
 }
+
+.agile-tables{
+    margin-bottom:30px!important;
+}

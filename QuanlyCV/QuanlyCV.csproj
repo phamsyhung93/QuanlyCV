@@ -162,17 +162,21 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FoldersController.cs" />
+    <Compile Include="Controllers\GrantPermissionsController.cs" />
     <Compile Include="Controllers\GroupPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfomationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManagerZonesController.cs" />
+    <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SetPermissionsController.cs" />
     <Compile Include="Controllers\StatisticalController.cs" />
     <Compile Include="Controllers\TimeLineController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuthorizePermissions.cs" />
     <Compile Include="Models\Chat.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
@@ -294,6 +298,9 @@
     <Compile Include="Models\SmallStepMember.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_getAllDepartmentByEmployeeId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_GetAllEmployeeByDepartment_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
@@ -304,6 +311,12 @@
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_getEmployeeByDepartmentWhereEmployeeId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmployeeByRoleByDepartment_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmployeeByRole_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Step.cs">
@@ -460,6 +473,8 @@
     </Content>
     <Content Include="Content\css\grouppage.css.map" />
     <Content Include="Content\css\grouppage.scss" />
+    <Content Include="Content\css\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <EntityDeploy Include="Models\QuanLyCV.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QuanLyCV.Designer.cs</LastGenOutput>
@@ -467,8 +482,6 @@
     <Content Include="Models\QuanLyCV.edmx.diagram">
       <DependentUpon>QuanLyCV.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\css\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -544,10 +557,20 @@
     <Content Include="Views\Department\ViewCreate.cshtml" />
     <Content Include="Views\Role\ViewCreate.cshtml" />
     <Content Include="Views\Role\ViewUpdate.cshtml" />
+    <Content Include="Views\Permissions\Index.cshtml" />
+    <Content Include="Views\Permissions\ViewUpdate.cshtml" />
+    <Content Include="Views\Permissions\loadListPermissionsManagerZone.cshtml" />
+    <Content Include="Views\SetPermissions\Index.cshtml" />
+    <Content Include="Views\SetPermissions\setPermissionsByManagerZone.cshtml" />
+    <Content Include="Views\SetPermissions\loadListPermissionsManagerZone.cshtml" />
+    <Content Include="Views\GrantPermissions\Index.cshtml" />
+    <Content Include="Views\GrantPermissions\loadListEmployeeByDepartmentGranPermissions.cshtml" />
+    <Content Include="Views\GrantPermissions\setGrantPermissions.cshtml" />
+    <Content Include="Views\Login\ChooseDepartment.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Permission\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

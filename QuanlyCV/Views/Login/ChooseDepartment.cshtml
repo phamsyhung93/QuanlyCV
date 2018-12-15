@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "ChooseDepartment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- tables -->
+        <div class="table-heading">
+            <form action="@Url.Action("getDepartmentId","Login")" method="post" class="text-center">
+                <label>Chọn Phòng Ban : </label>
+                <select name="DepartmentId">
+                    @foreach (var item in ViewBag.lstDepartmentByEmployee)
+                    {
+                        <option value="@item.DepartmentId">@item.DepartmentName</option>
+                    }
+                </select>
+                <input type="submit" value="Chọn"/>
+            </form>
+        </div>
+    </div>
+</div>

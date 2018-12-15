@@ -249,6 +249,7 @@
           <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
           <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
           <ScalarProperty Name="PermissionStatus" ColumnName="PermissionStatus" />
+          <ScalarProperty Name="ManagerZoneID" ColumnName="ManagerZoneID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -449,6 +450,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_getAllDepartmentByEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getAllDepartmentByEmployeeId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllDepartmentByEmployeeId_Result">
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_GetAllEmployeeByDepartment" FunctionName="WorkManagermentModel.Store.sp_GetAllEmployeeByDepartment">
       <ResultMapping>
         <ComplexTypeMapping TypeName="WorkManagermentModel.sp_GetAllEmployeeByDepartment_Result">
@@ -464,59 +473,10 @@
           <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
           <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
           <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
-          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeId">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeId_Result">
-          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
-          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
-          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
-          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
-          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
-          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
-          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
-          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
-          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
-          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
-          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
-          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
-          <ScalarProperty Name="DepartmentId1" ColumnName="DepartmentId1" />
-          <ScalarProperty Name="EmployeeId1" ColumnName="EmployeeId1" />
-          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeIds" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeIds">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeIds_Result">
-          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
-          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
-          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
-          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
-          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
-          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
-          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
-          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
-          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
-          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
-          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
-          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
           <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
           <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
-          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
-          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -544,5 +504,110 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeId_Result">
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereEmployeeIds" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereEmployeeIds">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeIds_Result">
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getEmployeeByRole" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByRole">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByRole_Result">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getEmployeeByRoleByDepartment" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByRoleByDepartment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByRoleByDepartment_Result">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeAddress" ColumnName="EmployeeAddress" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeBirthday" ColumnName="EmployeeBirthday" />
+          <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
+          <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="EmployeeIdCard" ColumnName="EmployeeIdCard" />
+          <ScalarProperty Name="EmployeePassword" ColumnName="EmployeePassword" />
+          <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
+          <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getAllPermissionsNameByRoleId" FunctionName="WorkManagermentModel.Store.sp_getAllPermissionsNameByRoleId" />
   </EntityContainerMapping>
 </Mapping>
