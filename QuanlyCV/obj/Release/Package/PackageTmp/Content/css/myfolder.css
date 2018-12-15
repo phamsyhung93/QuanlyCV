@@ -1,0 +1,206 @@
+.folder-left {
+  min-height: 200px;
+  background: #EEE;
+  overflow: auto; }
+  .folder-left ul {
+    padding-left: 30px;
+    list-style: none; }
+    .folder-left ul li {
+      padding: 8px 0; }
+      .folder-left ul li .list-sub-folder {
+        display: none; }
+      .folder-left ul li .list-action {
+        display: none;
+        flex-direction: column;
+        border: 1px solid #CCC; }
+        .folder-left ul li .list-action a {
+          padding: 5px 40px; }
+          .folder-left ul li .list-action a:hover {
+            background: #EEE; }
+        .folder-left ul li .list-action hr {
+          color: #CCC; }
+      .folder-left ul li a {
+        width: 100%;
+        color: #000;
+        padding: 7px 20px; }
+        .folder-left ul li a:hover {
+          text-decoration: none; }
+        .folder-left ul li a i {
+          margin-right: 5px; }
+
+.modal-folder .list-option {
+  margin: 20px 0;
+  margin-bottom: 30px; }
+  .modal-folder .list-option ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    float: right;
+    align-items: center; }
+    .modal-folder .list-option ul li:first-child {
+      margin-right: 15px; }
+    .modal-folder .list-option ul li a {
+      font-size: 25px;
+      color: #AAA;
+      padding: 0 5px;
+      border: 1px solid #CCC; }
+    .modal-folder .list-option ul li .view-selected {
+      background: #EEE; }
+    .modal-folder .list-option ul li .search-folder {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: #FFF;
+      border-radius: 10px;
+      border: 1px solid #CCC; }
+      .modal-folder .list-option ul li .search-folder input {
+        margin-right: 5px;
+        border: transparent;
+        border-radius: 10px; }
+        .modal-folder .list-option ul li .search-folder input:focus {
+          outline: none; }
+.folder-right .right-item-folder {
+  width: 130px;
+  height: 100px;
+  max-height: 100px;
+  max-width: 130px;
+  min-height: 100px;
+  min-width: 130px;
+  margin-top: 10px;
+  position: relative; }
+  .folder-right .right-item-folder img {
+    width: 50px;
+    height: 50px;
+    max-height: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+    display: block;
+    margin: 0 auto; }
+  .folder-right .right-item-folder .folder-name {
+    font-size: 14px;
+    padding: 0 10px;
+    white-space: normal; }
+  .folder-right .right-item-folder:hover {
+    cursor: pointer; }
+.folder-right .right-list-action {
+  display: none;
+  background: #FFF;
+  border: 1px solid #CCC;
+  z-index: 9999;
+  flex-direction: column;
+  position: absolute;
+  width: 150px; }
+  .folder-right .right-list-action a {
+    color: #000;
+    padding: 7px 20px; }
+    .folder-right .right-list-action a:hover {
+      background: #CCC;
+      text-decoration: none; }
+
+.active {
+  background: #27ae60; }
+
+
+.folder-left {
+  min-height: 200px;
+  background: #EEE;
+  overflow: auto; }
+  .folder-left ul {
+    padding-left: 30px;
+    list-style: none; }
+    .folder-left ul li {
+      padding: 8px 0; }
+      .folder-left ul li .list-sub-folder {
+        display: none; }
+      .folder-left ul li .list-action {
+        display: none;
+        flex-direction: column;
+        border: 1px solid #CCC; }
+        .folder-left ul li .list-action a {
+          padding: 5px 40px; }
+          .folder-left ul li .list-action a:hover {
+            background: #EEE; }
+        .folder-left ul li .list-action hr {
+          color: #CCC; }
+      .folder-left ul li a {
+        width: 100%;
+        color: #000;
+        padding: 7px 20px; }
+        .folder-left ul li a:hover {
+          text-decoration: none; }
+        .folder-left ul li a i {
+          margin-right: 5px; }
+
+.list-option {
+  margin: 20px 0;
+  margin-bottom: 30px; }
+   .list-option ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    float: right;
+    align-items: center; }
+     .list-option ul li:first-child {
+      margin-right: 15px; }
+     .list-option ul li a {
+      font-size: 25px;
+      color: #AAA;
+      padding: 0 5px;
+      border: 1px solid #CCC; }
+     .list-option ul li .view-selected {
+      background: #EEE; }
+   .list-option ul li .search-folder {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: #FFF;
+      border-radius: 10px;
+      border: 1px solid #CCC; }
+      .list-option ul li .search-folder input {
+        margin-right: 5px;
+        border: transparent;
+        border-radius: 10px; }
+         .list-option ul li .search-folder input:focus {
+          outline: none; }
+.folder-right .right-item-folder {
+  width: 130px;
+  height: 100px;
+  max-height: 100px;
+  max-width: 130px;
+  min-height: 100px;
+  min-width: 130px;
+  margin-top: 10px;
+  position: relative; }
+  .folder-right .right-item-folder img {
+    width: 50px;
+    height: 50px;
+    max-height: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    min-width: 50px;
+    display: block;
+    margin: 0 auto; }
+  .folder-right .right-item-folder .folder-name {
+    font-size: 14px;
+    padding: 0 10px;
+    white-space: normal; }
+  .folder-right .right-item-folder:hover {
+    cursor: pointer; }
+.folder-right .right-list-action {
+  display: none;
+  background: #FFF;
+  border: 1px solid #CCC;
+  z-index: 9999;
+  flex-direction: column;
+  position: absolute;
+  width: 150px; }
+  .folder-right .right-list-action a {
+    color: #000;
+    padding: 7px 20px; }
+    .folder-right .right-list-action a:hover {
+      background: #CCC;
+      text-decoration: none; }
+
+.active {
+  background: #27ae60; }

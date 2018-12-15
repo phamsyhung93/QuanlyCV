@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "setGrantPermissions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- tables -->
+
+        <div class="table-heading">
+            <h2>Cấp Quyền</h2>
+            <h4 style="color:darkred">@TempData["error"]</h4>
+        </div>
+        <a href="@Url.Action("Index","GrantPermissions")">Quay Về</a>
+        
+        <div class="agile-tables">
+            <div class="w3l-table-info tbl-list-Employee-by-Department">
+                <form action="@Url.Action("insertGrantPermissions","GrantPermissions")" method="post">
+                    <label>Cấp Quyền cho : @ViewBag.Employee.EmployeeFullname</label>
+                    <input type="hidden" id="EmployeeId" name="EmployeeId" value="@ViewBag.Employee.EmployeeId" />
+                    <br/>
+                    <label>Phòng ban: @ViewBag.Department.DepartmentName</label>
+                    <input type="hidden" id="DepartmentId" name="DepartmentId" value="@ViewBag.Department.DepartmentId" />
+                    <br/>
+                    <label>Chức Vụ : </label>
+                    <select name="RoleId" style="padding:5px;" required>
+                        <option value="">Chọn chức Vụ</option>
+                        @foreach (var item in ViewBag.lstRole)
+                        {
+                            if (ViewBag.GrantPermissions != null)
+                            {
+                                <option value="@item.RoleId" @(ViewBag.GrantPermissions.RoleId == item.RoleId ? "selected" : "")>@item.RoleName</option>
+                            }
+                            else
+                            {
+                                <option value="@item.RoleId">@item.RoleName</option>
+                            }
+
+                        }
+                    </select>
+                    <br/>
+                    <input type="submit" value="Cập Nhật"/>
+                </form>
+            </div>
+        </div>
+        <!-- //tables -->
+    </div>
+</div>
+

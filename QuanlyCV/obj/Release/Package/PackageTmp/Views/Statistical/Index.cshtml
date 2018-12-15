@@ -1,0 +1,440 @@
+﻿
+@{
+    ViewBag.Title = "Thống kê";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="div-thanh-trang-thai">
+        <div class="social grid">
+            <div class="grid-info">
+                <div class="col-md-3 top-comment-grid">
+                    <a class="a-hover-pointer">
+                        <div class="comments likes" onclick="setContentForSlide('.likes');">
+                            <div class="comments-icon">
+                                <i class="fa fa-calendar-minus-o"></i>
+                            </div>
+                            <div class="comments-info likes-info">
+                                <h3>95K</h3>
+                                <span style="color: #6C8CD0;">Đang làm</span>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 top-comment-grid">
+                    <a class="a-hover-pointer">
+                        <div class="comments comments-bg" onclick="setContentForSlide('.comments-bg');">
+                            <div class="comments-icon">
+                                <i class="fa fa-hourglass-start"></i>
+                            </div>
+                            <div class="comments-info">
+                                <h3>12K</h3>
+                                <span style="color: #FFCC66;">Đang Chậm</span>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 top-comment-grid">
+                    <a class="a-hover-pointer">
+                        <div class="comments tweets" onclick="setContentForSlide('.tweets');">
+                            <div class="comments-icon">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                            <div class="comments-info tweets-info">
+                                <h3>27K</h3>
+                                <span style="color: #ff8888;">Quá Hạn</span>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 top-comment-grid">
+                    <a class="a-hover-pointer">
+                        <div class="comments views" onclick="setContentForSlide('.views');">
+                            <div class="comments-icon">
+                                <i class="fa fa-calendar-check-o"></i>
+                            </div>
+                            <div class="comments-info views-info">
+                                <h3>557K</h3>
+                                <span style="color: #07CEB0">Hoàn Thành</span>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div>
+            <a href="" data-toggle="modal" data-target="#ModalAddNewWork" title="Thêm mới công việc" class="a-chon-ngay-thang">Chọn Tuần Tháng</a>
+        </div>
+        <div class="modal fade" id="ModalAddNewWork" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content-add-new-work">
+                    <div class="modal-header-add-new-work">
+                        <h5 class="modal-title" id="exampleModalLabel" style="float: left; font-weight: bold;">Chọn Tuần Tháng</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label style="float: left;" for="recipient-name" class="col-form-label">Nhập Vào Tuần</label>
+                                <input type="number" class="form-control" min="1" max="5" name="" id="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label style="float: left;" for="recipient-name" class="col-form-label">Chọn Tháng</label>
+                                <select name="" id="" class="form-control" required="required">
+                                    <option value=""></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="11">12</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" style=" width: 80px;">Đóng</button>
+                                <input type="submit" class="btn btn-primary" value="Chọn" style="background-color: green;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="agile-grids">
+        <div class="index-slide-jobs">
+            <div class="item-slide-job">
+                <div class="lSSlideOuter ">
+                    <div class="lSSlideWrapper usingCss">
+                        <ul id="content-slider" class="content-slider lightSlider lsGrab lSSlide ul-slide-danh-sach-cong-viec">
+                            <li class="clone left li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clone left li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clone left li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clone left li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="lslide active li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="lslide li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="lslide li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="lslide li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="lslide li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="lslide li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="lslide li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clone right li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clone right li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clone right li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clone right li-slide-danh-sach-cong-viec">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>Tên Công việc Tên Công việc Tên Công việc Tên Công việc</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>24/10/2018 - 24/10/2018
+                                    </div>
+                                    <div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul><div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+
+    <div class="agile-bottom-grids">
+        <!-- Phần này cho quy trình công việc -->
+        <div id="progress-working" style="background-color: transparent;">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr style="color: #fff">
+                        <th>Người Thực Hiện</th>
+                        <th>Phòng Ban</th>
+                        <th>Giao Cho </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr class="text-center" style="color: #00bcd4">
+                        <td>Nguyễn Văn A</td>
+                        <td>Phòng A</td>
+                        <td>Nguyễn văn B,Nguyễn Văn C</td>
+                        <td>
+                            <a onclick="openModalDetailWork()" style="color:#00bcd4">Chi Tiết</a>
+                        </td>
+                        <div id="modalDetailWork" class="modal">
+                            <div class="modal-content">
+                                <span class="closeModalDetailWork">&times;</span>
+                                <br />
+                                <br />
+                                <div class="text-center" style="width: 100%"><b style="color: #eb5a46">Chi Tiết Công Viêc:</b></div>
+                                <form>
+                                    <div class="subdiv-modal-chi-tiet">
+                                        <span class="span-subdiv-modal-chi-tiet">Tên Công Viêc:</span>
+                                        <input type="text" name="" value="Công Việc A" class="input-subdiv-modal-chi-tiet" />
+                                    </div>
+                                    <div class="subdiv-modal-chi-tiet">
+                                        <span class="span-subdiv-modal-chi-tiet">Người Thực Hiện:</span>
+                                        <input type="text" name="" value="Nguyễn Văn A" class="input-subdiv-modal-chi-tiet" />
+                                    </div>
+                                    <div class="subdiv-modal-chi-tiet">
+                                        <span class="span-subdiv-modal-chi-tiet">Nội Dung Công Việc</span>
+                                        <textarea name="" id="" class="form-control textarea-subdiv-modal-chi-tiet" rows="3" required="required"></textarea>
+                                    </div>
+                                    <div class="subdiv-modal-chi-tiet">
+                                        <span class="span-subdiv-modal-chi-tiet">Phòng Ban:</span>
+                                        <select name="" id="" class="form-control textarea-subdiv-modal-chi-tiet">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                        </select>
+                                    </div>
+                                    <div class="subdiv-modal-chi-tiet">
+                                        <span class="span-subdiv-modal-chi-tiet">Giao Cho</span>
+                                        <select name="" id="" class="form-control textarea-subdiv-modal-chi-tiet">
+                                            <option value="A">Nguyễn Văn A</option>
+                                            <option value="B">Nguyễn Văn B</option>
+                                            <option value="C">Nguyễn Văn C</option>
+                                            <option value="D">Nguyễn Văn D</option>
+                                            <option value="E">Nguyễn Văn E</option>
+                                        </select>
+                                    </div>
+                                    <div style="width: 100%">
+                                        <input type="Submit" name="" value="Lưu" class="inputsubmit-subdiv-modal-chi-tiet">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </tr>
+                    <tr class="text-center" style="color: #00bcd4">
+                        <td>Nguyễn Văn B</td>
+                        <td>Phòng B</td>
+                        <td>Nguyễn văn C,Nguyễn Văn D</td>
+                        <td>
+                            <a style="color:#00bcd4">Chi Tiết</a>
+                        </td>
+                    </tr>
+                    <tr class="text-center" style="color: #00bcd4">
+                        <td>Nguyễn Văn E</td>
+                        <td>Phòng E</td>
+                        <td>Nguyễn văn C,Nguyễn Văn F</td>
+                        <td>
+                            <a style="color:#00bcd4">Chi Tiết</a>
+                        </td>
+                    </tr>
+                    <tr class="text-center" style="color: #00bcd4">
+                        <td>Nguyễn Văn E</td>
+                        <td>Phòng E</td>
+                        <td>Nguyễn văn C,Nguyễn Văn F</td>
+                        <td>
+                            <a style="color:#00bcd4">Chi Tiết</a>
+                        </td>
+                    </tr>
+                    <tr class="text-center" style="color: #00bcd4">
+                        <td>Nguyễn Văn E</td>
+                        <td>Phòng E</td>
+                        <td>Nguyễn văn C,Nguyễn Văn F</td>
+                        <td>
+                            <a style="color:#00bcd4">Chi Tiết</a>
+                        </td>
+                    </tr>
+                    <tr class="text-center" style="color: #00bcd4">
+                        <td>Nguyễn Văn E</td>
+                        <td>Phòng E</td>
+                        <td>Nguyễn văn C,Nguyễn Văn F</td>
+                        <td>
+                            <a style="color:#00bcd4">Chi Tiết</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+

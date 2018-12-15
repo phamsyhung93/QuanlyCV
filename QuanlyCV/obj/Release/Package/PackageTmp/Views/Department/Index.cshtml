@@ -1,0 +1,80 @@
+﻿@model IEnumerable<QuanlyCV.Models.Department>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- tables -->
+
+        <div class="table-heading">
+            <h2>Danh Sách Phòng Ban</h2>
+            <h4 style="color:darkred">@TempData["error"]</h4>
+        </div>
+        <a href="@Url.Action("ViewCreate","Department")"><img src="~/Content/images/add-member-icon-32.png" /></a>
+        <div class="agile-tables">
+            <div class="w3l-table-info">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Tên Phòng Ban</th>
+                            <th class="text-center">Trạng thái</th>
+                            <th class="text-center">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ 
+                            var stt = 1;
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">@stt</td>
+                                    <td class="text-center">@item.DepartmentName</td>
+                                    <td class="text-center">@(item.DepartmentStatus == 1 ? "Hiện" : "Ẩn")</td>
+                                    <td class="text-center">
+                                        <ul style="display: flex; flex-direction: row; list-style: none; justify-content: center;">
+                                            <li><a href="@Url.Action("ViewUpdate","Department",new {id = item.DepartmentId })" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"/></a></li>
+                                            &nbsp;
+                                            <li><a href="@Url.Action("Delete","Department",new {id = item.DepartmentId })" title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                stt++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- //tables -->
+    </div>
+</div>
+@section scripts{
+<script>
+   $('#table').basictable();
+
+      $('#table-breakpoint').basictable({
+        breakpoint: 768
+      });
+
+      $('#table-swap-axis').basictable({
+        swapAxis: true
+      });
+
+      $('#table-force-off').basictable({
+        forceResponsive: false
+      });
+
+      $('#table-no-resize').basictable({
+        noResize: true
+      });
+
+      $('#table-two-axis').basictable();
+
+      $('#table-max-height').basictable({
+        tableWrapper: true
+      });
+</script>
+}

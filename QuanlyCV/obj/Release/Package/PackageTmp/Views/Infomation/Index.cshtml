@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- input-forms -->
+        <div class="grids">
+            <div class="progressbar-heading grids-heading">
+                <h2>Thay Đổi Thông Tin</h2>
+            </div>
+            <div class="panel panel-widget forms-panel">
+                <div class="forms">
+                    <div class="form-grids widget-shadow" data-example-id="basic-forms">
+                        <div class="form-title">
+                            <h4>Thay Đổi Thông Tin :</h4>
+                            <h5 style="color:darkred">@TempData["error"]</h5>
+                        </div>
+                        <div class="form-body">
+                            <form action="@Url.Action("UpdateInfomation","Infomation")" method="post" enctype="multipart/form-data">
+                                <input type="hidden" id="EmployeeId" name="EmployeeId" value="@Session["EmployeeId"]" />
+                                <div class="form-group">
+                                    <label for="fullname">Ảnh Đại Diện</label>
+                                    <br />
+                                    <img width="80" height="80" src="~/Content/images/avatar/@ViewBag.Emloyee.EmployeeAvatar" />
+                                    <input type="file" name="EmployeeAvatar" class="form-control" id="EmployeeAvatar" placeholder="Ảnh đại diện">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fullname">Ảnh Bìa</label>
+                                    <br />
+                                    <img width="1108" height="100" src="~/Content/images/coverPicture/@ViewBag.Emloyee.EmployeeCoverPicture" />
+                                    <input type="file" name="EmployeeCoverPicture" class="form-control" id="EmployeeCoverPicture" placeholder="Ảnh đại diện">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fullname">Họ Tên</label>
+                                    <input type="text" name="EmployeeFullname" class="form-control" id="EmployeeFullname" placeholder="Họ tên" value="@ViewBag.Emloyee.EmployeeFullname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthday">Ngày sinh</label>
+                                    <input type="date" name="EmployeeBirthday" class="form-control" id="EmployeeBirthday" placeholder="Ngày sinh" value="@ViewBag.Emloyee.EmployeeBirthday.ToString("yyyy-MM-dd")" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="identitycard">Chứng Minh Thư</label>
+                                    <input type="text" name="EmployeeIdCard" class="form-control" id="EmployeeIdCard" placeholder="Chứng minh thư" value="@ViewBag.Emloyee.EmployeeIdCard" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Điện thoại</label>
+                                    <input type="text" name="EmployeePhone" class="form-control" id="EmployeePhone" placeholder="Số điện thoại" value="@ViewBag.Emloyee.EmployeePhone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Địa chỉ</label>
+                                    <!-- <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Mật khẩu cũ">  -->
+                                    <textarea name="EmployeeAddress" id="EmployeeAddress" placeholder="Địa chỉ" required>@ViewBag.Emloyee.EmployeeAddress</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="EmployeeEmail" class="form-control" id="EmployeeEmail" placeholder="Email" value="@ViewBag.Emloyee.EmployeeEmail" required>
+                                </div>
+                                <button type="submit" class="btn btn-default w3ls-button">Xác Nhận</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //input-forms -->
+    </div>
+</div>

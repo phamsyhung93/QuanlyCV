@@ -1,0 +1,68 @@
+﻿@model IEnumerable<QuanlyCV.Models.Permission>
+<table id="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th class="text-center">STT</th>
+            <th class="text-center">Tên Quyền</th>
+            <th class="text-center">Tên Khu Vực</th>
+            <th class="text-center">Trạng Thái</th>
+                @*<th class="text-center">Thao Tác</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @{ var stt = 1;
+            var flag = false;}
+        @foreach (var item in Model)
+        {
+            flag = false;
+            <tr>
+                <td>
+                    @if (ViewBag.lstSetPermissions.Count <= 0)
+                    {
+                        <input type="checkbox" name="" value="@item.PermissionId" data-id="@item.ManagerZoneID" data-content="@ViewBag.RoleId" onchange="setPermission(this)"/>
+                    }
+                    else
+                    {
+                        foreach (var item1 in ViewBag.lstSetPermissions)
+                        {
+                            if (item1.PermissionId == item.PermissionId)
+                            {
+                                if (flag == false)
+                                {
+                                    <input type="checkbox" name="" checked value="@item.PermissionId" data-id="@item.ManagerZoneID" data-content="@ViewBag.RoleId" onchange="setPermission(this)" />
+                                    flag = true;
+                                }
+                            }
+                        }
+                        if (flag == false)
+                        {
+                            <input type="checkbox" name="" value="@item.PermissionId" data-id="@item.ManagerZoneID" data-content="@ViewBag.RoleId" onchange="setPermission(this)" />
+                        }
+                    }
+                </td>
+                <td class="text-center">@stt</td>
+                <td class="text-center">@item.PermissionName</td>
+                <td class="text-center">@item.ManagerZoneID</td>
+                <td class="text-center">
+                    @if (item.PermissionStatus == 1)
+                    {
+                        <i class="fa fa-check" style="font-size: 20px; color: green;">Đang bật</i>
+                    }
+                    else
+                    {
+
+                        <i class="fa fa-times" style="font-size: 20px; color: red;">Đang tắt</i>
+                    }
+                </td>
+                @*<td class="text-center">
+                        <ul style="display: flex; flex-direction: row; list-style: none; justify-content: center;">
+                            <li><a href="@Url.Action("setPermissions","SetPermissions",new { id = @item.RoleId})" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
+                            <li><a href="@Url.Action("DetailSetPermissions","SetPermissions",new { id = @item.RoleId})" title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
+                        </ul>
+                    </td>*@
+            </tr>
+            stt++;
+        }
+    </tbody>
+</table>

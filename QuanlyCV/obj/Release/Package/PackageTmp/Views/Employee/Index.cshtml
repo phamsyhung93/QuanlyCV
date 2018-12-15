@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- tables -->
+
+        <div class="table-heading">
+            <h2>Danh Sách Nhân Viên</h2>
+            <h4 style="color:darkred">@TempData["error"]</h4>
+        </div>
+        <a onclick="openModalAddEmloyee()"><img src="~/Content/images/add-member-icon-32.png"></a>
+        <select id="find-by-department" style="padding:5px;">
+            <option value="0">Lọc theo phòng ban</option>
+            @foreach (var item in ViewBag.Department)
+            {
+                <option value="@item.DepartmentId">@item.DepartmentName</option>
+            }
+        </select>
+        <a class="text-right" href="@Url.Action("Index","GrantPermissions")">Sét Chức Vụ</a>
+        <div id="modalAddEmployee" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="closeModalAddEmployee">&times;</span>
+                <br />
+                <br />
+                <div style="width: 100%">
+                    <form action="@Url.Action("CreateEmployee","Employee")" method="post" enctype="multipart/form-data">
+                        <span>Họ Và Tên</span>
+                        <input type="text" name="EmployeeFullname" id="EmployeeFullname" required class="content-modal-add-Employee" />
+                        <span>Ngày Sinh</span>
+                        <input type="date" name="EmployeeBirthday" id="EmployeeBirthday" required class="content-modal-add-Employee" />
+                        <span>Giới Tính: </span>
+                        <input type="radio" name="EmployeeGender" id="EmployeeGender" value="1"/>Nam
+                        <input type="radio" name="EmployeeGender" id="EmployeeGender" value="2"/>Nữ
+                        <br />
+                        <span>CMND</span>
+                        <input type="text" name="EmployeeIdCard" id="EmployeeIdCard" required class="content-modal-add-Employee" />
+                        <span>Điện Thoại</span>
+                        <input type="number" name="EmployeePhone" id="EmployeePhone" required class="content-modal-add-Employee" />
+                        <span>Địa Chỉ</span>
+                        <textarea name="EmployeeAddress" id="EmployeeAddress" class="form-control" rows="3" required="required" class="content-modal-add-Employee"></textarea>
+                        <span>Email</span>
+                        <input type="email" name="EmployeeEmail" id="EmployeeEmail" required class="content-modal-add-Employee" />
+                        <span>Ảnh Đại Diện</span>
+                        <input type="file" name="EmployeeAvatarFile" id="EmployeeAvatarFile" required class="content-modal-add-Employee" />
+                        <span>Ảnh Bìa</span>
+                        <input type="file" name="EmployeeCoverPictureFile" id="EmployeeCoverPictureFile" required class="content-modal-add-Employee" />
+                        <span>Phòng Ban</span>
+                        <select name="DepartmentId" id="DepartmentId" class="content-modal-add-Employee">
+                            @foreach (var item in ViewBag.Department)
+                            {
+                                <option value="@item.DepartmentId">@item.DepartmentName</option>
+                            }
+                        </select>
+                        <span>Trạng Thái</span>
+                        <select name="EmployeeStatus" id="EmployeeStatus" class="form-control" required="required" class="content-modal-add-Employee">
+                            <option value="2">Ẩn</option>
+                            <option value="1">Hiện</option>
+                        </select>
+                        <input type="submit" name="" value="Thêm Mới" class="input-submit-modal-add-employee">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="agile-tables">
+            <div class="w3l-table-info tbl-list-Employee">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Họ Tên</th>
+                            <th class="text-center">Phòng Ban</th>
+                            <th class="text-center">Giới Tính</th>
+                            <th class="text-center">Ngày sinh</th>
+                            <th class="text-center">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var stt = 1;}
+                        @foreach (var item in ViewBag.lstEmployeeByDepartment)
+                        {
+                            <tr>
+                                <td class="text-center">@stt</td>
+                                <td class="text-center">@item.EmployeeFullname</td>
+                                <td class="text-center">@item.DepartmentName</td>
+                                <td class="text-center">@(item.EmployeeGender == 1 ? "Nam" : "Nữ")</td>
+                                <td class="text-center">@item.EmployeeBirthday.ToString("yyyy-MM-dd")</td>
+                                <td class="text-center">
+                                    <ul class="ul-table-content-employee">
+                                        <li><a title="Chi tiết" data-id="@item.EmployeeId" onclick="openModalEditEmployee(this)"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
+                                        <li><a href="@Url.Action("deleteEmployee", "Employee", new { id = item.EmployeeId})"  title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
+                                        <li><a href="@Url.Action("setGrantPermissions","GrantPermissions",new { id = @item.EmployeeId,idDepartment = @item.DepartmentId })" title="Chi tiết">Cấp Quyền</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            stt++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- //tables -->
+        <div id="modalEditEmployee" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="closeModalEditEmployee">&times;</span>
+                <br />
+                <br />
+                <div style="width: 100%" class="model-edit-Employee">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        function openModalEditEmployee(e) {
+            var modalEditEmployee = document.getElementById('modalEditEmployee');
+            var closeModalEditEmployee = document.getElementsByClassName("closeModalEditEmployee")[0];
+            modalEditEmployee.style.display = "block";
+            var idEmployee = $(e).data("id");
+            //alert(idEmployee);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadModelEditEmployee", "Employee")",
+                data: { id: idEmployee },
+                success: function (rps) {
+                    $(".model-edit-Employee").html(rps);
+                }
+            });
+            closeModalEditEmployee.onclick = function () {
+                modalEditEmployee.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modalEditEmployee) {
+                    modalEditEmployee.style.display = "none";
+                }
+            }
+        }
+        $('#find-by-department').change(function () {
+            var val = $("#find-by-department option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadListEmployeeByDepartment", "Employee")",
+                data: { id: val },
+            success: function (rps) {
+                $(".tbl-list-Employee").html(rps);
+            }
+            });
+        });
+    </script>    
+}

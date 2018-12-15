@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng nhập website quản lý công việc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Content/css/font.css" type="text/css" />
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+</head>
+<body class="signup-body">
+    <div class="agile-signup">
+
+        <div class="content2">
+            <div class="grids-heading gallery-heading signup-heading">
+                <h2>Đăng Nhập</h2>
+                <h4 style="color:darkred">@TempData["error"]</h4>
+            </div>
+            <form action="@Url.Action("login","Login")" method="post">
+                <input type="text" name="EmployeeEmail" id="EmployeeEmail" placeholder="Email">
+                <input type="password" name="EmployeePassword" id="EmployeePassword" placeholder="Mật khẩu">
+                <input type="submit" class="register" value="Đăng Nhập">
+            </form>
+            <div class="signin-text">
+                <div class="text-left">
+                    <p><a href="@Url.Action("ViewForgotPassword","Login")"> Quên Mật Khẩu? </a></p>
+                </div>
+                <div class="text-right">
+                    <p><a href="@Url.Action("ViewRegister","Login")"> Tạo Tài Khoản Mới</a></p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

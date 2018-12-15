@@ -1,0 +1,86 @@
+﻿@model IEnumerable<QuanlyCV.Models.Permission>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- tables -->
+
+        <div class="table-heading">
+            <h2>Danh Sách Quyền</h2>
+            <h4 style="color:darkred">@TempData["error"]</h4>
+        </div>
+        <a href="@Url.Action("Create","Permissions")"><img src="~/Content/images/add-member-icon-32.png" /></a>
+        <select id="find-by-ManagerZone" style="padding:5px;">
+            <option value="0">Lọc theo Khu Vực</option>
+            @foreach (var item in ViewBag.ManagerZone)
+            {
+                <option value="@item.ManagerZoneId">@item.ManagerZoneName</option>
+            }
+        </select>
+        <a class="text-right" href="@Url.Action("Index","ManagerZones")">Các Khu Vực</a>
+        <div class="agile-tables">
+            <div class="w3l-table-info tbl-list-Permisstion">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Tên Quyền</th>
+                            <th class="text-center">Tên Khu Vực Của Quyền</th>
+                            <th class="text-center">Trạng Thái</th>
+                            <th class="text-center">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var stt = 1; }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@stt</td>
+                                <td class="text-center">@item.PermissionName</td>
+                                <td class="text-center">@item.ManagerZoneID</td>
+                                <td class="text-center">
+                                    @if (item.PermissionStatus == 1)
+                                    {
+                                        <i class="fa fa-check" style="font-size: 20px; color: green;">Đang bật</i>
+                                    }
+                                    else
+                                    {
+
+                                        <i class="fa fa-times" style="font-size: 20px; color: red;">Đang tắt</i>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <ul style="display: flex; flex-direction: row; list-style: none; justify-content: center;">
+                                        <li><a href="@Url.Action("ViewUpdate","Permissions",new { id = @item.PermissionId})" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
+                                        <li><a href="@Url.Action("Delete","Permissions",new { id = @item.PermissionId})" title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            stt++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- //tables -->
+    </div>
+</div>
+@section scripts{
+    <script>
+        $('#find-by-ManagerZone').change(function () {
+            var val = $("#find-by-ManagerZone option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadListPermissionsManagerZone", "Permissions")",
+                data: { id: val },
+            success: function (rps) {
+                $(".tbl-list-Permisstion").html(rps);
+            }
+        });
+        });
+
+    </script>    
+}

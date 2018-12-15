@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="54602ad83ab2480abd993411ee0cfead" Name="Diagram1">
+        <EntityTypeShape EntityType="WorkManagermentModel.ChatDetail" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Chat" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Comment" Width="1.5" PointX="7.5" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.DepartmentEmployee" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Department" Width="1.5" PointX="5.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Emotion" Width="1.5" PointX="7.5" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Employee" Width="1.5" PointX="0.75" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.File" Width="1.5" PointX="6" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Folder" Width="1.5" PointX="3" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Form" Width="1.5" PointX="8" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Forward" Width="1.5" PointX="15" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.GrantPermission" Width="1.5" PointX="8.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.GroupChatDetail" Width="1.5" PointX="7.5" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.GroupChatMember" Width="1.5" PointX="5.25" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.GroupChat" Width="1.5" PointX="3" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.GroupMember" Width="1.5" PointX="5.25" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Group" Width="1.5" PointX="3" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Like" Width="1.5" PointX="9.75" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.ManagerZone" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.MemberDiscussion" Width="1.5" PointX="12.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Note" Width="1.5" PointX="17.25" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Permission" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Plan" Width="1.5" PointX="10.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.PostImage" Width="1.5" PointX="9.75" PointY="44.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Post" Width="1.5" PointX="7.5" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.ProjectDiscussion" Width="1.5" PointX="15" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.ProjectMember" Width="1.5" PointX="10.5" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Project" Width="1.5" PointX="5.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Remind" Width="1.5" PointX="8" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Report" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Role" Width="1.5" PointX="6" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.SetPermission" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Share" Width="1.5" PointX="12.75" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.SmallStepMember" Width="1.5" PointX="15" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.SmallStep" Width="1.5" PointX="12.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.StepMember" Width="1.5" PointX="12.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Step" Width="1.5" PointX="10.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.TimeLineDetail" Width="1.5" PointX="5.25" PointY="55.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.TimeLineImage" Width="1.5" PointX="7.5" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.TimeLine" Width="1.5" PointX="3" PointY="56.25" IsExpanded="true" />
+        <AssociationConnector Association="WorkManagermentModel.FK__ChatDetai__ChatI__2645B050" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Chats__FirstMemb__2180FB33" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Chats__SecondMem__22751F6C" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Comments__Employ__10566F31" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Comments__PostId__0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Comments__TimeLi__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Likes__CommentId__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Departmen__Depar__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Departmen__Emplo__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GrantPerm__Depar__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Forms__Departmen__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Projects__Depart__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Reminds__Departm__4A8310C6" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Likes__EmotionId__1DB06A4F" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Files__EmployeeI__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Folders__Employe__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GroupChat__Adder__5BAD9CC8" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GroupChat__Emplo__55009F39" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GroupChat__Emplo__5AB9788F" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GroupMemb__Emplo__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Groups__Employee__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Likes__EmployeeI__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__MemberDis__Emplo__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Notes__EmployeeI__3F115E1A" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Reminds__Employe__489AC854" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Shares__Employee__02FC7413" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__TimeLines__Emplo__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Files__FolderId__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Files__ProjectId__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Folders__Project__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Forwards__Receiv__503BEA1C" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Forwards__SendSt__4F47C5E3" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Forwards__SmallS__4E53A1AA" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GrantPerm__RoleI__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Plans__GrantPerm__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__ProjectMe__Grant__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GroupChat__Group__607251E5" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GroupChat__Group__59C55456" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__GroupMemb__Group__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Posts__GroupMemb__797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Posts__GroupId__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Shares__GroupId__05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Likes__PostId__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Likes__TimeLineD__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__SetPermis__Manag__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__MemberDis__Proje__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__MemberDis__Proje__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__ProjectDi__Membe__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Notes__SmallStep__40058253" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__SetPermis__Permi__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__PostImage__PostI__7F2BE32F" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Shares__PostId__06CD04F7" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__ProjectMe__Proje__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__StepMembe__Proje__32AB8735" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Reminds__Project__498EEC8D" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Steps__ProjectId__2BFE89A6" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__SetPermis__RoleI__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Shares__TimeLine__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__Shares__TimeLine__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__SmallStep__Small__3A4CA8FD" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__SmallStep__StepM__3B40CD36" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__SmallStep__StepI__367C1819" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__StepMembe__StepI__31B762FC" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__TimeLineD__TimeL__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="WorkManagermentModel.FK__TimeLineI__TimeL__693CA210" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -111,3 +111,4 @@ C:\Users\Administrator\Desktop\QuanlyCV\QuanlyCV\bin\Antlr3.Runtime.pdb
 C:\Users\Administrator\Desktop\QuanlyCV\QuanlyCV\bin\Newtonsoft.Json.xml
 C:\Users\Administrator\Desktop\QuanlyCV\QuanlyCV\obj\Debug\QuanlyCV.dll
 C:\Users\Administrator\Desktop\QuanlyCV\QuanlyCV\obj\Debug\QuanlyCV.pdb
+C:\Users\Administrator\Desktop\QuanlyCV\QuanlyCV\obj\Debug\QuanlyCV.csprojResolveAssemblyReference.cache

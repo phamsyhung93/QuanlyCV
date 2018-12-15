@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Nhóm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-grids">
+    <div class="agile-grids">
+        <!-- Phần này cho main grouppage -->
+        <div id="warpper-group">
+            <div class="col-xs-12 col-md-3">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="group-left">
+                            <div class="group-name">
+                                <h3>Dev Hitech</h3>
+                                <a href=""><i class="fa fa-lock"></i>Nhóm kín</a>
+                            </div>
+                            <div class="list-action">
+                                <ul>
+                                    <li><a href="#">Thông Tinh</a></li>
+                                    <li><a href="#">Thảo Luận</a></li>
+                                    <li><a href="#">Thành Viên</a></li>
+                                    <li>
+                                        <div class="wrapper-search-group">
+                                            <input type="text" name="" placeholder="Tìm kiếm trong nhóm...">
+                                            <a href=""><i class="fa fa-search"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-9">
+                <div class="group-right">
+                    <div class="group-right-top">
+                        <div class="group-image-cover">
+                            <img src="~/Content/images/tuong-giai-an-7.jpg" class="img-responsive" alt="">
+                        </div>
+                        <div class="group-right-top-action">
+                            <ul>
+                                <li><a href="">Rời nhóm</a></li>
+                                <li><a href="">Nhiều hơn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="group-create-post">
+                        <div class="group-create-post-top">
+                            <ul>
+                                <li><a href=""><i class="fa fa-pencil"></i>Bài Viết</a></li>
+                                <li><a href="">Bài Viết</a></li>
+                            </ul>
+                        </div>
+                        <div class="group-create-post-middle">
+                            <div class="container-create-post">
+                                <img src="~/Content/images/3.png" class="img-responsive" alt="">
+                                <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" style="overflow:hidden"></textarea>
+                            </div>
+                        </div>
+                        <div class="group-create-post-bottom">
+                            <ul>
+                                <li><a href="" class="a-hover-pointer"><i class="fa fa-file-image-o"></i>Ảnh</a></li>
+                                <li><a href="" class="a-hover-pointer"><i class="fa fa-smile-o"></i>Ảnh</a></li>
+                                <li><a href="" class="a-hover-pointer"><i class="fa fa-tags"></i>Ảnh</a></li>
+                            </ul>
+                            <a href="" class="a-hover-pointer">Đăng tải</a>
+                        </div>
+                    </div>
+
+                    <div class="container-group-item">
+                        <div class="timeline-item">
+                            <div class="timeline-item-title">
+                                <div class="timeline-item-title-avatar">
+                                    <img src="~/Content/images/3.png" class="img-responsive" alt="avatar">
+                                </div>
+                                <div class="timeline-item-title-event">
+                                    <div>
+                                        <a href="#" class="a-hover-underline">Nguyễn Văn Anh</a>
+                                        <span> Đã đăng một nội dung</span>
+                                    </div>
+                                    <span>Thời gian</span>
+                                </div>
+                            </div>
+                            <div class="timeline-item-text">
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </span>
+                            </div>
+                            <div class="timeline-item-image">
+                                <img src="~/Content/images/tuong-giai-an-3.jpg" class="img-responsive" alt="Hình ảnh">
+                            </div>
+                            <div class="timeline-item-list-like">
+                                <img src="~/Content/images/facebook-like-icon.png" class="img-responsive" alt="like">
+                                <a class="a-hover-pointer a-hover-underline">Đoàn Văn Tùng, Phạm Sỹ Hưng, Dư Hồng Quân</a>
+                            </div>
+                            <div class="timeline-item-action">
+                                <ul>
+                                    <li><a class="a-hover-pointer"><i class="fa fa-thumbs-up"></i>Thích</a></li>
+                                    <li><a class="a-hover-pointer"><i class="fa fa-comment-o"></i>Bình Luận</a></li>
+                                    <li><a class="a-hover-pointer"><i class="fa fa-share"></i>Chia Sẻ</a></li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item-comment">
+                                <ul class="comment-level-1">
+                                    <li>
+                                        <div class="comment-item">
+                                            <div class="comment-avatar">
+                                                <img src="~/Content/images/3.png" class="img-responsive" alt="avatar">
+                                            </div>
+                                            <div class="comment-content">
+                                                <div>
+                                                    <a href="" class="a-hover-underline coment-content-fullname">Đoàn Văn Tùng</a>
+                                                    <span class="coment-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo facere in, assumenda nihil similique possimus. Veniam animi quas consequuntur debitis, temporibus deserunt voluptatem. Repellendus totam, mollitia incidunt vitae quod, atque!</span>
+                                                </div>
+                                                <div class="comment-content-action">
+                                                    <a class="a-hover-pointer a-hover-underline">Thích</a>
+                                                    <a class="a-hover-pointer a-hover-underline">Bình luận</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul class="comment-level-2">
+                                            <li>
+                                                <div class="comment-item">
+                                                    <div class="comment-avatar">
+                                                        <img src="~/Content/images/3.png" class="img-responsive" alt="avatar">
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <div>
+                                                            <a href="" class="a-hover-underline coment-content-fullname">Đoàn Văn Tùng</a>
+                                                            <span class="coment-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo facere in, assumenda nihil similique possimus. Veniam animi quas consequuntur debitis, temporibus deserunt voluptatem. Repellendus totam, mollitia incidunt vitae quod, atque!</span>
+                                                        </div>
+                                                        <div class="comment-content-action">
+                                                            <a class="a-hover-pointer a-hover-underline">Thích</a>
+                                                            <a class="a-hover-pointer a-hover-underline">Bình luận</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="wrapper-input-comment" style="margin-left: 60px;">
+                                            <img src="~/Content/images/3.png" class="img-responsive" alt="">
+                                            <div class="input-comment">
+                                                <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" style="overflow:hidden"></textarea>
+                                                <ul class="input-comment-level-2-icon">
+                                                    <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
+                                                    <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
+                                                    <li><a class="a-hover-pointer"><i class="fa fa-paper-plane-o"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="wrapper-input-comment">
+                                    <img src="~/Content/images/3.png" class="img-responsive" alt="">
+                                    <div class="input-comment">
+                                        <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" style="overflow:hidden"></textarea>
+                                        <ul class="input-comment-level-2-icon">
+                                            <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
+                                            <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
+                                            <li><a class="a-hover-pointer"><i class="fa fa-paper-plane-o"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+

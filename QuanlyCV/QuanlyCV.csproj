@@ -168,6 +168,7 @@
     <Compile Include="Controllers\InfomationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManagerZonesController.cs" />
+    <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SetPermissionsController.cs" />
@@ -482,6 +483,7 @@
     <Content Include="Models\QuanLyCV.edmx.diagram">
       <DependentUpon>QuanLyCV.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Hung.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -568,6 +570,7 @@
     <Content Include="Views\GrantPermissions\setGrantPermissions.cshtml" />
     <Content Include="Views\Login\ChooseDepartment.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Note\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

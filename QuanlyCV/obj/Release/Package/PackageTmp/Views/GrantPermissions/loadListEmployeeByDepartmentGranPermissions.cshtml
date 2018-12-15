@@ -1,0 +1,35 @@
+﻿<table id="table">
+    <thead>
+        <tr>
+            <th class="text-center">STT</th>
+            <th class="text-center">Họ Tên</th>
+            <th class="text-center">Phòng Ban</th>
+            <th class="text-center">Giới Tính</th>
+            <th class="text-center">Ngày sinh</th>
+            <th class="text-center">Chức Vụ</th>
+            <th class="text-center">Thao Tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var stt = 1;}
+        @foreach (var item in ViewBag.lstEmployeeByDepartmentId)
+        {
+            <tr>
+                <td class="text-center">@stt</td>
+                <td class="text-center">@item.EmployeeFullname</td>
+                <td class="text-center">@item.DepartmentName</td>
+                <td class="text-center">@(item.EmployeeGender == 1 ? "Nam" : "Nữ")</td>
+                <td class="text-center">@item.EmployeeBirthday.ToString("yyyy-MM-dd")</td>
+                <td class="text-center">@item.RoleName</td>
+                <td class="text-center">
+                    <ul class="ul-table-content-employee">
+                        <li><a href="@Url.Action("setGrantPermissions","GrantPermissions",new { id = @item.EmployeeId ,idDepartment = @item.DepartmentId})" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
+                    </ul>
+                </td>
+            </tr>
+            stt++;
+        }
+    </tbody>
+</table>
+
+

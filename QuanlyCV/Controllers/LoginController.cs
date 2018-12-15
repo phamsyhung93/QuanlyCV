@@ -67,72 +67,72 @@ namespace QuanlyCV.Controllers
             }
             
         }
-        public ActionResult ViewRegister()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Register(Employee e)
-        {
-            try
-            {
-                var pass = Unti.Utility.getHashedMD5(e.EmployeePassword);
-                e.EmployeePassword = pass;
-                e.EmployeeStatus = 1;
-                e.EmployeeGender = 1;
-                db.Employees.Add(e);
-                db.SaveChanges();
-                TimeLine t = new TimeLine();
-                t.EmployeeId = e.EmployeeId;
-                t.TimeLineStatus = 1;
-                db.TimeLines.Add(t);
-                db.SaveChanges();
-                TempData["error"] = "đăng ký thành công"; 
-                return RedirectToAction("Index");
-            }
-            catch (Exception)
-            {
-                TempData["error"] = "đăng không thành công";
-                return View();
-                throw;
-            }
-        }
-        public ActionResult ViewForgotPassword()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult ForgotPassword(string EmployeeEmail)
-        {
-            try
-            {
-                Employee e = db.Employees.SingleOrDefault(x => x.EmployeeEmail.ToLower().Equals(EmployeeEmail.ToLower()));
-                if (e != null)
-                {
-                    e.EmployeePassword = Unti.Utility.getHashedMD5("1234");
-                    db.Entry(e).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/content.html"));
-                    content = content.Replace("{{CustomerName}}", e.EmployeeFullname);
-                    content = content.Replace("{{Email}}", e.EmployeeEmail);
+        //public ActionResult ViewRegister()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult Register(Employee e)
+        //{
+        //    try
+        //    {
+        //        var pass = Unti.Utility.getHashedMD5(e.EmployeePassword);
+        //        e.EmployeePassword = pass;
+        //        e.EmployeeStatus = 1;
+        //        e.EmployeeGender = 1;
+        //        db.Employees.Add(e);
+        //        db.SaveChanges();
+        //        TimeLine t = new TimeLine();
+        //        t.EmployeeId = e.EmployeeId;
+        //        t.TimeLineStatus = 1;
+        //        db.TimeLines.Add(t);
+        //        db.SaveChanges();
+        //        TempData["error"] = "đăng ký thành công"; 
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception)
+        //    {
+        //        TempData["error"] = "đăng không thành công";
+        //        return View();
+        //        throw;
+        //    }
+        //}
+        //public ActionResult ViewForgotPassword()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult ForgotPassword(string EmployeeEmail)
+        //{
+        //    try
+        //    {
+        //        Employee e = db.Employees.SingleOrDefault(x => x.EmployeeEmail.ToLower().Equals(EmployeeEmail.ToLower()));
+        //        if (e != null)
+        //        {
+        //            e.EmployeePassword = Unti.Utility.getHashedMD5("1234");
+        //            db.Entry(e).State = System.Data.Entity.EntityState.Modified;
+        //            db.SaveChanges();
+        //            string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/content.html"));
+        //            content = content.Replace("{{CustomerName}}", e.EmployeeFullname);
+        //            content = content.Replace("{{Email}}", e.EmployeeEmail);
 
-                    new MailHelper().SendMail(e.EmployeeEmail, "Password Reset", content);
-                    TempData["error"] = "cập nhật lại mật khẩu thành công , bạn vào mail để nhận lại mật khẩu";
-                    return RedirectToAction("Index");
-                }else
-                {
-                    TempData["error"] = "mật khẩu không đúng hoặc chưa được đăng ký";
-                    return View();
-                }
+        //            new MailHelper().SendMail(e.EmployeeEmail, "Password Reset", content);
+        //            TempData["error"] = "cập nhật lại mật khẩu thành công , bạn vào mail để nhận lại mật khẩu";
+        //            return RedirectToAction("Index");
+        //        }else
+        //        {
+        //            TempData["error"] = "mật khẩu không đúng hoặc chưa được đăng ký";
+        //            return View();
+        //        }
                
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
                 
-                return View();
-                throw;
-            }
-        }
+        //        return View();
+        //        throw;
+        //    }
+        //}
         public ActionResult logout()
         {
             try

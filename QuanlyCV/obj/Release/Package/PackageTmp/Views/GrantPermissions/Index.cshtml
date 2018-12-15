@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-grid">
+    <div class="agile-grids">
+        <!-- tables -->
+
+        <div class="table-heading">
+            <h2>Cấp Quyền</h2>
+            <h4 style="color:darkred">@TempData["error"]</h4>
+        </div>
+        <a href="@Url.Action("Index","Employee")">Quay Về</a>
+        <select id="find-Employee-by-Department" style="padding:5px;" class="text-right">
+            <option value="0">Lọc theo phòng ban</option>
+            @foreach (var item in ViewBag.Department)
+            {
+                <option value="@item.DepartmentId">@item.DepartmentName</option>
+            }
+        </select>
+        <div class="agile-tables">
+            <div class="w3l-table-info tbl-list-Employee-by-Department">
+                <table id="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">STT</th>
+                            <th class="text-center">Họ Tên</th>
+                            <th class="text-center">Phòng Ban</th>
+                            <th class="text-center">Giới Tính</th>
+                            <th class="text-center">Ngày sinh</th>
+                            <th class="text-center">Chức Vụ</th>
+                            <th class="text-center">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var stt = 1;}
+                        @foreach (var item in ViewBag.lstEmployeeByDepartment)
+                        {
+                            <tr>
+                                <td class="text-center">@stt</td>
+                                <td class="text-center">@item.EmployeeFullname</td>
+                                <td class="text-center">@item.DepartmentName</td>
+                                <td class="text-center">@(item.EmployeeGender == 1 ? "Nam" : "Nữ")</td>
+                                <td class="text-center">@item.EmployeeBirthday.ToString("yyyy-MM-dd")</td>
+                                <td class="text-center">@item.RoleName</td>
+                                <td class="text-center">
+                                    <ul class="ul-table-content-employee">
+                                        <li><a href="@Url.Action("setGrantPermissions","GrantPermissions",new { id = @item.EmployeeId,idDepartment = @item.DepartmentId })" title="Chi tiết" ><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            stt++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- //tables -->
+    </div>
+</div>
+@section scripts{
+    <script>
+        $('#find-Employee-by-Department').change(function () {
+            var val = $("#find-Employee-by-Department option:selected").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadListEmployeeByDepartmentGranPermissions", "GrantPermissions")",
+                data: { id: val },
+            success: function (rps) {
+                $(".tbl-list-Employee-by-Department").html(rps);
+            }
+            });
+        });
+
+    </script>    
+}
