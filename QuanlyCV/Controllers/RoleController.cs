@@ -12,21 +12,21 @@ namespace QuanlyCV.Controllers
     {
         WorkManagermentEntities db = new WorkManagermentEntities();
         // GET: Role
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
             if(Session["EmployeeId"] != null)
             {
                 var lstRole = db.Roles.ToList();
-                return View(lstRole);
+                return PartialView(lstRole);
             }else
             {
-                return RedirectToAction("Index", "Login");
+                return PartialView();
             }
             
         }
-        public ActionResult ViewCreate()
+        public PartialViewResult ViewCreate()
         {
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public ActionResult Create(Role r)
@@ -36,14 +36,12 @@ namespace QuanlyCV.Controllers
                 Role ro = db.Roles.SingleOrDefault(x => x.RoleName.Equals(r.RoleName));
                 if (ro != null)
                 {
-                    TempData["error"] = "Tên chức vụ bị trùng";
                     return RedirectToAction("Index");
                 }
                 else
                 {
                     db.Roles.Add(r);
                     db.SaveChanges();
-                    TempData["error"] = "Thêm mới thành công";
                     return RedirectToAction("Index");
                 }
             }
@@ -54,34 +52,34 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        public ActionResult ViewUpdate(int id)
+        public PartialViewResult ViewUpdate(int id)
         {
             if (id <= 0)
             {
-                TempData["error"] = "chưa chọn chức vụ muốn sửa";
-                return RedirectToAction("Index");
+                //TempData["error"] = "chưa chọn chức vụ muốn sửa";
+                return PartialView("Index");
             }
             else
             {
                 Role e = db.Roles.Find(id);
-                return View(e);
+                return PartialView(e);
             }
             
         }
         [HttpPost]
-        public ActionResult Update(Role r)
+        public bool Update(Role r)
         {
             try
             {
                 db.Entry(r).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                TempData["error"] = "Cập nhật thành công";
-                return RedirectToAction("Index");
+                //TempData["error"] = "Cập nhật thành công";
+                return true;
             }
             catch (Exception ex)
             {
-                TempData["error"] = "Cập nhật không thành công";
-                return View();
+                //TempData["error"] = "Cập nhật không thành công";
+                return false;
                 throw;
             }
         }

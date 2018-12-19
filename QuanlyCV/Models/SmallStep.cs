@@ -18,18 +18,29 @@ namespace QuanlyCV.Models
         public SmallStep()
         {
             this.Forwards = new HashSet<Forward>();
+            this.SmallStepComments = new HashSet<SmallStepComment>();
             this.SmallStepMembers = new HashSet<SmallStepMember>();
+            this.SmallStepPriorityLevels = new HashSet<SmallStepPriorityLevel>();
+            this.SmallStepWorkToDoes = new HashSet<SmallStepWorkToDo>();
         }
     
         public int SmallStepId { get; set; }
         public int StepId { get; set; }
         public string SmallStepDescription { get; set; }
         public int SmallStepStatus { get; set; }
+        public string SmallStepDescriptionDetail { get; set; }
+        public Nullable<int> SmallStepLocation { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Forward> Forwards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SmallStepComment> SmallStepComments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SmallStepMember> SmallStepMembers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SmallStepPriorityLevel> SmallStepPriorityLevels { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SmallStepWorkToDo> SmallStepWorkToDoes { get; set; }
         public virtual Step Step { get; set; }
     }
 }

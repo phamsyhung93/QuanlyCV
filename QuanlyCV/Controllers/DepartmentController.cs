@@ -12,15 +12,15 @@ namespace QuanlyCV.Controllers
     {
         WorkManagermentEntities db = new WorkManagermentEntities();
         // GET: Department
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
             var lstDepartment = db.Departments.Where(x => x.DepartmentStatus == 1).ToList();
-            return View(lstDepartment);
+            return PartialView(lstDepartment);
         }
-        public ActionResult ViewCreate()
+        public PartialViewResult ViewCreate()
         {
             var d = db.Departments.Where(x => x.DepartmentStatus == 1).ToList();
-            return View(d);
+            return PartialView(d);
         }
         [HttpPost]
         public ActionResult Create(string DepartmentName,int DepartmentId,int DepartmentStatus)
@@ -44,11 +44,11 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        public ActionResult ViewUpdate(int id)
+        public PartialViewResult ViewUpdate(int id)
         {
             Department d = db.Departments.Find(id);
             ViewBag.lstDepartment = db.Departments.Where(x => x.DepartmentStatus == 1).ToList();
-            return View(d);
+            return PartialView(d);
         }
         [HttpPost]
         public ActionResult Update(int DepartmentId,string DepartmentName,int ParentId,int DepartmentStatus)

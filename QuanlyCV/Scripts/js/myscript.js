@@ -130,10 +130,7 @@ $(".btn-do-add").click(function() {
 	    	$(".cvthuong").css("display","none");
 	    }
 });
-function setActiveMenuleft(e){
-  $(".li-menu-left").removeClass('active');
-  $(e).addClass('active');
-}
+
 
 $(".input1").click(function(event) {
 	var form1 = document.getElementById('form1');

@@ -12,20 +12,20 @@ namespace QuanlyCV.Controllers
     {
         private WorkManagermentEntities db = new WorkManagermentEntities();
         // GET: SetPermissions
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
             if(Session["EmployeeId"] != null)
             {
                 var lst = db.Roles.Where(x => x.RoleStatus == 1).ToList();
-                return View(lst);
+                return PartialView(lst);
             }
             else
             {
-                return RedirectToAction("Index");
+                return PartialView();
             }
         }
 
-        public ActionResult setPermissionsByManagerZone(int id)
+        public PartialViewResult setPermissionsByManagerZone(int id)
         {
             try
             {
@@ -33,12 +33,12 @@ namespace QuanlyCV.Controllers
                 ViewBag.Role = r;
                 var managerZone = db.ManagerZones.ToList();
                 ViewBag.ManagerZone = managerZone;
-                return View();
+                return PartialView();
             }
             catch (Exception)
             {
-                TempData["error"] = "chưa chọn đối tượng nào";
-                return RedirectToAction("Index");
+                //TempData["error"] = "chưa chọn đối tượng nào";
+                return PartialView();
                 throw;
             }
         }
@@ -53,6 +53,7 @@ namespace QuanlyCV.Controllers
                 ViewBag.RoleId = roleId;
                 var lstSetPermissions = db.SetPermissions.Where(x => x.ManagerZoneId == id && x.RoleId == roleId).ToList();
                 ViewBag.lstSetPermissions = lstSetPermissions;
+                ViewBag.lstManagerZones = db.ManagerZones.Where(x => x.ManagerZoneStatus == 1);
                 return PartialView(lstPerrmission);
             }
             catch (Exception)

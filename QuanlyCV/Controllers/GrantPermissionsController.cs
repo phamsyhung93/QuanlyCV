@@ -12,7 +12,7 @@ namespace QuanlyCV.Controllers
     {
         WorkManagermentEntities db = new WorkManagermentEntities();
         // GET: GrantPermissions
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
             if(Session["EmployeeId"] != null)
             {
@@ -20,11 +20,11 @@ namespace QuanlyCV.Controllers
                 ViewBag.lstEmployeeByDepartment = lstEmployee;
                 ViewBag.Department = db.Departments.Where(x => x.DepartmentStatus == 1).ToList();
                 
-                return View();
+                return PartialView();
             }
             else
             {
-                return RedirectToAction("Index", "Login");
+                return PartialView();
             }
         }
         public PartialViewResult loadListEmployeeByDepartmentGranPermissions(int id)
@@ -50,7 +50,7 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        public ActionResult setGrantPermissions(int id,int idDepartment)
+        public PartialViewResult setGrantPermissions(int id,int idDepartment)
         {
             try
             {
@@ -66,33 +66,37 @@ namespace QuanlyCV.Controllers
                 {
                     ViewBag.GrantPermissions = g;
                 }
-                return View();
+                return PartialView();
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index");
+                return PartialView();
                 throw;
             }
         }
         [HttpPost]
-        public ActionResult insertGrantPermissions(int EmployeeId, int DepartmentId, int RoleId)
+        public Boolean insertGrantPermissions(int EmployeeId, int DepartmentId, int RoleId)
         {
             try
             {
                 DepartmentEmployee d = db.DepartmentEmployees.SingleOrDefault(x => x.DepartmentId == DepartmentId && x.EmployeeId == EmployeeId);
-                GrantPermission g = new GrantPermission();
+                GrantPermission gp = db.GrantPermissions.SingleOrDefault(x => x.DepartmentEmployeeId == d.DepartmentEmployeeId && x.RoleId == RoleId);
+                if(gp != null)
+                {
+
+                    return true;
+                }
+                GrantPermission g = db.GrantPermissions.SingleOrDefault(x => x.DepartmentEmployeeId == d.DepartmentEmployeeId);
                 g.DepartmentEmployeeId = d.DepartmentEmployeeId;
                 g.RoleId = RoleId;
                 g.GrantPermissionStatus = 1;
-                db.GrantPermissions.Add(g);
+                db.Entry(g).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
-                TempData["error"] = "sét chức vụ thành công";
-                return RedirectToAction("Index");
+                return true;
             }
             catch (Exception)
             {
-                TempData["error"] = "sét chức vụ không thành công";
-                return RedirectToAction("setGrantPermissions");
+                return false;
                 throw;
             }
         }

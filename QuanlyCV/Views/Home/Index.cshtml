@@ -78,7 +78,7 @@
             </div>
         </div>
         <div>
-            <a href="" data-toggle="modal" data-target="#ModalAddNewWork" title="Thêm mới công việc"><img src="Content/images/add-new-project-64.png" alt=""></a>
+            <a href="" data-toggle="modal" data-target="#ModalAddNewWork" title="Thêm mới công việc"><img src="~/Content/images/add-48.png" alt=""></a>
         </div>
 
     </div>
@@ -809,9 +809,9 @@
         <div class="modal-list-project-bottom">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-12">
                         <div class="working-left">
-                            <div class="working-left-top">
+                            <div class="working-left-top-list-project-year">
                                 <ul>
                                     <li>
                                         <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i>Dự Án</a>
@@ -884,35 +884,6 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 col-md-8">
-                        <div class="working-right">
-                            <div class="list-working-right">
-                                <ul>
-                                    @foreach (var item in ViewBag.listProject)
-                                    {
-                                        <li>
-                                            <div class="wrap-right-item-working isdoing">
-                                                <a href="javascript:;" title="" class="a-right-item-working">
-                                                    <div class="right-item-working">
-                                                        <h3 class="working-name">@item.ProjectName</h3>
-                                                        @foreach (var item1 in ViewBag.listDepartment)
-                                                        {
-                                                            if (item1.DepartmentId == item.DepartmentId)
-                                                            {
-                                                                <p class="department-name">@item1.DepartmentName</p>
-                                                            }
-                                                        }
-                                                        <p class="working-time">@item.StartTime.ToString("yyyy-MM-dd") - @item.EndTime.ToString("yyyy-MM-dd")</p>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
                             </div>
                         </div>
                     </div>

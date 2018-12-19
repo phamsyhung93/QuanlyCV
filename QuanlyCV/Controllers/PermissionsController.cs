@@ -12,17 +12,18 @@ namespace QuanlyCV.Controllers
     {
         WorkManagermentEntities db = new WorkManagermentEntities();
         // GET: Permissions
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
             if(Session["EmployeeId"] != null)
             {
                 var lst = db.Permissions.ToList();
                 ViewBag.ManagerZone = db.ManagerZones.Where(x => x.ManagerZoneStatus == 1).ToList();
-                return View(lst);
+
+                return PartialView(lst);
             }
             else
             {
-                return RedirectToAction("Index");
+                return PartialView();
             }
            
         }
@@ -117,11 +118,13 @@ namespace QuanlyCV.Controllers
                 if(id == 0)
                 {
                     var lstPermissions = db.Permissions.ToList();
+                    ViewBag.ManagerZone = db.ManagerZones.Where(x => x.ManagerZoneStatus == 1).ToList();
                     return PartialView(lstPermissions);
                 }
                 else
                 {
                     ManagerZone m = db.ManagerZones.Find(id);
+                    ViewBag.ManagerZone = db.ManagerZones.Where(x => x.ManagerZoneStatus == 1).ToList();
                     var lstPermissions = db.Permissions.Where(x => x.ManagerZoneID.Equals(m.ManagerZoneName)).ToList();
                     return PartialView(lstPermissions);
                 }

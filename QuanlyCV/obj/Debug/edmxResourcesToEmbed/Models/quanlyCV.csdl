@@ -93,6 +93,10 @@
     <Property Name="EmployeeCoverPicture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EmployeeStatus" Type="Int32" Nullable="false" />
     <Property Name="EmployeeGender" Type="Int32" />
+    <Property Name="EmployeeCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeAccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeAccountName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EmployeeType" Type="Boolean" />
     <NavigationProperty Name="Chats" Relationship="Self.FK__Chats__FirstMemb__2180FB33" FromRole="Employees" ToRole="Chats" />
     <NavigationProperty Name="Chats1" Relationship="Self.FK__Chats__SecondMem__22751F6C" FromRole="Employees" ToRole="Chats" />
     <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__Employ__10566F31" FromRole="Employees" ToRole="Comments" />
@@ -109,6 +113,7 @@
     <NavigationProperty Name="Notes" Relationship="Self.FK__Notes__EmployeeI__3F115E1A" FromRole="Employees" ToRole="Notes" />
     <NavigationProperty Name="Reminds" Relationship="Self.FK__Reminds__Employe__489AC854" FromRole="Employees" ToRole="Reminds" />
     <NavigationProperty Name="Shares" Relationship="Self.FK__Shares__Employee__02FC7413" FromRole="Employees" ToRole="Shares" />
+    <NavigationProperty Name="SmallStepComments" Relationship="Self.FK__SmallStep__Emplo__2CBDA3B5" FromRole="Employees" ToRole="SmallStepComment" />
     <NavigationProperty Name="TimeLines" Relationship="Self.FK__TimeLines__Emplo__5EBF139D" FromRole="Employees" ToRole="TimeLines" />
   </EntityType>
   <EntityType Name="File">
@@ -266,6 +271,7 @@
     <Property Name="ManagerZoneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ManagerZoneName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ManagerZoneStatus" Type="Int32" Nullable="false" />
+    <Property Name="DisplayNameController" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SetPermissions" Relationship="Self.FK__SetPermis__Manag__2E1BDC42" FromRole="ManagerZones" ToRole="SetPermissions" />
   </EntityType>
   <EntityType Name="MemberDiscussion">
@@ -302,6 +308,7 @@
     <Property Name="PermissionName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PermissionStatus" Type="Int32" Nullable="false" />
     <Property Name="ManagerZoneID" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayNameAction" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SetPermissions" Relationship="Self.FK__SetPermis__Permi__2C3393D0" FromRole="Permissions" ToRole="SetPermissions" />
   </EntityType>
   <EntityType Name="Plan">
@@ -375,6 +382,7 @@
     <Property Name="ProjectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="DepartmentId" Type="Int32" Nullable="false" />
     <Property Name="ProjectStatus" Type="Int32" Nullable="false" />
+    <Property Name="ProjectTypeId" Type="Int32" />
     <NavigationProperty Name="Department" Relationship="Self.FK__Projects__Depart__398D8EEE" FromRole="Projects" ToRole="Departments" />
     <NavigationProperty Name="Files" Relationship="Self.FK__Files__ProjectId__5AEE82B9" FromRole="Projects" ToRole="Files" />
     <NavigationProperty Name="Folders" Relationship="Self.FK__Folders__Project__5535A963" FromRole="Projects" ToRole="Folders" />
@@ -382,6 +390,14 @@
     <NavigationProperty Name="ProjectMembers" Relationship="Self.FK__ProjectMe__Proje__3D5E1FD2" FromRole="Projects" ToRole="ProjectMembers" />
     <NavigationProperty Name="Reminds" Relationship="Self.FK__Reminds__Project__498EEC8D" FromRole="Projects" ToRole="Reminds" />
     <NavigationProperty Name="Steps" Relationship="Self.FK__Steps__ProjectId__2BFE89A6" FromRole="Projects" ToRole="Steps" />
+  </EntityType>
+  <EntityType Name="ProjectType">
+    <Key>
+      <PropertyRef Name="ProjectTypeId" />
+    </Key>
+    <Property Name="ProjectTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProjectTypeStatus" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Remind">
     <Key>
@@ -449,6 +465,20 @@
     <NavigationProperty Name="TimeLine" Relationship="Self.FK__Shares__TimeLine__03F0984C" FromRole="Shares" ToRole="TimeLines" />
     <NavigationProperty Name="TimeLineDetail" Relationship="Self.FK__Shares__TimeLine__04E4BC85" FromRole="Shares" ToRole="TimeLineDetails" />
   </EntityType>
+  <EntityType Name="SmallStepComment">
+    <Key>
+      <PropertyRef Name="SmallStepCommentId" />
+    </Key>
+    <Property Name="SmallStepCommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SmallStepCommentContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SmallStepCommentImage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SmallStepId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="SmallStepCommentTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SmallStepCommentStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__SmallStep__Emplo__2CBDA3B5" FromRole="SmallStepComment" ToRole="Employees" />
+    <NavigationProperty Name="SmallStep" Relationship="Self.FK__SmallStep__Small__2BC97F7C" FromRole="SmallStepComment" ToRole="SmallSteps" />
+  </EntityType>
   <EntityType Name="SmallStepMember">
     <Key>
       <PropertyRef Name="SmallStepMemberId" />
@@ -461,6 +491,16 @@
     <NavigationProperty Name="SmallStep" Relationship="Self.FK__SmallStep__Small__3A4CA8FD" FromRole="SmallStepMembers" ToRole="SmallSteps" />
     <NavigationProperty Name="StepMember" Relationship="Self.FK__SmallStep__StepM__3B40CD36" FromRole="SmallStepMembers" ToRole="StepMembers" />
   </EntityType>
+  <EntityType Name="SmallStepPriorityLevel">
+    <Key>
+      <PropertyRef Name="SmallStepPriorityLevelId" />
+    </Key>
+    <Property Name="SmallStepPriorityLevelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SmallStepPriorityLevelColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SmallStepId" Type="Int32" Nullable="false" />
+    <Property Name="SmallStepPriorityLevelStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SmallStep" Relationship="Self.FK__SmallStep__Small__2F9A1060" FromRole="SmallStepPriorityLevel" ToRole="SmallSteps" />
+  </EntityType>
   <EntityType Name="SmallStep">
     <Key>
       <PropertyRef Name="SmallStepId" />
@@ -469,9 +509,24 @@
     <Property Name="StepId" Type="Int32" Nullable="false" />
     <Property Name="SmallStepDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SmallStepStatus" Type="Int32" Nullable="false" />
+    <Property Name="SmallStepDescriptionDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SmallStepLocation" Type="Int32" />
     <NavigationProperty Name="Forwards" Relationship="Self.FK__Forwards__SmallS__4E53A1AA" FromRole="SmallSteps" ToRole="Forwards" />
+    <NavigationProperty Name="SmallStepComments" Relationship="Self.FK__SmallStep__Small__2BC97F7C" FromRole="SmallSteps" ToRole="SmallStepComment" />
     <NavigationProperty Name="SmallStepMembers" Relationship="Self.FK__SmallStep__Small__3A4CA8FD" FromRole="SmallSteps" ToRole="SmallStepMembers" />
+    <NavigationProperty Name="SmallStepPriorityLevels" Relationship="Self.FK__SmallStep__Small__2F9A1060" FromRole="SmallSteps" ToRole="SmallStepPriorityLevel" />
+    <NavigationProperty Name="SmallStepWorkToDoes" Relationship="Self.FK__SmallStep__Small__32767D0B" FromRole="SmallSteps" ToRole="SmallStepWorkToDo" />
     <NavigationProperty Name="Step" Relationship="Self.FK__SmallStep__StepI__367C1819" FromRole="SmallSteps" ToRole="Steps" />
+  </EntityType>
+  <EntityType Name="SmallStepWorkToDo">
+    <Key>
+      <PropertyRef Name="SmallStepWorkToDoId" />
+    </Key>
+    <Property Name="SmallStepWorkToDoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SmallStepWorkToDoContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SmallStepId" Type="Int32" Nullable="false" />
+    <Property Name="SmallStepWorkToDoStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SmallStep" Relationship="Self.FK__SmallStep__Small__32767D0B" FromRole="SmallStepWorkToDo" ToRole="SmallSteps" />
   </EntityType>
   <EntityType Name="StepMember">
     <Key>
@@ -501,6 +556,16 @@
     <NavigationProperty Name="Project" Relationship="Self.FK__Steps__ProjectId__2BFE89A6" FromRole="Steps" ToRole="Projects" />
     <NavigationProperty Name="SmallSteps" Relationship="Self.FK__SmallStep__StepI__367C1819" FromRole="Steps" ToRole="SmallSteps" />
     <NavigationProperty Name="StepMembers" Relationship="Self.FK__StepMembe__StepI__31B762FC" FromRole="Steps" ToRole="StepMembers" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TimeLineDetail">
     <Key>
@@ -847,6 +912,18 @@
         <PropertyRef Name="EmployeeId" />
       </Principal>
       <Dependent Role="Shares">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SmallStep__Emplo__2CBDA3B5">
+    <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+    <End Role="SmallStepComment" Type="Self.SmallStepComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmployeeId" />
+      </Principal>
+      <Dependent Role="SmallStepComment">
         <PropertyRef Name="EmployeeId" />
       </Dependent>
     </ReferentialConstraint>
@@ -1247,6 +1324,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__SmallStep__Small__2BC97F7C">
+    <End Role="SmallSteps" Type="Self.SmallStep" Multiplicity="1" />
+    <End Role="SmallStepComment" Type="Self.SmallStepComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmallSteps">
+        <PropertyRef Name="SmallStepId" />
+      </Principal>
+      <Dependent Role="SmallStepComment">
+        <PropertyRef Name="SmallStepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__SmallStep__Small__3A4CA8FD">
     <End Role="SmallSteps" Type="Self.SmallStep" Multiplicity="1" />
     <End Role="SmallStepMembers" Type="Self.SmallStepMember" Multiplicity="*" />
@@ -1268,6 +1357,30 @@
       </Principal>
       <Dependent Role="SmallStepMembers">
         <PropertyRef Name="StepMemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SmallStep__Small__2F9A1060">
+    <End Role="SmallSteps" Type="Self.SmallStep" Multiplicity="1" />
+    <End Role="SmallStepPriorityLevel" Type="Self.SmallStepPriorityLevel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmallSteps">
+        <PropertyRef Name="SmallStepId" />
+      </Principal>
+      <Dependent Role="SmallStepPriorityLevel">
+        <PropertyRef Name="SmallStepId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SmallStep__Small__32767D0B">
+    <End Role="SmallSteps" Type="Self.SmallStep" Multiplicity="1" />
+    <End Role="SmallStepWorkToDo" Type="Self.SmallStepWorkToDo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SmallSteps">
+        <PropertyRef Name="SmallStepId" />
+      </Principal>
+      <Dependent Role="SmallStepWorkToDo">
+        <PropertyRef Name="SmallStepId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1348,15 +1461,20 @@
     <EntitySet Name="ProjectDiscussions" EntityType="Self.ProjectDiscussion" />
     <EntitySet Name="ProjectMembers" EntityType="Self.ProjectMember" />
     <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="ProjectTypes" EntityType="Self.ProjectType" />
     <EntitySet Name="Reminds" EntityType="Self.Remind" />
     <EntitySet Name="Reports" EntityType="Self.Report" />
     <EntitySet Name="Roles" EntityType="Self.Role" />
     <EntitySet Name="SetPermissions" EntityType="Self.SetPermission" />
     <EntitySet Name="Shares" EntityType="Self.Share" />
+    <EntitySet Name="SmallStepComments" EntityType="Self.SmallStepComment" />
     <EntitySet Name="SmallStepMembers" EntityType="Self.SmallStepMember" />
+    <EntitySet Name="SmallStepPriorityLevels" EntityType="Self.SmallStepPriorityLevel" />
     <EntitySet Name="SmallSteps" EntityType="Self.SmallStep" />
+    <EntitySet Name="SmallStepWorkToDoes" EntityType="Self.SmallStepWorkToDo" />
     <EntitySet Name="StepMembers" EntityType="Self.StepMember" />
     <EntitySet Name="Steps" EntityType="Self.Step" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="TimeLineDetails" EntityType="Self.TimeLineDetail" />
     <EntitySet Name="TimeLineImages" EntityType="Self.TimeLineImage" />
     <EntitySet Name="TimeLines" EntityType="Self.TimeLine" />
@@ -1463,6 +1581,10 @@
     <AssociationSet Name="FK__Shares__Employee__02FC7413" Association="Self.FK__Shares__Employee__02FC7413">
       <End Role="Employees" EntitySet="Employees" />
       <End Role="Shares" EntitySet="Shares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SmallStep__Emplo__2CBDA3B5" Association="Self.FK__SmallStep__Emplo__2CBDA3B5">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="SmallStepComment" EntitySet="SmallStepComments" />
     </AssociationSet>
     <AssociationSet Name="FK__TimeLines__Emplo__5EBF139D" Association="Self.FK__TimeLines__Emplo__5EBF139D">
       <End Role="Employees" EntitySet="Employees" />
@@ -1596,6 +1718,10 @@
       <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
       <End Role="Shares" EntitySet="Shares" />
     </AssociationSet>
+    <AssociationSet Name="FK__SmallStep__Small__2BC97F7C" Association="Self.FK__SmallStep__Small__2BC97F7C">
+      <End Role="SmallSteps" EntitySet="SmallSteps" />
+      <End Role="SmallStepComment" EntitySet="SmallStepComments" />
+    </AssociationSet>
     <AssociationSet Name="FK__SmallStep__Small__3A4CA8FD" Association="Self.FK__SmallStep__Small__3A4CA8FD">
       <End Role="SmallSteps" EntitySet="SmallSteps" />
       <End Role="SmallStepMembers" EntitySet="SmallStepMembers" />
@@ -1603,6 +1729,14 @@
     <AssociationSet Name="FK__SmallStep__StepM__3B40CD36" Association="Self.FK__SmallStep__StepM__3B40CD36">
       <End Role="StepMembers" EntitySet="StepMembers" />
       <End Role="SmallStepMembers" EntitySet="SmallStepMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SmallStep__Small__2F9A1060" Association="Self.FK__SmallStep__Small__2F9A1060">
+      <End Role="SmallSteps" EntitySet="SmallSteps" />
+      <End Role="SmallStepPriorityLevel" EntitySet="SmallStepPriorityLevels" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SmallStep__Small__32767D0B" Association="Self.FK__SmallStep__Small__32767D0B">
+      <End Role="SmallSteps" EntitySet="SmallSteps" />
+      <End Role="SmallStepWorkToDo" EntitySet="SmallStepWorkToDoes" />
     </AssociationSet>
     <AssociationSet Name="FK__SmallStep__StepI__367C1819" Association="Self.FK__SmallStep__StepI__367C1819">
       <End Role="Steps" EntitySet="Steps" />
@@ -1620,10 +1754,29 @@
       <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
       <End Role="TimeLineImages" EntitySet="TimeLineImages" />
     </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_getAllDepartmentByEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getAllDepartmentByEmployeeId_Result)">
       <Parameter Name="so" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_GetAllEmployeeByDepartment" ReturnType="Collection(WorkManagermentModel.sp_GetAllEmployeeByDepartment_Result)" />
+    <FunctionImport Name="sp_getAllPermissionsNameByRoleId" ReturnType="Collection(String)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_getEmployeeByDepartmentWhereDepartmentId" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result)">
       <Parameter Name="so" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -1637,9 +1790,20 @@
     <FunctionImport Name="sp_getEmployeeByRoleByDepartment" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByRoleByDepartment_Result)">
       <Parameter Name="so" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="sp_getAllPermissionsNameByRoleId" ReturnType="Collection(String)">
-      <Parameter Name="so" Mode="In" Type="Int32" />
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WorkManagermentModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(WorkManagermentModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <ComplexType Name="sp_getAllDepartmentByEmployeeId_Result">
     <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
@@ -1715,6 +1879,10 @@
     <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
     <Property Type="Int32" Name="EmployeeStatus" Nullable="false" />
     <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
+    <Property Type="String" Name="EmployeeAccountName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="EmployeeAccountNumber" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="EmployeeCode" Nullable="true" MaxLength="20" />
+    <Property Type="Boolean" Name="EmployeeType" Nullable="true" />
     <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
     <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
     <Property Type="Int32" Name="ParentId" Nullable="false" />
@@ -1770,5 +1938,16 @@
     <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
     <Property Type="Int32" Name="RoleStatus" Nullable="false" />
     <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
 </Schema>

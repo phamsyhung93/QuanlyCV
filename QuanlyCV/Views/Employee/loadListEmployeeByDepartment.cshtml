@@ -22,7 +22,7 @@
                 <td class="text-center">
                     <ul class="ul-table-content-employee">
                         <li><a title="Chi tiết" data-id="@item.EmployeeId" onclick="openModalEditEmployee(this)"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
-                        <li><a href="@Url.Action("deleteEmployee", "Employee", new { id = item.EmployeeId})" title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
+                        <li><a onclick="deleteEmployee(this)" data-id="@item.EmployeeId"  title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
                     </ul>
                 </td>
             </tr>

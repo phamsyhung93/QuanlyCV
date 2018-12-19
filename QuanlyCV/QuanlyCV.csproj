@@ -167,6 +167,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfomationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManagementProtfolioController.cs" />
     <Compile Include="Controllers\ManagerZonesController.cs" />
     <Compile Include="Controllers\NoteController.cs" />
     <Compile Include="Controllers\PermissionsController.cs" />
@@ -262,6 +263,9 @@
     <Compile Include="Models\ProjectMember.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProjectType.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\QuanLyCV.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -296,7 +300,16 @@
     <Compile Include="Models\SmallStep.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SmallStepComment.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SmallStepMember.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SmallStepPriorityLevel.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SmallStepWorkToDo.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_getAllDepartmentByEmployeeId_Result.cs">
@@ -320,10 +333,19 @@
     <Compile Include="Models\sp_getEmployeeByRole_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Step.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StepMember.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TimeLine.cs">
@@ -371,6 +393,7 @@
     <Content Include="Content\images\1.png" />
     <Content Include="Content\images\2.png" />
     <Content Include="Content\images\3.png" />
+    <Content Include="Content\images\add-48.png" />
     <Content Include="Content\images\add-folder-32.png" />
     <Content Include="Content\images\add-member-48.png" />
     <Content Include="Content\images\add-member-icon-32.png" />
@@ -380,12 +403,34 @@
     <Content Include="Content\images\add-new-project-64.png" />
     <Content Include="Content\images\avatar\avata.jpg" />
     <Content Include="Content\images\avatar\avatar_defaulte.png" />
+    <Content Include="Content\images\avatar\clipboard_clear.png" />
+    <Content Include="Content\images\avatar\csv.jpg" />
+    <Content Include="Content\images\avatar\docx.jpg" />
+    <Content Include="Content\images\avatar\duplicate.png" />
+    <Content Include="Content\images\avatar\iso.jpg" />
+    <Content Include="Content\images\avatar\mdb.jpg" />
+    <Content Include="Content\images\avatar\url.png" />
+    <Content Include="Content\images\avatar\yahoo_icon1.png" />
+    <Content Include="Content\images\avatar\yahoo_icon2.jpg" />
+    <Content Include="Content\images\avatar\yahoo_icon3.jpg" />
+    <Content Include="Content\images\avatar\yahoo_icon5.jpg" />
     <Content Include="Content\images\back-icon-24.png" />
     <Content Include="Content\images\controls.png" />
+    <Content Include="Content\images\coverPicture\ade.jpg" />
     <Content Include="Content\images\coverPicture\anh_bia.jpg" />
+    <Content Include="Content\images\coverPicture\copy.png" />
+    <Content Include="Content\images\coverPicture\css.jpg" />
     <Content Include="Content\images\coverPicture\Desert.jpg" />
+    <Content Include="Content\images\coverPicture\download.png" />
+    <Content Include="Content\images\coverPicture\edit_img.png" />
+    <Content Include="Content\images\coverPicture\gz.jpg" />
     <Content Include="Content\images\coverPicture\Jellyfish.jpg" />
+    <Content Include="Content\images\coverPicture\mid.jpg" />
     <Content Include="Content\images\coverPicture\Tulips.jpg" />
+    <Content Include="Content\images\coverPicture\yahoo_icon2.jpg" />
+    <Content Include="Content\images\coverPicture\yahoo_icon3.jpg" />
+    <Content Include="Content\images\coverPicture\yahoo_icon4.jpg" />
+    <Content Include="Content\images\coverPicture\zip.png" />
     <Content Include="Content\images\delete-32.png" />
     <Content Include="Content\images\delete-foder-32.png" />
     <Content Include="Content\images\delete-icon-24.png" />
@@ -441,6 +486,7 @@
     <Content Include="Content\images\phung-de-mac-2.jpg" />
     <Content Include="Content\images\phung-de-mac-3.jpg" />
     <Content Include="Content\images\phung-de-mac-4.jpg" />
+    <Content Include="Content\images\project-32.png" />
     <Content Include="Content\images\s1.jpg" />
     <Content Include="Content\images\set-permissions-32.png" />
     <Content Include="Content\images\tuong-giai-an-1.jpg" />
@@ -538,7 +584,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -571,6 +619,9 @@
     <Content Include="Views\Login\ChooseDepartment.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Note\Index.cshtml" />
+    <Content Include="Views\ManagementProtfolio\Index.cshtml" />
+    <Content Include="Views\Employee\loadTableEmployee.cshtml" />
+    <Content Include="Views\Note\LoadContentNote.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

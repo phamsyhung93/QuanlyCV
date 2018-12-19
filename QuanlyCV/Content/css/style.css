@@ -321,7 +321,7 @@ body a:hover{
 		}
 		.no-touch nav.main-menu li:hover>a,nav.main-menu li.active>a{color:#fff;background-color:#00acc1;}
 		.no-touch nav.main-menu li:hover ul,nav.main-menu li.active ul{width:210px}
-		nav.main-menu .nav-icon,i.fa.fa-home.nav_icon,i.fa.fa-cogs,i.fa.fa-comment,i.fa.fa-sticky-note,i.fa.fa-calendar,i.fa.fa-folder-open,i.fa.fa-briefcase,i.fa.fa-check-square-o.nav_icon,i.fa.fa-file-text-o.nav_icon,i.fa.fa-bar-chart.nav_icon,i.fa.fa-map-marker,i.fa.fa-exclamation-triangle,i.fa.fa-list-ul,i.fa.fa-commenting{
+		nav.main-menu .nav-icon,i.fa.fa-home.nav_icon,i.fa.fa-cogs,i.fa.fa-comment,i.fa.fa-sticky-note,i.fa.fa-calendar,i.fa.fa-folder-open,i.fa.fa-briefcase,i.fa.fa-check-square-o.nav_icon,i.fa.fa-file-text-o.nav_icon,i.fa.fa-bar-chart.nav_icon,i.fa.fa-map-marker,i.fa.fa-exclamation-triangle,i.fa.fa-list-ul,i.fa.fa-commenting,i.fa.fa-address-card-o{
 			position:relative;display:table-cell;
 			width:60px;text-align:center;vertical-align:middle;font-size:18px;padding:.7em 0;
 		}
@@ -420,6 +420,30 @@ body a:hover{
 .main-grid{
     padding: 0em 3em;
     height:500px;
+}
+.main-Protfolio{
+    /*padding: 0em 3em;*/
+    height:600px;
+}
+.main-Protfolio .menu-left-Protfolio{
+    background-color:#00bcd4;
+    height:100%;
+    padding:10px
+}
+.main-Protfolio .menu-left-Protfolio .menu-header-Protfolio{
+    border-bottom:1px solid #fff;
+    color:#fff;
+    font-size:20px;
+}
+.menu-content-Protfolio ul li{
+    list-style:none;
+    padding:20px 0;
+    text-align:center;
+    border-bottom:1px solid #fff;
+}
+.menu-content-Protfolio ul li a{
+    color:#fff;
+    font-size:18px;
 }
 .dashboard-page .title-bar {
     position: relative;

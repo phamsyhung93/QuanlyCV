@@ -1,9 +1,4 @@
 ﻿
-@{
-    ViewBag.Title = "setGrantPermissions";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 <div class="main-grid">
     <div class="agile-grids">
         <!-- tables -->
@@ -12,19 +7,19 @@
             <h2>Cấp Quyền</h2>
             <h4 style="color:darkred">@TempData["error"]</h4>
         </div>
-        <a href="@Url.Action("Index","GrantPermissions")">Quay Về</a>
+        <a onclick="goToGrantPermissions(this)">Quay Về</a>
         
         <div class="agile-tables">
             <div class="w3l-table-info tbl-list-Employee-by-Department">
-                <form action="@Url.Action("insertGrantPermissions","GrantPermissions")" method="post">
+                <form action="" method="post" onsubmit="insertGrantPermissions(event)">
                     <label>Cấp Quyền cho : @ViewBag.Employee.EmployeeFullname</label>
-                    <input type="hidden" id="EmployeeId" name="EmployeeId" value="@ViewBag.Employee.EmployeeId" />
+                    <input type="hidden" id="EmployeeIdGrantPermissions" name="EmployeeId" value="@ViewBag.Employee.EmployeeId" />
                     <br/>
                     <label>Phòng ban: @ViewBag.Department.DepartmentName</label>
-                    <input type="hidden" id="DepartmentId" name="DepartmentId" value="@ViewBag.Department.DepartmentId" />
+                    <input type="hidden" id="DepartmentIdGrantPermissions" name="DepartmentId" value="@ViewBag.Department.DepartmentId" />
                     <br/>
                     <label>Chức Vụ : </label>
-                    <select name="RoleId" style="padding:5px;" required>
+                    <select name="RoleId" id="RoleIdGrantPermissions" style="padding:5px;" required>
                         <option value="">Chọn chức Vụ</option>
                         @foreach (var item in ViewBag.lstRole)
                         {

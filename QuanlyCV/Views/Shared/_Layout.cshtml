@@ -63,13 +63,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body class="dashboard-page">
-    <script>
+    @*<script>
         var theme = $.cookie('protonTheme') || 'default';
         $('body').removeClass(function (index, css) {
             return (css.match(/\btheme-\S+/g) || []).join(' ');
         });
         if (theme !== 'default') $('body').addClass(theme);
-    </script>
+    </script>*@
     @{
         string controllerName = ViewContext.RouteData.Values["controller"].ToString();
         string actionName = ViewContext.RouteData.Values["action"].ToString();
@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </a>
             </li>
             <li>
-                <a href="note.html">
+                <a href="@Url.Action("Index","Note")">
                     <i class="fa fa-sticky-note nav_icon"></i>
                     <span class="nav-text">
                         Ghi Chú
@@ -121,6 +121,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <i class="fa fa-commenting nav_icon"></i>
                     <span class="nav-text">
                         Nhóm
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Index","ManagementProtfolio")">
+                    <i class="fa fa-address-card-o"></i>
+                    <span class="nav-text">
+                        Danh mục quản lý
                     </span>
                 </a>
             </li>
@@ -140,10 +148,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="header-right">
                 <div class="profile_details_left">
                     <div class="header-right-left">
-                        <ul class="nofitications-dropdown">
+                        <ul class="nofitications-dropdown"> 
                             @if (controllerName.Equals("Home") && actionName.Equals("Index"))
                             {
-                                <li class="dropdown head-dpdn"><a href="javascript:;" onclick="openModalListProject();" class="a-hover-pointer"><i class="fa fa-list-alt" title="Danh Sách Công Việc" style="font-size: 30px;"></i></a></li>
+                                <li class="dropdown head-dpdn" style="margin-right:20px"><a href="javascript:;" class="a-hover-pointer"><img src="~/Content/images/project-32.png" title="công việc thường" /></a></li>
+                                <li class="dropdown head-dpdn"><a href="javascript:;" onclick="openModalListProject();" class="a-hover-pointer"><i class="fa fa-list-alt" title="Công việc theo dự án" style="font-size: 30px;"></i></a></li>
                             }
                             <li class="dropdown head-dpdn">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
@@ -382,6 +391,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="~/Scripts/js/myfolder.js"></script>
     <script src="~/Scripts/js/myworking.js"></script>
     <script type="text/javascript" src="~/Scripts/js/jquery.basictable.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

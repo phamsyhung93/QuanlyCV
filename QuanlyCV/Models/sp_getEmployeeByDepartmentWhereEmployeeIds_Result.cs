@@ -24,6 +24,10 @@ namespace QuanlyCV.Models
         public string EmployeePhone { get; set; }
         public int EmployeeStatus { get; set; }
         public Nullable<int> EmployeeGender { get; set; }
+        public string EmployeeAccountName { get; set; }
+        public string EmployeeAccountNumber { get; set; }
+        public string EmployeeCode { get; set; }
+        public Nullable<bool> EmployeeType { get; set; }
         public string DepartmentName { get; set; }
         public int DepartmentStatus { get; set; }
         public int ParentId { get; set; }

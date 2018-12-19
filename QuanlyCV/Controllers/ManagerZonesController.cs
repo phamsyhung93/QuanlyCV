@@ -12,15 +12,15 @@ namespace QuanlyCV.Controllers
     {
         WorkManagermentEntities db = new WorkManagermentEntities();
         // GET: ManagerZones
-        public ActionResult Index()
+        public PartialViewResult Index()
         {
             if(Session["EmployeeId"] != null)
             {
                 var lstManagerZones = db.ManagerZones.ToList();
-                return View(lstManagerZones);
+                return PartialView(lstManagerZones);
             }else
             {
-                return RedirectToAction("Index");
+                return PartialView();
             }
             
         }
@@ -42,7 +42,7 @@ namespace QuanlyCV.Controllers
                     }
                 }
                 db.SaveChanges();
-                TempData["error"] = "Thêm mới thành công";
+                //TempData["error"] = "Thêm mới thành công";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -53,10 +53,10 @@ namespace QuanlyCV.Controllers
             }
         }
 
-        public ActionResult ViewUpdate(int id)
+        public PartialViewResult ViewUpdate(int id)
         {
             ManagerZone m = db.ManagerZones.Find(id);
-            return View(m);
+            return PartialView(m);
         }
         [HttpPost]
         public ActionResult Update(ManagerZone m)

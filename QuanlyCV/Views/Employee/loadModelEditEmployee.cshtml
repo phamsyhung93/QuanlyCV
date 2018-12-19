@@ -1,39 +1,57 @@
-﻿<form action="@Url.Action("updateEmployee","Employee")" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="EmployeeId" id="EmployeeId" value="@ViewBag.Employee.EmployeeId"/>
-    <input type="hidden" name="DepartmentIdOld" id="DepartmentIdOld" value="@ViewBag.Employee.DepartmentId" />
+﻿<form  method="post" enctype="multipart/form-data"  onsubmit="updateEmployee(event)">
+    <input type="hidden" name="EmployeeId" id="EmployeeIdEdit" value="@ViewBag.Employee.EmployeeId"/>
+    <input type="hidden" name="DepartmentIdOld" id="DepartmentIdOldEdit" value="@ViewBag.Employee.DepartmentId" />
     <span>Họ Và Tên</span>
-    <input type="text" name="EmployeeFullname" id="EmployeeFullname" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeFullname"/>
+    <input type="text" name="EmployeeFullname" id="EmployeeFullnameEdit" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeFullname"/>
     <span>Ngày Sinh</span>
-    <input type="date" name="EmployeeBirthday" id="EmployeeBirthday" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeBirthday.ToString("yyyy-MM-dd")"/>
+    <input type="date" name="EmployeeBirthday" id="EmployeeBirthdayEdit" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeBirthday.ToString("yyyy-MM-dd")"/>
     <span>Giới Tính: </span>
-    <input type="radio" name="EmployeeGender" id="EmployeeGender" value="1" @(ViewBag.Employee.EmployeeGender == 1 ? "checked":"")/>Nam
-    <input type="radio" name="EmployeeGender" id="EmployeeGender" value="2" @(ViewBag.Employee.EmployeeGender == 2 ? "checked":"")/>Nữ
+    <input type="radio" name="EmployeeGender" id="EmployeeGenderEdit" value="1" @(ViewBag.Employee.EmployeeGender == 1 ? "checked":"")/>Nam
+    <input type="radio" name="EmployeeGender" id="EmployeeGenderEdit" value="2" @(ViewBag.Employee.EmployeeGender == 2 ? "checked":"")/>Nữ
     <br />
     <span>CMND</span>
-    <input type="text" name="EmployeeIdCard" id="EmployeeIdCard" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeIdCard"/>
+    <input type="text" name="EmployeeIdCard" id="EmployeeIdCardEdit" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeIdCard"/>
     <span>Điện Thoại</span>
-    <input type="number" name="EmployeePhone" id="EmployeePhone" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeePhone"/>
+    <input type="number" name="EmployeePhone" id="EmployeePhoneEdit" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeePhone"/>
     <span>Địa Chỉ</span>
-    <textarea name="EmployeeAddress" id="EmployeeAddress" class="form-control content-modal-add-Employee" rows="3" required="required">@ViewBag.Employee.EmployeeAddress</textarea>
+    <textarea name="EmployeeAddress" id="EmployeeAddressEdit" class="form-control content-modal-add-Employee" rows="3" required="required">@ViewBag.Employee.EmployeeAddress</textarea>
     <span>Email</span>
-    <input type="email" name="EmployeeEmail" id="EmployeeEmail" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeEmail"/>
+    <input type="email" name="EmployeeEmail" id="EmployeeEmailEdit" required class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeEmail"/>
     <span>Ảnh Đại Diện</span>
     <img width="80" height="80" src="~/Content/images/avatar/@ViewBag.Employee.EmployeeAvatar" />
-    <input type="file" name="EmployeeAvatarFile" id="EmployeeAvatarFile" class="content-modal-add-Employee" />
+    <br/>
+    <br/>
     <span>Ảnh Bìa</span>
     <img width="200" height="100" src="~/Content/images/coverPicture/@ViewBag.Employee.EmployeeCoverPicture" />
-    <input type="file" name="EmployeeCoverPictureFile" id="EmployeeCoverPictureFile" class="content-modal-add-Employee" />
     <span>Phòng ban</span>
-    <select name="DepartmentId" id="DepartmentId" class="form-control content-modal-add-Employee" required>
+    <select name="DepartmentId" id="DepartmentIdEdit" class="form-control content-modal-add-Employee" required>
        @foreach (var item in ViewBag.Department)
        {
            <option value="@item.DepartmentId" @(item.DepartmentId == ViewBag.Employee.DepartmentId ? "selected" : "")>@item.DepartmentName</option>
        }
     </select>
+    <span>Chức Vụ</span>
+    <select name="RoleId" id="RoleIdEdit" class="form-control content-modal-add-Employee" required>
+        @foreach (var item in ViewBag.Role)
+        {
+            <option value="@item.RoleId" @(item.RoleId == ViewBag.GrantPermissions.RoleId ? "selected" : "")>@item.RoleName</option>
+        }
+    </select>
+    <span>Mã Nhân Viên</span>
+    <input type="text" name="EmployeeCode" id="EmployeeCodeEdit"  class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeCode"/>
+    <span>Số Tài Khoản</span>
+    <input type="text" name="EmployeeAccountNumber" id="EmployeeAccountNumberEdit"  class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeAccountNumber"/>
+    <span>Tên Tài Khoản</span>
+    <input type="text" name="EmployeeAccountName" id="EmployeeAccountNameEdit"  class="content-modal-add-Employee" value="@ViewBag.Employee.EmployeeAccountName"/>
+    <span>Kiểu Nhân Viên</span>
+    <select name="EmployeeType" id="EmployeeTypeEdit" class="form-control content-modal-add-Employee" ="required">      
+        <option value="0"  @(ViewBag.Employee.EmployeeType == false ? "selected" : "")>Thường</option>
+        <option value="1" @(ViewBag.Employee.EmployeeType == true ? "selected" : "")>Phòng Ban(Trưởng Phòng)</option>
+    </select>
     <span>Trạng Thái</span>
-    <select name="EmployeeStatus" id="EmployeeStatus" class="form-control content-modal-add-Employee" required>
-        <option value="1" @(ViewBag.Employee.EmployeeStatus == 1 ? "selected" : "")>Ẩn</option>
-        <option value="2" @(ViewBag.Employee.EmployeeStatus == 2 ? "selected" : "")>Hiện</option>
+    <select name="EmployeeStatus" id="EmployeeStatusEdit" class="form-control content-modal-add-Employee" required>
+        <option value="1" @(ViewBag.Employee.EmployeeStatus == 1 ? "selected" : "")>Hiển Thị</option>
+        <option value="2" @(ViewBag.Employee.EmployeeStatus == 2 ? "selected" : "")>Không Hiển Thị</option>
     </select>
     <input type="submit" name="" value="Cập Nhật" class="input-submit-modal-add-employee">
 </form>

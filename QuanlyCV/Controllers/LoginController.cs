@@ -27,7 +27,7 @@ namespace QuanlyCV.Controllers
                 {
                     Session["EmployeeId"] = e.EmployeeId;
                     Session["EmployeeName"] = e.EmployeeFullname;
-                    return RedirectToAction("ChooseDepartment");
+                    return RedirectToAction("Index","Home");
                 }else
                 {
                     return RedirectToAction("Index");
@@ -40,33 +40,33 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        public ActionResult ChooseDepartment()
-        {
-            if (Session["EmployeeId"] != null)
-            {
-                int id = (int)Session["EmployeeId"];
-                var lstDepartmentByEmployee = db.sp_getAllDepartmentByEmployeeId(id);
-                ViewBag.lstDepartmentByEmployee = lstDepartmentByEmployee;
-                return View();
-            }else
-            {
-                return RedirectToAction("login");
-            }
+        //public ActionResult ChooseDepartment()
+        //{
+        //    if (Session["EmployeeId"] != null)
+        //    {
+        //        int id = (int)Session["EmployeeId"];
+        //        var lstDepartmentByEmployee = db.sp_getAllDepartmentByEmployeeId(id);
+        //        ViewBag.lstDepartmentByEmployee = lstDepartmentByEmployee;
+        //        return View();
+        //    }else
+        //    {
+        //        return RedirectToAction("login");
+        //    }
             
-        }
-        [HttpPost]
-        public ActionResult getDepartmentId(int DepartmentId)
-        {
-            if(DepartmentId > 0 || DepartmentId != null)
-            {
-                Session["DepartmentId"] = DepartmentId;
-                return RedirectToAction("Index", "Home");
-            }else
-            {
-                return RedirectToAction("ChooseDepartment");
-            }
+        //}
+        //[HttpPost]
+        //public ActionResult getDepartmentId(int DepartmentId)
+        //{
+        //    if(DepartmentId > 0 || DepartmentId != null)
+        //    {
+        //        Session["DepartmentId"] = DepartmentId;
+        //        return RedirectToAction("Index", "Home");
+        //    }else
+        //    {
+        //        return RedirectToAction("ChooseDepartment");
+        //    }
             
-        }
+        //}
         //public ActionResult ViewRegister()
         //{
         //    return View();
@@ -97,42 +97,43 @@ namespace QuanlyCV.Controllers
         //        throw;
         //    }
         //}
-        //public ActionResult ViewForgotPassword()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult ForgotPassword(string EmployeeEmail)
-        //{
-        //    try
-        //    {
-        //        Employee e = db.Employees.SingleOrDefault(x => x.EmployeeEmail.ToLower().Equals(EmployeeEmail.ToLower()));
-        //        if (e != null)
-        //        {
-        //            e.EmployeePassword = Unti.Utility.getHashedMD5("1234");
-        //            db.Entry(e).State = System.Data.Entity.EntityState.Modified;
-        //            db.SaveChanges();
-        //            string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/content.html"));
-        //            content = content.Replace("{{CustomerName}}", e.EmployeeFullname);
-        //            content = content.Replace("{{Email}}", e.EmployeeEmail);
+        public ActionResult ViewForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(string EmployeeEmail)
+        {
+            try
+            {
+                Employee e = db.Employees.SingleOrDefault(x => x.EmployeeEmail.ToLower().Equals(EmployeeEmail.ToLower()));
+                if (e != null)
+                {
+                    e.EmployeePassword = Unti.Utility.getHashedMD5("devhitech@123");
+                    db.Entry(e).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    string content = System.IO.File.ReadAllText(Server.MapPath("~/Template/content.html"));
+                    content = content.Replace("{{CustomerName}}", e.EmployeeFullname);
+                    content = content.Replace("{{Email}}", e.EmployeeEmail);
 
-        //            new MailHelper().SendMail(e.EmployeeEmail, "Password Reset", content);
-        //            TempData["error"] = "cập nhật lại mật khẩu thành công , bạn vào mail để nhận lại mật khẩu";
-        //            return RedirectToAction("Index");
-        //        }else
-        //        {
-        //            TempData["error"] = "mật khẩu không đúng hoặc chưa được đăng ký";
-        //            return View();
-        //        }
-               
-        //    }
-        //    catch (Exception ex)
-        //    {
-                
-        //        return View();
-        //        throw;
-        //    }
-        //}
+                    new MailHelper().SendMail(e.EmployeeEmail, "Password Reset", content);
+                    TempData["error"] = "cập nhật lại mật khẩu thành công , bạn vào mail để nhận lại mật khẩu";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["error"] = "mật khẩu không đúng hoặc chưa được đăng ký";
+                    return View();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return View();
+                throw;
+            }
+        }
         public ActionResult logout()
         {
             try

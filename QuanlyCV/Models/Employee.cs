@@ -33,6 +33,7 @@ namespace QuanlyCV.Models
             this.Notes = new HashSet<Note>();
             this.Reminds = new HashSet<Remind>();
             this.Shares = new HashSet<Share>();
+            this.SmallStepComments = new HashSet<SmallStepComment>();
             this.TimeLines = new HashSet<TimeLine>();
         }
     
@@ -48,6 +49,10 @@ namespace QuanlyCV.Models
         public string EmployeeCoverPicture { get; set; }
         public int EmployeeStatus { get; set; }
         public Nullable<int> EmployeeGender { get; set; }
+        public string EmployeeCode { get; set; }
+        public string EmployeeAccountNumber { get; set; }
+        public string EmployeeAccountName { get; set; }
+        public Nullable<bool> EmployeeType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chat> Chats { get; set; }
@@ -81,6 +86,8 @@ namespace QuanlyCV.Models
         public virtual ICollection<Remind> Reminds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Share> Shares { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SmallStepComment> SmallStepComments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TimeLine> TimeLines { get; set; }
     }
