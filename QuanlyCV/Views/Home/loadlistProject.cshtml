@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng nhập website quản lý công việc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" type="text/css" href="~/Content/css/lightslider.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/myfolder.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/myworking.css">
+    <script src="~/Scripts/js/jquery2.0.3.min.js"></script>
+    <script src="~/Scripts/js/lightslider.js"></script>
+    <script src="~/Scripts/js/myscript.js"></script>
+</head>
+<body>
+    <div class="index-slide-jobs">
+        <div class="item-slide-job">
+            <ul id="content-slider" class="content-slider">
+                @foreach (var item1 in ViewBag.ProjectMembers)
+            {
+                foreach (var item in ViewBag.listProject)
+                {
+                    if (item1.ProjectId == item.ProjectId)
+                    {
+                            <li data-id="@item.ProjectId" onclick="chooseProject(this)">
+                                <div class="working-slide-item">
+                                    <div class="working-slide-item-name">
+                                        <h3>@item.ProjectName</h3>
+                                    </div>
+                                    <div class="working-slide-item-time">
+                                        <span>Thời gian: </span>@item.StartTime.ToString("yyyy-MM-dd") - @item.EndTime.ToString("yyyy-MM-dd")
+                                    </div>
+                                    @*<div class="working-slide-item-progress">
+                                        <p><span>Tiến độ: </span>3/10</p>
+                                    </div>*@
+                                </div>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+    <script>
+        $("#content-slider").lightSlider({
+            loop: true,
+            keyPress: true
+        });
+        $('#image-gallery').lightSlider({
+            gallery: true,
+            item: 1,
+            thumbItem: 9,
+            slideMargin: 0,
+            speed: 500,
+            auto: true,
+            loop: true,
+            onSliderLoad: function () {
+                $('#image-gallery').removeClass('cS-hidden');
+            }
+        });
+    </script>
+</body>
+</html>

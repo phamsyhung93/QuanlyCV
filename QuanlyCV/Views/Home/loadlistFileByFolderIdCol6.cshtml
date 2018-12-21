@@ -1,0 +1,25 @@
+﻿
+
+
+@foreach (var item in ViewBag.lstFile)
+{
+    <div class="col col-sm-6 col-md-6 col-lg-6">
+        <div class="right-item-folder flex-column" id="test">
+            <img src="Content/images/folder.png" class="img-responsive" alt="">
+            <div class="folder-name text-center">
+                @item.FileName
+            </div>
+        </div>
+        <div class="right-list-action">
+            <a href="" title="">Sao Chép</a>
+            <a href="" title="">Cắt</a>
+            <a href="" title="">Dán</a>
+            <hr />
+            <a href="" title="">Tạo Mới</a>
+            <a href="" title="">Xóa</a>
+            <a href="" title="">Sửa Tên</a>
+            <a href="" title="">Tải Lên</a>
+        </div>
+    </div>
+}
+

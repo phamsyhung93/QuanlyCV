@@ -292,7 +292,6 @@
     <Property Name="StartTime" Type="datetime" Nullable="false" />
     <Property Name="EndTime" Type="datetime" Nullable="false" />
     <Property Name="ProjectDescription" Type="ntext" Nullable="false" />
-    <Property Name="DepartmentId" Type="int" Nullable="false" />
     <Property Name="ProjectStatus" Type="int" Nullable="false" />
     <Property Name="ProjectTypeId" Type="int" />
   </EntityType>
@@ -994,18 +993,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Projects__Depart__398D8EEE">
-    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Departments">
-        <PropertyRef Name="DepartmentId" />
-      </Principal>
-      <Dependent Role="Projects">
-        <PropertyRef Name="DepartmentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Reminds__Departm__4A8310C6">
     <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
     <End Role="Reminds" Type="Self.Reminds" Multiplicity="*" />
@@ -1311,13 +1298,27 @@
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_getAllByProjectIdAndEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectId" Type="int" Mode="In" />
+    <Parameter Name="EmployeeId" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_getAllDepartmentByEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_GetAllEmployeeByDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllEmployeeByProjectID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getAllEmployeeByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_getAllPermissionsNameByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_getAllProjectDiscussionsByProjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetAllYEARByProjectType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_getEmployeeByDepartmentWhereDepartmentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
@@ -1566,10 +1567,6 @@
     <AssociationSet Name="FK__ProjectMe__Proje__3D5E1FD2" Association="Self.FK__ProjectMe__Proje__3D5E1FD2">
       <End Role="Projects" EntitySet="Projects" />
       <End Role="ProjectMembers" EntitySet="ProjectMembers" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Projects__Depart__398D8EEE" Association="Self.FK__Projects__Depart__398D8EEE">
-      <End Role="Departments" EntitySet="Departments" />
-      <End Role="Projects" EntitySet="Projects" />
     </AssociationSet>
     <AssociationSet Name="FK__Reminds__Departm__4A8310C6" Association="Self.FK__Reminds__Departm__4A8310C6">
       <End Role="Departments" EntitySet="Departments" />

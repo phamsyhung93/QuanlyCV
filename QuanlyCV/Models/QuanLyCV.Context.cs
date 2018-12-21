@@ -151,6 +151,11 @@ namespace QuanlyCV.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_getAllPermissionsNameByRoleId", soParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> sp_GetAllYEARByProjectType()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GetAllYEARByProjectType");
+        }
+    
         public virtual ObjectResult<sp_getEmployeeByDepartmentWhereDepartmentId_Result> sp_getEmployeeByDepartmentWhereDepartmentId(Nullable<int> so)
         {
             var soParameter = so.HasValue ?
@@ -238,6 +243,46 @@ namespace QuanlyCV.Models
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<sp_getAllProjectDiscussionsByProjectId_Result> sp_getAllProjectDiscussionsByProjectId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllProjectDiscussionsByProjectId_Result>("sp_getAllProjectDiscussionsByProjectId", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetAllEmployeeByProjectID_Result> sp_GetAllEmployeeByProjectID(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllEmployeeByProjectID_Result>("sp_GetAllEmployeeByProjectID", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllEmployeeByRoleID_Result> sp_getAllEmployeeByRoleID(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllEmployeeByRoleID_Result>("sp_getAllEmployeeByRoleID", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllByProjectIdAndEmployeeId_Result> sp_getAllByProjectIdAndEmployeeId(Nullable<int> projectId, Nullable<int> employeeId)
+        {
+            var projectIdParameter = projectId.HasValue ?
+                new ObjectParameter("ProjectId", projectId) :
+                new ObjectParameter("ProjectId", typeof(int));
+    
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllByProjectIdAndEmployeeId_Result>("sp_getAllByProjectIdAndEmployeeId", projectIdParameter, employeeIdParameter);
         }
     }
 }

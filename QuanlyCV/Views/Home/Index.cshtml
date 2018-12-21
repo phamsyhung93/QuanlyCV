@@ -86,21 +86,27 @@
         <div class="index-slide-jobs">
             <div class="item-slide-job">
                 <ul id="content-slider" class="content-slider">
-                    @foreach (var item in ViewBag.listProject)
+                    @foreach (var item1 in ViewBag.ProjectMembers)
                     {
-                        <li>
-                            <div class="working-slide-item">
-                                <div class="working-slide-item-name">
-                                    <h3>@item.ProjectName</h3>
-                                </div>
-                                <div class="working-slide-item-time">
-                                    <span>Thời gian: </span>@item.StartTime.ToString("yyyy-MM-dd") - @item.EndTime.ToString("yyyy-MM-dd")
-                                </div>
-                                <div class="working-slide-item-progress">
-                                    <p><span>Tiến độ: </span>3/10</p>
-                                </div>
-                            </div>
-                        </li>
+                        foreach (var item in ViewBag.listProject)
+                        {
+                            if (item1.ProjectId == item.ProjectId)
+                            {
+                                <li data-id="@item.ProjectId" onclick="chooseProject(this)">
+                                    <div class="working-slide-item">
+                                        <div class="working-slide-item-name">
+                                            <h3>@item.ProjectName</h3>
+                                        </div>
+                                        <div class="working-slide-item-time">
+                                            <span>Thời gian: </span>@item.StartTime.ToString("yyyy-MM-dd") - @item.EndTime.ToString("yyyy-MM-dd")
+                                        </div>
+                                        @*<div class="working-slide-item-progress">
+                                                <p><span>Tiến độ: </span>3/10</p>
+                                            </div>*@
+                                    </div>
+                                </li>
+                            }
+                        }
                     }
                 </ul>
             </div>
@@ -109,84 +115,7 @@
     </div>
     <div class="agile-bottom-grids">
         <div id="progress-working">
-            <div class="progress-working-top">
-                <div class="col-sm-12 col-md-10">
-                    <h3 class="project-name">Xây dựng website quản lý công việc</h3>
-                </div>
-                <div class="col-sm-12 col-md-2">
-                    <div class="row">
-                        <ul style="list-style: none; display: flex; flex-direction: row; justify-content: space-between;">
-                            <li>
-                                <button type="button" onclick="openModalFolder();" title="Thư Mục" id="open-modal-folder"><img src="Content/images/folder-icon-32.png" alt="" class="img-responsive"></button>
-                            </li>
-                            <li>
-                                <button type="button" title="Thảo Luận" id="open-modal-discussion" onclick="openModalDiscussion();"><img src="Content/images/discussion-icon-32.png" alt="" class="img-responsive"></button>
-                            </li>
-                            <li>
-                                <button type="button" title="Form Mẫu" data-toggle="modal" data-target="#ModalFormMau"><img src="Content/images/form-icon-32.png" alt="" class="img-responsive"></button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="progress-working-bottom">
-                <div class="wrap-all-progress" id="wrap-all-progress">
-                    <div class="progress-item">
-                        <div class="progress-title">
-                            <span>Tiêu đề Tiêu đề Tiêu đề Tiêu đề </span>
-                        </div>
-                        <div class="list-content">
-                            <div class="abc">
-                                <div class="a-sub-content" title="">
-                                    <div class="div-sub-content">
-                                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam tempore facilis eligendi, minus, enim harum optio eaque autem cumque praesentium provident nobis. Beatae tenetur vitae accusamus, cum odio pariatur, error.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam tempore facilis eligendi, minus, enim harum optio eaque autem cumque praesentium provident nobis. Beatae tenetur vitae accusamus, cum odio pariatur, error.</span>
-                                    </div>
-                                    <div class="cover-sub-content" data-toggle="modal" data-target="#ModalDetailWork">
 
-                                    </div>
-                                    <i class="fa fa-pencil edit-sub-content text-right" data-id="1" onclick="openEditSubContent()"></i>
-                                </div>
-                            </div>
-                            <div class="add-sub-project">
-                                <textarea name="" onkeyup="textAreaAdjust(this)" style="overflow:hidden" placeholder="Thêm nội dung"></textarea>
-                                <div class="div-action">
-                                    <a href="javascript:;" class="btn btn-success btn-do-add">Thêm mới</a>
-                                    <a href="javascript:;" class="cancel-add-new"><i class="fa fa-times"></i></a>
-                                    <a href="javascript:;" class="other-option"><i class="fa fa-ellipsis-h"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="div-add-new-progress">
-                            <a href="javascript:;" title="" class="a-add-new-job"><i class="fa fa-plus"> Thêm mới công việc</i></a>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-
-                    </div>
-                    <div class="progress-item">
-
-                    </div>
-                    <div class="progress-item">
-
-                    </div>
-                    <div class="progress-item">
-
-                    </div>
-                    <div class="progress-item">
-
-                    </div>
-                    <div class="progress-item">
-
-                    </div>
-                    <div class="progress-item">
-
-                    </div>
-                    <div class="progress-item">
-
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -459,341 +388,8 @@
     </div>
 </div>
 
-<div id="modal-folder" class="modal-folder">
-    <div class="modal-folder-content">
-        <div class="row">
-            <div class="col col-sm-12">
-                <div class="list-option">
-                    <ul>
-                        <li>
-                            <div class="search-folder">
-                                <input type="text" name="">
-                                <i class="fa fa-search"></i>
-                            </div>
-                        </li>
-                        <li><a href="javascript:;" class="view-grid view-selected"><i class="fa fa-table"></i></a></li>
-                        <li><a href="javascript:;" class="view-list"><i class="fa fa-list-alt"></i></a></li>
-                        <span class="close-modal-Folder">&times;</span>
-                    </ul>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="row">
-            <div class="clearfix"></div>
-            <div class="col-sm-12 col-md-3">
-                <div class="working-left">
-                    <div class="working-left-top">
-                        <ul>
-                            <li>
-                                <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i>This PC</a>
-                                <div class="list-sub-working">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Back up(C)" disabled="" /></a>
-                                            <div class="list-sub-working">
-                                                <ul>
-                                                    <li><a href="javascript:;" class="item-working" id="left-working-1" data-id="1"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục A" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working" id="left-working-2" data-id="2"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục B" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working" id="left-working-" data-id=""><i class="fa fa-folder-o" id="left-working-1" data-id="1"></i><input type="text" name="" value="Thư Mục C" disabled="" /></a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Back up(D)" disabled="" /></a>
-                                            <div class="list-sub-working">
-                                                <ul>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục A" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục B" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục C" disabled="" /></a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Data(E)" disabled="" /></a>
-                                            <div class="list-sub-working">
-                                                <ul>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục A" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục B" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục C" disabled="" /></a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="System(F)" disabled="" /></a>
-                                            <div class="list-sub-working">
-                                                <ul>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục A" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục B" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục C" disabled="" /></a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="working-left-bottom">
-                        <button type="button" disabled="" class="btn-add-folder" onclick="openModalAddFolder()"><img src="Content/images/add-folder-32.png" class="img-responsive" /></button>
-                        <div id="ModalAddFolder" class="modal">
-                            <div class="modal-content">
-                                <span class="ModalAddFolderclose">&times;</span>
-                                <p>Thêm folder</p>
-                                <hr />
-                                <div>
-                                    <form>
-                                        <div class="div-title-modal-add-folder">
-                                            <span><b>Tên Folder</b></span>
-                                            <input class="input-div-title-modal-add-folder" type="text" name="" id="">
-                                        </div>
-                                        <input class="input-modal-add-folder" type="submit" value="Thêm">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" disabled="" class="btn-edit-folder"><img src="Content/images/edit-folder-32.png" class="img-responsive" /></button>
-                        <button type="button" disabled="" class="btn-delete-folder"><img src="Content/images/delete-foder-32.png" class="img-responsive" /></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-9">
-                <div class="folder-right">
-                    <div class="clearfix"></div>
-                    <div class="row list-folder-right">
-                        <div class="col col-sm-4 col-md-6 col-lg-3">
-                            <div class="right-item-folder flex-column" id="test">
-                                <img src="Content/images/folder.png" class="img-responsive" alt="">
-                                <div class="folder-name text-center">
-                                    Tên folder Tên folder Tên folder
-                                </div>
-                            </div>
-                            <div class="right-list-action">
-                                <a href="" title="">Sao Chép</a>
-                                <a href="" title="">Cắt</a>
-                                <a href="" title="">Dán</a>
-                                <hr />
-                                <a href="" title="">Tạo Mới</a>
-                                <a href="" title="">Xóa</a>
-                                <a href="" title="">Sửa Tên</a>
-                                <a href="" title="">Tải Lên</a>
-                            </div>
-                        </div>
-                        <div class="col col-sm-4 col-md-6 col-lg-3">
-                            <div class="right-item-folder flex-column">
-                                <img src="Content/images/folder.png" class="img-responsive" alt="">
-                                <div class="folder-name text-center">
-                                    Tên folder Tên folder Tên folder
-                                </div>
-                            </div>
-                            <div class="right-list-action">
-                                <a href="" title="">Sao Chép</a>
-                                <a href="" title="">Cắt</a>
-                                <a href="" title="">Dán</a>
-                                <hr />
-                                <a href="" title="">Tạo Mới</a>
-                                <a href="" title="">Xóa</a>
-                                <a href="" title="">Sửa Tên</a>
-                                <a href="" title="">Tải Lên</a>
-                            </div>
-                        </div>
-                        <div class="col col-sm-4 col-md-6 col-lg-3">
-                            <div class="right-item-folder flex-column">
-                                <img src="Content/images/folder.png" class="img-responsive" alt="">
-                                <div class="folder-name text-center">
-                                    Tên folder Tên folder Tên folder
-                                </div>
-                            </div>
-                            <div class="right-list-action">
-                                <a href="" title="">Sao Chép</a>
-                                <a href="" title="">Cắt</a>
-                                <a href="" title="">Dán</a>
-                                <hr />
-                                <a href="" title="">Tạo Mới</a>
-                                <a href="" title="">Xóa</a>
-                                <a href="" title="">Sửa Tên</a>
-                                <a href="" title="">Tải Lên</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="modal-discussion" class="modal-discussion">
-    <div class="modal-discussion-content">
-        <span class="close-modal-discussion">&times;</span>
-        <div class="clearfix"></div>
-        <div class="title text-center">
-            <h3>Thảo Luận Công Việc</h3>
-        </div>
-        <div class="discussion-content">
-            <div class="container-discussion-content">
-                <ul class="discussion-level-1" style="padding-left: 20px;">
-                    <li>
-                        <div style="width: 8%; float: left; margin-right: 3%;">
-                            <img src="Content/images/3.png" alt="">
-                        </div>
-                        <div class="content-discusssion" style="width: 89%; float: left;">
-                            <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                            <span class="discussion-content-text">Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1 Bình luận cấp 1</span>
-                            <div>
-                                <a class="discussion-action">Thích</a>
-                                <a class="discussion-action">Bình luận</a>
-                            </div>
-                        </div>
 
-                        <div class="discussion-level-2-div">
-                            <ul class="discussion-level-2" style="margin-top: 15px;">
-                                <li>
-                                    <div style="width: 8%; float: left; margin-right: 3%;">
-                                        <img src="Content/images/3.png" alt="">
-                                    </div>
-                                    <div class="content-discusssion" style="width: 89%; float: left;">
-                                        <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                                        <span class="discussion-content-text">Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2</span>
-                                        <div>
-                                            <a class="discussion-action">Thích</a>
-                                            <a class="discussion-action" onclick="blockInputLevel2()">Bình luận</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="width: 8%; float: left; margin-right: 3%;">
-                                        <img src="Content/images/3.png" alt="">
-                                    </div>
-                                    <div class="content-discusssion" style="width: 89%; float: left;">
-                                        <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                                        <span class="discussion-content-text">Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2</span>
-                                        <div>
-                                            <a class="discussion-action">Thích</a>
-                                            <a class="discussion-action" onclick="blockInputLevel2()">Bình luận</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="width: 8%; float: left; margin-right: 3%;">
-                                        <img src="Content/images/3.png" alt="">
-                                    </div>
-                                    <div class="content-discusssion" style="width: 89%; float: left;">
-                                        <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                                        <span class="discussion-content-text">Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2</span>
-                                        <div>
-                                            <a class="discussion-action">Thích</a>
-                                            <a class="discussion-action" onclick="blockInputLevel2()">Bình luận</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="width: 8%; float: left; margin-right: 3%;">
-                                        <img src="Content/images/3.png" alt="">
-                                    </div>
-                                    <div class="content-discusssion" style="width: 89%; float: left;">
-                                        <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                                        <span class="discussion-content-text">Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2</span>
-                                        <div>
-                                            <a class="discussion-action">Thích</a>
-                                            <a class="discussion-action" onclick="blockInputLevel2()">Bình luận</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="width: 8%; float: left; margin-right: 3%;">
-                                        <img src="Content/images/3.png" alt="">
-                                    </div>
-                                    <div class="content-discusssion" style="width: 89%; float: left;">
-                                        <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                                        <span class="discussion-content-text">Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2</span>
-                                        <div>
-                                            <a class="discussion-action">Thích</a>
-                                            <a class="discussion-action" onclick="blockInputLevel2()">Bình luận</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="width: 8%; float: left; margin-right: 3%;">
-                                        <img src="Content/images/3.png" alt="">
-                                    </div>
-                                    <div class="content-discusssion" style="width: 89%; float: left;">
-                                        <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                                        <span class="discussion-content-text">Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2</span>
-                                        <div>
-                                            <a class="discussion-action">Thích</a>
-                                            <a class="discussion-action" onclick="blockInputLevel2()">Bình luận</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="width: 8%; float: left; margin-right: 3%;">
-                                        <img src="Content/images/3.png" alt="">
-                                    </div>
-                                    <div class="content-discusssion" style="width: 89%; float: left;">
-                                        <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                                        <span class="discussion-content-text">Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2</span>
-                                        <div>
-                                            <a class="discussion-action">Thích</a>
-                                            <a class="discussion-action" onclick="blockInputLevel2()">Bình luận</a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="width: 8%; float: left; margin-right: 3%;">
-                                        <img src="Content/images/3.png" alt="">
-                                    </div>
-                                    <div class="content-discusssion" style="width: 89%; float: left;">
-                                        <a class="discussion-fullname">Đoàn Văn Tùng</a>
-                                        <span class="discussion-content-text">Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2 Bình luận cấp 2</span>
-                                        <div>
-                                            <a class="discussion-action">Thích</a>
-                                            <a class="discussion-action" onclick="blockInputLevel2()">Bình luận</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="input-discussion-level-2 discussion-input" style="display: none;">
-                                <div class="container-input-discussion" style="width: 90%; float: right;">
-                                    <textarea name="discussioncontent" rows="1" onkeyup="textAreaAdjust(this)" style="overflow:hidden"></textarea>
-                                    <div>
-                                        <ul>
-                                            <li class="a-hover-pointer">
-                                                <a title="Tệp tin" alt="Tệp tin"><i class="fa fa-paperclip"></i></a>
-                                            </li>
-                                            <li>
-                                                <a class="a-hover-pointer btn-comment" title="Gửi" alt="Gửi">
-                                                    <i class="fa fa-paper-plane-o"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="discussion-input input-discussion-level-1">
-                <div class="container-input-discussion" style="width: 97%; float: right;">
-                    <textarea name="discussioncontent" rows="1" onkeyup="textAreaAdjust(this)" style="overflow:hidden;"></textarea>
-                    <div>
-                        <ul>
-                            <li class="a-hover-pointer">
-                                <a title="Tệp tin" alt="Tệp tin"><i class="fa fa-paperclip"></i></a>
-                            </li>
-                            <li>
-                                <a class="a-hover-pointer btn-comment" title="Gửi" alt="Gửi">
-                                    <i class="fa fa-paper-plane-o"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
+
 <div id="modal-list-project" class="modal-list-project">
     <div class="modal-list-project-content">
         <span class="close-modal-list-project">&times;</span>
@@ -817,73 +413,16 @@
                                         <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i>Dự Án</a>
                                         <div class="list-sub-working">
                                             <ul>
+                                                @foreach (var lstProject in ViewBag.lstProjectBYProjectType)
+                                                {
                                                 <li>
-                                                    <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Năm 2018" disabled="" /></a>
-                                                    <div class="list-sub-working">
-                                                        <ul>
-                                                            <li><a href="javascript:;" class="item-working" id="left-working-1" data-id="1"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 12" disabled="" /></a></li>
-                                                            <li><a href="javascript:;" title="" class="item-working" id="left-working-2" data-id="2"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 11" disabled="" /></a></li>
-                                                            <li><a href="javascript:;" title="" class="item-working" id="left-working-" data-id=""><i class="fa fa-folder-o" id="left-working-1" data-id="1"></i><input type="text" name="" value="Tháng 10" disabled="" /></a></li>
-                                                        </ul>
-                                                    </div>
+                                                    <a onclick="chooseYear(this)" href="javascript:;" title="" class="item-working" data-id="@lstProject"><i class="fa fa-folder-o"></i><input type="text" name="" value="Năm @lstProject" disabled="" /></a>
                                                 </li>
-                                                <li>
-                                                    <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Năm 2017" disabled="" /></a>
-                                                    <div class="list-sub-working">
-                                                        <ul>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 12" disabled="" /></a></li>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 11" disabled="" /></a></li>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 10" disabled="" /></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Năm 2016" disabled="" /></a>
-                                                    <div class="list-sub-working">
-                                                        <ul>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 12" disabled="" /></a></li>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 11" disabled="" /></a></li>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 10" disabled="" /></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Năm 2015" disabled="" /></a>
-                                                    <div class="list-sub-working">
-                                                        <ul>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 12" disabled="" /></a></li>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 11" disabled="" /></a></li>
-                                                            <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Tháng 10" disabled="" /></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
+                                                }
                                             </ul>
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
-                            <div class="working-left-bottom">
-                                <button type="button" disabled="" class="btn-add-folder" onclick="openModalAddFolderWork()"><img src="Content/images/add-folder-32.png" class="img-responsive" /></button>
-                                <button type="button" disabled="" class="btn-edit-folder"><img src="Content/images/edit-folder-32.png" class="img-responsive" /></button>
-                                <button type="button" disabled="" class="btn-delete-folder"><img src="Content/images/delete-foder-32.png" class="img-responsive" /></button>
-                            </div>
-                            <div id="modalAddFolderWork" class="modal">
-                                <div class="modal-content">
-                                    <span class="closeModalAddFolderWork">&times;</span>
-                                    <br />
-                                    <br />
-                                    <p>Thêm folder</p>
-                                    <hr />
-                                    <div>
-                                        <form>
-                                            <div class="div-title-modal-add-folder">
-                                                <span><b>Tên Folder</b></span>
-                                                <input type="text" name="" id="" class="input-div-title-modal-add-folder" />
-                                            </div>
-                                            <input class="input-modal-add-folder" type="submit" value="Thêm">
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -892,9 +431,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div id="ModalViecCanLam" class="modal">
     <div class="modal-content">
@@ -920,122 +456,64 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="@Url.Action("CreateProject","Home")" method="post">
                     <div class="form-group">
-                        <label style="float: left;" for="recipient-name" class="col-form-label">Thêm Công Việc</label>
-                        <input type="text" class="form-control" name="workName" id="workName" required>
+                        <label style="float: left;" for="recipient-name" class="col-form-label">Tên Công Việc</label>
+                        <input type="text" class="form-control" name="ProjectName" id="ProjectName" required>
                     </div>
                     <div class="form-group">
                         <label style="float: left;" for="recipient-name" class="col-form-label">Phòng Ban và Người Nhận</label>
                         <br />
                         <div class="sub-form-group">
+                            @foreach (var lstDepartment in ViewBag.listDepartment)
+                            {
                             <ul>
                                 <li>
-                                    <input class="parent" id="parent" type="checkbox" name="" value="phong1" checked="checked" />Phòng1
-                                    <div class="phong1">
+                                    <input class="parent" id="DepartmentId" type="checkbox" name="DepartmentId" value="@lstDepartment.DepartmentId" checked="checked" />@lstDepartment.DepartmentName
+                                    <div class="phong-@lstDepartment.DepartmentId" id="lstEmployeeByDepartment">
                                         <ul class="sub-parent" id="sub-parent">
-                                            <li>
-                                                <input type="checkbox" name="" value="User1" />User1
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" value="User2" />User2
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" value="User3" />User3
-                                            </li>
+                                            @foreach (var lstEmployee in ViewBag.lstEmployeeByDepartmentId)
+                                                {
+                                                    if (lstEmployee.DepartmentId == lstDepartment.DepartmentId)
+                                                    {
+                                                <li>
+                                                    <input type="checkbox" name="EmployeeId" value="@lstEmployee.EmployeeId" />@lstEmployee.EmployeeFullname
+                                                </li>
+                                                    }
+                                                }
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
-                            <ul>
-                                <li>
-                                    <input class="parent" id="parent" type="checkbox" name="" value="phong2" checked="checked" />Phòng2
-                                    <div class="phong2">
-                                        <ul class="sub-parent" id="sub-parent">
-                                            <li>
-                                                <input type="checkbox" name="" value="User1" />User1
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" value="User2" />User2
-                                            </li>
-                                            <li>
-                                                <input type="checkbox" name="" value="User3" />User3
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
+                            }
                         </div>
                     </div>
                     <div class="form-group">
                         <label style="float: left;" for="recipient-name" class="col-form-label">Mô Tả Ngắn</label>
-                        <textarea class="form-control" name="workDescription" id="workDescription" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label style="float: left;" for="recipient-name" class="col-form-label">Nội Dung</label>
-                        <textarea class="form-control" name="workContent" id="workContent" required></textarea>
+                        <textarea class="form-control" name="ProjectDescription" id="ProjectDescription" required></textarea>
                     </div>
                     <div class="form-group">
                         <label style="float: left;" for="recipient-name" class="col-form-label">Loại Công Việc</label>
-                        <select name="typeOfWork" id="typeOfWork" class="form-control" required="required">
+                        <select name="ProjectTypeId" id="ProjectTypeId" class="form-control" required="required">
                             <option value=""></option>
-                            <option value="duan">dự án</option>
-                            <option value="cvthuong">công việc thường</option>
+                            <option value="2">dự án</option>
+                            <option value="1">công việc thường</option>
                         </select>
-                        <div class="type-work">
-                            <div class="duan" style="display: none">
-                                <div id="sidebar-wrapper" class="sidebar-toggle" style="overflow: scroll; overflow-x:hidden;">
-                                    <ul class="sidebar-nav">
-                                        <li class="li-menu-left active" id="li-menu-left-one" onclick="setActiveMenuleft(this)">
-                                            <div class="sidebar-left ">
-                                                <div class="p-center">
-                                                    <p class="p-center-content-title" style="color:#000">Dự Án 1</p>
-                                                </div>
-                                                <div class="p-center">
-                                                    <p class="p-center-title" style="color:#000">Thời Gian: </p>
-                                                    <p class="p-center-content" style="color:#000">18/10/2018</p>
-                                                </div>
-                                                <div class="p-center">
-                                                    <p class="p-center-title" style="color:#000">Phòng ban thực hiện: </p>
-                                                    <p class="p-center-content" style="color:#000">Phòng 1</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="li-menu-left " id="li-menu-left-one" onclick="setActiveMenuleft(this)">
-                                            <div class="sidebar-left ">
-                                                <div class="p-center">
-                                                    <p class="p-center-content-title" style="color:#000">Dự Án 2</p>
-                                                </div>
-                                                <div class="p-center">
-                                                    <p class="p-center-title" style="color:#000">Thời Gian: </p>
-                                                    <p class="p-center-content" style="color:#000">18/10/2018</p>
-                                                </div>
-                                                <div class="p-center">
-                                                    <p class="p-center-title" style="color:#000">Phòng ban thực hiện: </p>
-                                                    <p class="p-center-content" style="color:#000">Phòng 2</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="form-group">
                         <label style="float: left;" for="message-text" class="col-form-label" min="31-12-1970">Thời Gian Bắt đầu</label>
-                        <input type="date" class="form-control" id="workStartTime" name="actionStartTime" required>
+                        <input type="date" class="form-control" id="StartTime" name="StartTime" required>
                     </div>
                     <div class="form-group">
                         <label style="float: left;" for="message-text" class="col-form-label" min="31-12-1970">Thời Gian Kết Thúc</label>
-                        <input type="date" class="form-control" id="workEndTime" name="actionEndTime" required>
+                        <input type="date" class="form-control" id="EndTime" name="EndTime" required>
                     </div>
                     <div class="form-group">
                         <label style="float: left;" for="message-text" class="col-form-label">Trạng Thái</label>
-                        <select class="form-control" id="workStatus" name="workStatus" required>
+                        <select class="form-control" id="ProjectStatus" name="ProjectStatus" required>
                             <option></option>
-                            <option value="1">Đang Hoạt Động</option>
-                            <option value="2">Sắp Hoạt Động</option>
-                            <option value="3">Đã Hết Hoạt Động</option>
+                            <option value="1">Hiển Thị</option>
+                            <option value="2">Không Hiển Thị</option>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -1048,134 +526,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="ModalFormMau" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content-add-new-work">
-            <div class="modal-header-add-new-work">
-                <h5 class="modal-title" id="exampleModalLabel" style="float: left;">Chọn Form Mẫu</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div>
-                        <div id="sidebar-wrapper" class="sidebar-toggle" style="overflow: scroll;">
-                            <ul>
-                                <li>
-                                    <div class="form-demo ">
-                                        <input style="margin-top: 17px;" type="radio" name="checkFormMau">
-                                        <div class="">
-                                            <ul class="sub-form-demo1">
-                                                <li>B1</li>
-                                                <li>B2</li>
-                                                <li>B3</li>
-                                                <li>B4</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-demo ">
-                                        <input style="margin-top: 17px;" type="radio" name="checkFormMau">
-                                        <div>
-                                            <ul class="sub-form-demo2">
-                                                <li>B1</li>
-                                                <li>B2</li>
-                                                <li>B3</li>
-                                                <li>B4</li>
-                                                <li>B5</li>
-                                                <li>B6</li>
-                                                <li>B7</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-demo ">
-                                        <input style="margin-top: 17px;" type="radio" name="checkFormMau">
-                                        <div>
-                                            <ul class="sub-form-demo3">
-                                                <li>B1</li>
-                                                <li>B2</li>
-                                                <li>B3</li>
-                                                <li>B4</li>
-                                                <li>B5</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn btn-secondary text-left btn-width-80" style="background-color :#00bcd4;" onclick="openModalAddFormMau()">Thêm</a>
-                        <a href="#" class="btn btn-secondary text-left btn-width-80" style="background-color :#ff9800;" onclick="openModalEditFormMau()">Sửa</a>
-                        <button type="button" class="btn btn-secondary text-left btn-width-80" style="background-color :#eb5a46;">Xóa</button>
-                        <button type="button" class="btn btn-secondary btn-width-80" data-dismiss="modal" style="background-color :gray;">Đóng</button>
-                        <input type="submit" class="btn btn-primary btn-width-80" value="Chọn" style="background-color: green;" />
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div id="modalAddFormMau" class="modal">
-        <div class="modal-content">
-            <span class="closeModalAddFormMau">&times;</span>
-            <br />
-            <br />
-            <form>
-                <div class="text-center" style=""><b>Thêm From Mẫu</b></div>
-                <span>Nhập Số Bước</span>
-                <input class="form-control" type="number" min="1" max="20" name="" id="" value="7" style="background-color: #c1c1c1;border:none; color: #fff">
-                <br />
-                <div class="form-demo div-modal-add-formMau">
-                    <div>
-                        <ul class="sub-form-demo3">
-                            <li>B1</li>
-                            <li>B2</li>
-                            <li>B3</li>
-                            <li>B4</li>
-                            <li>B5</li>
-                            <li>B6</li>
-                            <li>B7</li>
-                        </ul>
-                    </div>
-                </div>
-                <br />
-                <input type="submit" class="btn-them-from-mau" name="" id="" value="Thêm" />
-            </form>
-        </div>
-    </div>
-    <div id="modalEditFormMau" class="modal">
-        <div class="modal-content">
-            <span class="closeModalEditFormMau">&times;</span>
-            <br />
-            <br />
-            <form>
-                <div class="text-center" style=""><b>Sửa From Mẫu</b></div>
-                <span>Nhập Số Bước</span>
-                <input class="form-control" type="number" min="1" max="20" name="" id="" value="7" style="background-color: #c1c1c1;border:none; color: #fff">
-                <br />
-                <div class="form-demo div-modal-add-formMau">
-                    <div>
-                        <ul class="sub-form-demo3">
-                            <li>B1</li>
-                            <li>B2</li>
-                            <li>B3</li>
-                            <li>B4</li>
-                            <li>B5</li>
-                            <li>B6</li>
-                            <li>B7</li>
-                        </ul>
-                    </div>
-                </div>
-                <br />
-                <input type="submit" class="btn-them-from-mau" name="" id="" value="Sửa" />
-            </form>
-        </div>
-    </div>
-</div>
+
 
 <div id="ModalTroGiup" class="modal">
     <div class="modal-content">
@@ -1435,53 +786,100 @@
 
 @section scripts{
     <script>
-		$("#content-slider").lightSlider({
-			loop:true,
-			keyPress:true
-		});
-		$('#image-gallery').lightSlider({
-			gallery:true,
-			item:1,
-			thumbItem:9,
-			slideMargin: 0,
-			speed:500,
-			auto:true,
-			loop:true,
-			onSliderLoad: function() {
-				$('#image-gallery').removeClass('cS-hidden');
-			}
-		});
+        $("#content-slider").lightSlider({
+            loop: true,
+            keyPress: true
+        });
 
-		$(function () {
-		    $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+        $('#image-gallery').lightSlider({
+            gallery: true,
+            item: 1,
+            thumbItem: 9,
+            slideMargin: 0,
+            speed: 500,
+            auto: true,
+            loop: true,
+            onSliderLoad: function () {
+                $('#image-gallery').removeClass('cS-hidden');
+            }
+        });
 
-		    if (!screenfull.enabled) {
-		        return false;
-		    }
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            var ulli = document.getElementById("sub-parent");
+            $(".parent").click(function () {
+                if ($(this).prop("checked") == true) {
+                    var className = ".phong-" + $(this).val();
+                    $(className).css('display', "block");
+                }
+                else if ($(this).prop("checked") == false) {
+                    var className = ".phong-" + $(this).val();
+                    $(className).css('display', 'none');
+                }
+            });
+        });
 
-		    $('#toggle').click(function () {
-		        screenfull.toggle($('#container')[0]);
-		    });
-		});
-		var theme = $.cookie('protonTheme') || 'default';
-		$('body').removeClass(function (index, css) {
-		    return (css.match(/\btheme-\S+/g) || []).join(' ');
-		});
-		if (theme !== 'default') $('body').addClass(theme);
 
-		$(document).ready(function () {
-		    $('[data-toggle="tooltip"]').tooltip();
-		    var ulli = document.getElementById("sub-parent");
-		    $('input[type="checkbox"]').click(function () {
-		        if ($(this).prop("checked") == true) {
-		            // alert($(this).val());
-		            $("." + $(this).val()).children().css('display', "block");
-		        }
-		        else if ($(this).prop("checked") == false) {
-		            // alert("Checkbox chưa đánh dấu.");
-		            $("." + $(this).val()).children().css('display', 'none');
-		        }
-		    });
-		});
+        function listProjectByProjectType1(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadlistProject", "Home")",
+                data: { id: 1 },
+                success: function (rps) {
+                    $(".agile-grids").html(rps);
+                }
+            });
+        }
+        function chooseYear(e) {
+            var year = $(e).data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadlistProject", "Home")",
+                data: { id: 2, year: year },
+                success: function (rps) {
+                    $(".agile-grids").html(rps);
+                }
+            });
+            var modalListProject = document.getElementById('modal-list-project');
+            modalListProject.style.display = "none";
+        }
+
+        function chooseProject(e) {
+            var ProjectId = $(e).data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadProgressWorking", "Home")",
+                data: { ProjectId: ProjectId },
+                success: function (rps) {
+                    $("#progress-working").html(rps);
+                }
+            });
+        }
+
+
+        function addFolderByProject(e) {
+            e.preventDefault();
+            var FolderName = $("#FolderNameCreate").val();
+            var FolderId = $("#FolderIdCreate").val();
+            var ProjectId = $("#ProjectIdCreate").val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CreateFolderByProject","Home")",
+                data: { FolderName: FolderName, FolderId: FolderId, ProjectId: ProjectId },
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("loadListFolderByProjectId","Home")",
+                        data: { id: ProjectId },
+                        success: function (rps) {
+                            $(".working-left-top").html(rps);
+                        }
+                    });
+                    var modalAddFolder = document.getElementById('ModalAddFolder');
+                    modalAddFolder.style.display = "none";
+                }
+            });
+        }
     </script>
 }

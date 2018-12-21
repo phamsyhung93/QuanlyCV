@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WorkManagermentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WorkManagermentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChatDetails">
           <Key>
             <PropertyRef Name="ChatDetailId" />
@@ -297,7 +297,6 @@
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="EndTime" Type="datetime" Nullable="false" />
           <Property Name="ProjectDescription" Type="ntext" Nullable="false" />
-          <Property Name="DepartmentId" Type="int" Nullable="false" />
           <Property Name="ProjectStatus" Type="int" Nullable="false" />
           <Property Name="ProjectTypeId" Type="int" />
         </EntityType>
@@ -999,18 +998,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Projects__Depart__398D8EEE">
-          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
-          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="Projects">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Reminds__Departm__4A8310C6">
           <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
           <End Role="Reminds" Type="Self.Reminds" Multiplicity="*" />
@@ -1316,13 +1303,27 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_getAllByProjectIdAndEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectId" Type="int" Mode="In" />
+          <Parameter Name="EmployeeId" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_getAllDepartmentByEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="so" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_GetAllEmployeeByDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAllEmployeeByProjectID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="so" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getAllEmployeeByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="so" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_getAllPermissionsNameByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="so" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_getAllProjectDiscussionsByProjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="so" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetAllYEARByProjectType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_getEmployeeByDepartmentWhereDepartmentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="so" Type="int" Mode="In" />
         </Function>
@@ -1572,10 +1573,6 @@
             <End Role="Projects" EntitySet="Projects" />
             <End Role="ProjectMembers" EntitySet="ProjectMembers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projects__Depart__398D8EEE" Association="Self.FK__Projects__Depart__398D8EEE">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Projects" EntitySet="Projects" />
-          </AssociationSet>
           <AssociationSet Name="FK__Reminds__Departm__4A8310C6" Association="Self.FK__Reminds__Departm__4A8310C6">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Reminds" EntitySet="Reminds" />
@@ -1673,8 +1670,7 @@
             <End Role="TimeLines" EntitySet="TimeLines" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WorkManagermentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1742,7 +1738,6 @@
           <Property Name="DepartmentStatus" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DepartmentEmployees" Relationship="Self.FK__Departmen__Depar__1BFD2C07" FromRole="Departments" ToRole="DepartmentEmployees" />
           <NavigationProperty Name="Forms" Relationship="Self.FK__Forms__Departmen__4BAC3F29" FromRole="Departments" ToRole="Forms" />
-          <NavigationProperty Name="Projects" Relationship="Self.FK__Projects__Depart__398D8EEE" FromRole="Departments" ToRole="Projects" />
           <NavigationProperty Name="Reminds" Relationship="Self.FK__Reminds__Departm__4A8310C6" FromRole="Departments" ToRole="Reminds" />
         </EntityType>
         <EntityType Name="Emotion">
@@ -2058,10 +2053,8 @@
           <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ProjectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
           <Property Name="ProjectStatus" Type="Int32" Nullable="false" />
           <Property Name="ProjectTypeId" Type="Int32" />
-          <NavigationProperty Name="Department" Relationship="Self.FK__Projects__Depart__398D8EEE" FromRole="Projects" ToRole="Departments" />
           <NavigationProperty Name="Files" Relationship="Self.FK__Files__ProjectId__5AEE82B9" FromRole="Projects" ToRole="Files" />
           <NavigationProperty Name="Folders" Relationship="Self.FK__Folders__Project__5535A963" FromRole="Projects" ToRole="Folders" />
           <NavigationProperty Name="MemberDiscussions" Relationship="Self.FK__MemberDis__Proje__4222D4EF" FromRole="Projects" ToRole="MemberDiscussions" />
@@ -2410,18 +2403,6 @@
               <PropertyRef Name="DepartmentId" />
             </Principal>
             <Dependent Role="Forms">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Projects__Depart__398D8EEE">
-          <End Role="Departments" Type="Self.Department" Multiplicity="1" />
-          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departments">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="Projects">
               <PropertyRef Name="DepartmentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -3200,10 +3181,6 @@
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Forms" EntitySet="Forms" />
           </AssociationSet>
-          <AssociationSet Name="FK__Projects__Depart__398D8EEE" Association="Self.FK__Projects__Depart__398D8EEE">
-            <End Role="Departments" EntitySet="Departments" />
-            <End Role="Projects" EntitySet="Projects" />
-          </AssociationSet>
           <AssociationSet Name="FK__Reminds__Departm__4A8310C6" Association="Self.FK__Reminds__Departm__4A8310C6">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Reminds" EntitySet="Reminds" />
@@ -3449,24 +3426,25 @@
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_getAllDepartmentByEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getAllDepartmentByEmployeeId_Result)">
-            <Parameter Name="so" Mode="In" Type="Int32" />
+          <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetAllEmployeeByDepartment" ReturnType="Collection(WorkManagermentModel.sp_GetAllEmployeeByDepartment_Result)" />
           <FunctionImport Name="sp_getAllPermissionsNameByRoleId" ReturnType="Collection(String)">
-            <Parameter Name="so" Mode="In" Type="Int32" />
+          <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetAllYEARByProjectType" ReturnType="Collection(Int32)" />
           <FunctionImport Name="sp_getEmployeeByDepartmentWhereDepartmentId" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result)">
-            <Parameter Name="so" Mode="In" Type="Int32" />
+          <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_getEmployeeByDepartmentWhereEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeId_Result)">
-            <Parameter Name="so" Mode="In" Type="Int32" />
+          <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_getEmployeeByDepartmentWhereEmployeeIds" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeIds_Result)">
-            <Parameter Name="so" Mode="In" Type="Int32" />
+          <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_getEmployeeByRole" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByRole_Result)" />
           <FunctionImport Name="sp_getEmployeeByRoleByDepartment" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByRoleByDepartment_Result)">
-            <Parameter Name="so" Mode="In" Type="Int32" />
+          <Parameter Name="so" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WorkManagermentModel.sp_helpdiagramdefinition_Result)">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -3482,6 +3460,19 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_getAllProjectDiscussionsByProjectId" ReturnType="Collection(WorkManagermentModel.sp_getAllProjectDiscussionsByProjectId_Result)">
+          <Parameter Name="so" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAllEmployeeByProjectID" ReturnType="Collection(WorkManagermentModel.sp_GetAllEmployeeByProjectID_Result)">
+          <Parameter Name="so" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getAllEmployeeByRoleID" ReturnType="Collection(WorkManagermentModel.sp_getAllEmployeeByRoleID_Result)">
+          <Parameter Name="so" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getAllByProjectIdAndEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getAllByProjectIdAndEmployeeId_Result)">
+            <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+            <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_getAllDepartmentByEmployeeId_Result">
           <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
@@ -3627,6 +3618,65 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_getAllProjectDiscussionsByProjectId_Result">
+          <Property Type="String" Name="DiscussionContent" Nullable="false" MaxLength="Max" />
+          <Property Type="Int32" Name="ProjectDiscussionId" Nullable="false" />
+          <Property Type="Int32" Name="ProjectDiscussionStatus" Nullable="false" />
+          <Property Type="Int32" Name="MemberDiscussionId" Nullable="false" />
+          <Property Type="Int32" Name="MemberDiscussionStatus" Nullable="false" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllEmployeeByProjectID_Result">
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="Int32" Name="ProjectMemberStatus" Nullable="false" />
+          <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
+          <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
+          <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="sp_getAllEmployeeByRoleID_Result">
+          <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
+          <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="sp_getAllByProjectIdAndEmployeeId_Result">
+          <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
+          <Property Type="Int32" Name="ProjectMemberStatus" Nullable="false" />
+          <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
+          <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="RoleStatus" Nullable="false" />
+          <Property Type="Int32" Name="ProjectTypeId" Nullable="false" />
+          <Property Type="String" Name="ProjectTypeName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ProjectTypeStatus" Nullable="false" />
+          <Property Type="Int32" Name="ProjectId" Nullable="false" />
+          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="250" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3952,7 +4002,6 @@
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
                 <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
               </MappingFragment>
@@ -4179,6 +4228,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_getAllPermissionsNameByRoleId" FunctionName="WorkManagermentModel.Store.sp_getAllPermissionsNameByRoleId" />
+          <FunctionImportMapping FunctionImportName="sp_GetAllYEARByProjectType" FunctionName="WorkManagermentModel.Store.sp_GetAllYEARByProjectType" />
           <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereDepartmentId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereDepartmentId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result">
@@ -4332,6 +4382,81 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WorkManagermentModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WorkManagermentModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_getAllProjectDiscussionsByProjectId" FunctionName="WorkManagermentModel.Store.sp_getAllProjectDiscussionsByProjectId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllProjectDiscussionsByProjectId_Result">
+                <ScalarProperty Name="DiscussionContent" ColumnName="DiscussionContent" />
+                <ScalarProperty Name="ProjectDiscussionId" ColumnName="ProjectDiscussionId" />
+                <ScalarProperty Name="ProjectDiscussionStatus" ColumnName="ProjectDiscussionStatus" />
+                <ScalarProperty Name="MemberDiscussionId" ColumnName="MemberDiscussionId" />
+                <ScalarProperty Name="MemberDiscussionStatus" ColumnName="MemberDiscussionStatus" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAllEmployeeByProjectID" FunctionName="WorkManagermentModel.Store.sp_GetAllEmployeeByProjectID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_GetAllEmployeeByProjectID_Result">
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectMemberStatus" ColumnName="ProjectMemberStatus" />
+                <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+                <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+                <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAllEmployeeByRoleID" FunctionName="WorkManagermentModel.Store.sp_getAllEmployeeByRoleID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllEmployeeByRoleID_Result">
+                <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+                <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAllByProjectIdAndEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getAllByProjectIdAndEmployeeId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllByProjectIdAndEmployeeId_Result">
+                <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+                <ScalarProperty Name="ProjectMemberStatus" ColumnName="ProjectMemberStatus" />
+                <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+                <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+                <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+                <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+                <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+                <ScalarProperty Name="ProjectTypeName" ColumnName="ProjectTypeName" />
+                <ScalarProperty Name="ProjectTypeStatus" ColumnName="ProjectTypeStatus" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

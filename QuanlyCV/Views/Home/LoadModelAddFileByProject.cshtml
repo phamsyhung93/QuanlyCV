@@ -1,0 +1,14 @@
+﻿@model QuanlyCV.Models.Folder
+<form  method="post" onsubmit="addfileByProject(event)" enctype="multipart/form-data">
+    <div class="div-title-modal-add-folder">
+        <span><b>File</b></span>
+        <input class="input-div-title-modal-add-folder" type="file" name="files" id="files" />
+    </div>
+    <div class="div-title-modal-add-folder">
+        <span><b>Tên Folder Chứa</b></span>
+        <input class="input-div-title-modal-add-folder" disabled type="text" name="" id="" value="@Model.FolderName" />
+        <input class="input-div-title-modal-add-folder" type="hidden" name="FolderId" id="FolderId" value="@Model.FolderId" />
+        <input type="hidden" name="" id="ProjectId" value="@ViewBag.ProjectId"/>
+    </div>
+    <input type="submit" value="Thêm" class="input-modal-add-folder">
+</form>

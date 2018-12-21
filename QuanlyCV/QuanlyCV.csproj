@@ -209,6 +209,7 @@
     <Compile Include="Models\Form.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FormContent.cs" />
     <Compile Include="Models\Forward.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
@@ -312,10 +313,22 @@
     <Compile Include="Models\SmallStepWorkToDo.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_getAllByProjectIdAndEmployeeId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_getAllDepartmentByEmployeeId_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_GetAllEmployeeByDepartment_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAllEmployeeByProjectID_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllEmployeeByRoleID_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllProjectDiscussionsByProjectId_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_getEmployeeByDepartmentWhereDepartmentId_Result.cs">
@@ -393,6 +406,7 @@
     <Content Include="Content\images\1.png" />
     <Content Include="Content\images\2.png" />
     <Content Include="Content\images\3.png" />
+    <Content Include="Content\images\add-24.png" />
     <Content Include="Content\images\add-48.png" />
     <Content Include="Content\images\add-folder-32.png" />
     <Content Include="Content\images\add-member-48.png" />
@@ -622,9 +636,28 @@
     <Content Include="Views\ManagementProtfolio\Index.cshtml" />
     <Content Include="Views\Employee\loadTableEmployee.cshtml" />
     <Content Include="Views\Note\LoadContentNote.cshtml" />
+    <Content Include="Views\Home\loadlistProject.cshtml" />
+    <Content Include="Views\Home\loadProgressWorking.cshtml" />
+    <Content Include="Views\Home\loadModelAddFolder.cshtml" />
+    <Content Include="Views\Home\loadListFolderByProjectId.cshtml" />
+    <Content Include="Views\Home\loadlistFileByFolderId.cshtml" />
+    <Content Include="Views\Home\loadlistFileByFolderIdCol6.cshtml" />
+    <Content Include="Views\Home\loadContentChat.cshtml" />
+    <Content Include="Views\Statistical\GetAllProjectByYearAndMonth.cshtml" />
+    <Content Include="Views\Statistical\LoadListEmployeeByProject.cshtml" />
+    <Content Include="Views\Statistical\LoadModelDetailWork.cshtml" />
+    <Content Include="Views\Folders\LoadModelAddFolderByEmployee.cshtml" />
+    <Content Include="Views\Folders\loadListFolderByEmployee.cshtml" />
+    <Content Include="Views\Folders\loadlistFileByFolderIdByEmployee.cshtml" />
+    <Content Include="Views\Folders\loadlistFileByFolderIdByEmployeeCol6.cshtml" />
+    <Content Include="Views\Folders\searchFile.cshtml" />
+    <Content Include="Views\Folders\LoadModelAddFileByEmployee.cshtml" />
+    <Content Include="Views\Home\searchFileByProject.cshtml" />
+    <Content Include="Views\Home\LoadModelAddFileByProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

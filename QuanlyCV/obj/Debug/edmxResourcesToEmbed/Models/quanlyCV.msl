@@ -319,7 +319,6 @@
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
           <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
-          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
           <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
         </MappingFragment>
@@ -546,6 +545,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_getAllPermissionsNameByRoleId" FunctionName="WorkManagermentModel.Store.sp_getAllPermissionsNameByRoleId" />
+    <FunctionImportMapping FunctionImportName="sp_GetAllYEARByProjectType" FunctionName="WorkManagermentModel.Store.sp_GetAllYEARByProjectType" />
     <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereDepartmentId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereDepartmentId">
       <ResultMapping>
         <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result">
@@ -699,5 +699,80 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WorkManagermentModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WorkManagermentModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_getAllProjectDiscussionsByProjectId" FunctionName="WorkManagermentModel.Store.sp_getAllProjectDiscussionsByProjectId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllProjectDiscussionsByProjectId_Result">
+          <ScalarProperty Name="DiscussionContent" ColumnName="DiscussionContent" />
+          <ScalarProperty Name="ProjectDiscussionId" ColumnName="ProjectDiscussionId" />
+          <ScalarProperty Name="ProjectDiscussionStatus" ColumnName="ProjectDiscussionStatus" />
+          <ScalarProperty Name="MemberDiscussionId" ColumnName="MemberDiscussionId" />
+          <ScalarProperty Name="MemberDiscussionStatus" ColumnName="MemberDiscussionStatus" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAllEmployeeByProjectID" FunctionName="WorkManagermentModel.Store.sp_GetAllEmployeeByProjectID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_GetAllEmployeeByProjectID_Result">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectMemberStatus" ColumnName="ProjectMemberStatus" />
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getAllEmployeeByRoleID" FunctionName="WorkManagermentModel.Store.sp_getAllEmployeeByRoleID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllEmployeeByRoleID_Result">
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getAllByProjectIdAndEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getAllByProjectIdAndEmployeeId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllByProjectIdAndEmployeeId_Result">
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="ProjectMemberStatus" ColumnName="ProjectMemberStatus" />
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+          <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+          <ScalarProperty Name="ProjectTypeName" ColumnName="ProjectTypeName" />
+          <ScalarProperty Name="ProjectTypeStatus" ColumnName="ProjectTypeStatus" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

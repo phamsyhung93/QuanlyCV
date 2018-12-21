@@ -30,11 +30,9 @@ namespace QuanlyCV.Models
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
         public string ProjectDescription { get; set; }
-        public int DepartmentId { get; set; }
         public int ProjectStatus { get; set; }
         public Nullable<int> ProjectTypeId { get; set; }
     
-        public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<File> Files { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

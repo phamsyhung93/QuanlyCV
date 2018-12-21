@@ -19,7 +19,6 @@ namespace QuanlyCV.Models
         {
             this.DepartmentEmployees = new HashSet<DepartmentEmployee>();
             this.Forms = new HashSet<Form>();
-            this.Projects = new HashSet<Project>();
             this.Reminds = new HashSet<Remind>();
         }
     
@@ -32,8 +31,6 @@ namespace QuanlyCV.Models
         public virtual ICollection<DepartmentEmployee> DepartmentEmployees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Form> Forms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Projects { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Remind> Reminds { get; set; }
     }

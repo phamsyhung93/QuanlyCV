@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </a>
             </li>
             <li>
-                <a href="folderManager.html">
+                <a href="@Url.Action("Index","Folders")">
                     <i class="fa fa-folder-open nav_icon"></i>
                     <span class="nav-text">
                         Thư Mục
@@ -93,7 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </a>
             </li>
             <li>
-                <a href="statistical.html">
+                <a href="@Url.Action("Index","Statistical")">
                     <i class="fa fa-bar-chart nav_icon"></i>
                     <span class="nav-text">
                         Thống Kê
@@ -151,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="nofitications-dropdown"> 
                             @if (controllerName.Equals("Home") && actionName.Equals("Index"))
                             {
-                                <li class="dropdown head-dpdn" style="margin-right:20px"><a href="javascript:;" class="a-hover-pointer"><img src="~/Content/images/project-32.png" title="công việc thường" /></a></li>
+                                <li onclick="listProjectByProjectType1(this)" class="dropdown head-dpdn" style="margin-right:20px"><a href="javascript:;" class="a-hover-pointer"><img src="~/Content/images/project-32.png" title="công việc thường" /></a></li>
                                 <li class="dropdown head-dpdn"><a href="javascript:;" onclick="openModalListProject();" class="a-hover-pointer"><i class="fa fa-list-alt" title="Công việc theo dự án" style="font-size: 30px;"></i></a></li>
                             }
                             <li class="dropdown head-dpdn">
@@ -296,7 +296,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li class="dropdown profile_details_drop">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <div class="profile_img">
-                                        <img src="~/Content/images/3.png" class="img-responsive" alt="">
+                                        <img src="~/Content/images/3.png" title="ảnh đại diện" class="img-responsive" alt="">
                                         <div class="clearfix"></div>
                                     </div>
                                 </a>

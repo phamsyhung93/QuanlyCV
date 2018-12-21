@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4c0949a99c934e47aed7f36f28d89b4c" Name="Diagram1">
+      <Diagram DiagramId="8eaf2001e4f8470589a3ad41838a029e" Name="Diagram1">
         <EntityTypeShape EntityType="WorkManagermentModel.ChatDetail" Width="1.5" PointX="5.25" PointY="22.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Chat" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Comment" Width="1.5" PointX="7.5" PointY="43.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.DepartmentEmployee" Width="1.5" PointX="3" PointY="28.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.Department" Width="1.5" PointX="5.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Department" Width="1.5" PointX="5.75" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Emotion" Width="1.5" PointX="10.5" PointY="41" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Employee" Width="1.5" PointX="0.75" PointY="25.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.File" Width="1.5" PointX="6" PointY="27.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Folder" Width="1.5" PointX="3" PointY="31.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.Form" Width="1.5" PointX="8" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Form" Width="1.5" PointX="8" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Forward" Width="1.5" PointX="18" PointY="20.375" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.GrantPermission" Width="1.5" PointX="8.25" PointY="28" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.GroupChatDetail" Width="1.5" PointX="7.5" PointY="35.875" IsExpanded="true" />
@@ -23,21 +23,21 @@
         <EntityTypeShape EntityType="WorkManagermentModel.GroupMember" Width="1.5" PointX="5.25" PointY="38.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Group" Width="1.5" PointX="3" PointY="50.375" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Like" Width="1.5" PointX="12.75" PointY="43.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.ManagerZone" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.ManagerZone" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.MemberDiscussion" Width="1.5" PointX="12.75" PointY="27.625" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Note" Width="1.5" PointX="17.25" PointY="27.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.Permission" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Permission" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Plan" Width="1.5" PointX="10.5" PointY="28.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.PostImage" Width="1.5" PointX="12.75" PointY="47.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Post" Width="1.5" PointX="10.5" PointY="44" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.ProjectDiscussion" Width="1.5" PointX="15" PointY="28" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.ProjectMember" Width="1.5" PointX="10.5" PointY="25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.Project" Width="1.5" PointX="5.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Project" Width="1.5" PointX="5.75" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.ProjectType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Remind" Width="1.5" PointX="8" PointY="23.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Report" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.Role" Width="1.5" PointX="6" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkManagermentModel.SetPermission" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.Role" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkManagermentModel.SetPermission" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.Share" Width="1.5" PointX="15.75" PointY="46.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.SmallStepComment" Width="1.5" PointX="8" PointY="31.875" IsExpanded="true" />
         <EntityTypeShape EntityType="WorkManagermentModel.SmallStepMember" Width="1.5" PointX="15" PointY="24.125" IsExpanded="true" />
@@ -61,7 +61,6 @@
         <AssociationConnector Association="WorkManagermentModel.FK__Departmen__Emplo__1CF15040" ManuallyRouted="false" />
         <AssociationConnector Association="WorkManagermentModel.FK__GrantPerm__Depar__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="WorkManagermentModel.FK__Forms__Departmen__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="WorkManagermentModel.FK__Projects__Depart__398D8EEE" ManuallyRouted="false" />
         <AssociationConnector Association="WorkManagermentModel.FK__Reminds__Departm__4A8310C6" ManuallyRouted="false" />
         <AssociationConnector Association="WorkManagermentModel.FK__Likes__EmotionId__1DB06A4F" ManuallyRouted="false" />
         <AssociationConnector Association="WorkManagermentModel.FK__Files__EmployeeI__59FA5E80" ManuallyRouted="false" />

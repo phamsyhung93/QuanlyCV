@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<QuanlyCV.Models.Folder>
 @{
     ViewBag.Title = "Quản lý thư mục cá nhân";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,15 +10,26 @@
             <div class="col-sm-12">
                 <div class="list-option">
                     <ul>
+                        <li><a onclick="AddFile(this)" style="border: none;"><img src="~/Content/images/add-24.png" title="thêm File" /></a></li>
                         <li>
                             <div class="search-folder">
-                                <input type="text" name="">
+                                <input type="text" name="" onchange="searchNameFileByEmployee(this)" class="inputSearch" disabled>
                                 <i class="fa fa-search"></i>
                             </div>
                         </li>
-                        <li><a href="javascript:;" class="view-grid view-selected"><i class="fa fa-table"></i></a></li>
-                        <li><a href="javascript:;" class="view-list"><i class="fa fa-list-alt"></i></a></li>
+                        <li><a onclick="showFileCol3(this)" href="javascript:;" class="view-grid view-selected"><i class="fa fa-table"></i></a></li>
+                        <li><a onclick="showFileCol6(this)" href="javascript:;" class="view-list"><i class="fa fa-list-alt"></i></a></li>
                     </ul>
+                </div>
+                <div id="ModalAddFileByEmployee" class="modal ">
+                    <div class="modal-content">
+                        <span class="ModalAddFileByEmployeeclose">&times;</span>
+                        <p>Thêm folder</p>
+                        <hr />
+                        <div class="model-add-File">
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -27,77 +38,56 @@
             <div class="clearfix"></div>
             <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
                 <div class="working-left">
-                    <div class="working-left-top">
+                    <div class="working-left-top lst-Folder-By-Employee">
                         <ul>
-                            <li>
-                                <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i>This PC</a>
-                                <div class="list-sub-working">
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Back up(C)" disabled="" /></a>
-                                            <div class="list-sub-working">
-                                                <ul>
-                                                    <li><a href="javascript:;" class="item-working" id="left-working-1" data-id="1"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục A" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working" id="left-working-2" data-id="2"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục B" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working" id="left-working-" data-id=""><i class="fa fa-folder-o" id="left-working-1" data-id="1"></i><input type="text" name="" value="Thư Mục C" disabled="" /></a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Back up(D)" disabled="" /></a>
-                                            <div class="list-sub-working">
-                                                <ul>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục A" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục B" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục C" disabled="" /></a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Data(E)" disabled="" /></a>
-                                            <div class="list-sub-working">
-                                                <ul>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục A" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục B" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục C" disabled="" /></a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="System(F)" disabled="" /></a>
-                                            <div class="list-sub-working">
-                                                <ul>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục A" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục B" disabled="" /></a></li>
-                                                    <li><a href="javascript:;" title="" class="item-working"><i class="fa fa-folder-o"></i><input type="text" name="" value="Thư Mục C" disabled="" /></a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
+                            @foreach (var item in Model)
+                            {
+                                if (item.ParentId == 0)
+                                {
+                                    <li>
+                                        <a href="javascript:;" title="" class="item-working" data-id="@item.FolderId"><i class="fa fa-folder-o"></i>@item.FolderName</a>
+                                        <div class="list-sub-working">
+                                            <ul>
+                                                @foreach (var item1 in Model)
+                                                {
+                                                    if (item1.ParentId == item.FolderId)
+                                                    {
+                                                        <li>
+                                                            <a href="javascript:;" title="" class="item-working" data-id="@item1.FolderId"><i class="fa fa-folder-o"></i><input type="text" name="" value="@item1.FolderName" disabled="" onblur="updateNameFolder(this)" /></a>
+                                                            <div class="list-sub-working">
+                                                                <ul>
+                                                                    @foreach (var item2 in Model)
+                                                                    {
+                                                                        if (item2.ParentId == item1.FolderId)
+                                                                        {
+                                                                            <li><a href="javascript:;" class="item-working" id="left-working-1" data-id="@item2.FolderId"><i class="fa fa-folder-o"></i><input type="text" name="" value="@item2.FolderName" disabled="" onblur="updateNameFolder(this)" /></a></li>
+                                                                        }
+                                                                    }
+                                                                </ul>
+                                                            </div>
+                                                        </li>
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                }
+
+                            }
                         </ul>
                     </div>
                     <div class="working-left-bottom">
                         <button type="button" disabled="" class="btn-add-folder" onclick="openModalAddFolder()"><img src="~/Content/images/add-folder-32.png" class="img-responsive" /></button>
                         <button type="button" disabled="" class="btn-edit-folder"><img src="~/Content/images/edit-folder-32.png" class="img-responsive" /></button>
-                        <button type="button" disabled="" class="btn-delete-folder"><img src="~/Content/images/delete-foder-32.png" class="img-responsive" /></button>
+                        <button type="button" disabled="" class="btn-delete-folder" onclick="deleteFolder()"><img src="~/Content/images/delete-foder-32.png" class="img-responsive" /></button>
                     </div>
-                    <div id="ModalAddFolder" class="modal">
+                    <div id="ModalAddFolder" class="modal ">
                         <div class="modal-content">
                             <span class="ModalAddFolderclose">&times;</span>
                             <p>Thêm folder</p>
                             <hr />
-                            <div>
-                                <form>
-                                    <div class="div-title-modal-add-folder">
-                                        <span><b>Tên Folder</b></span>
-                                        <input class="input-div-title-modal-add-folder" type="text" name="" id="" />
-                                    </div>
-
-
-                                    <input type="submit" value="Thêm" class="input-modal-add-folder">
-                                </form>
+                            <div class="model-add-Folder">
 
                             </div>
                         </div>
@@ -106,67 +96,223 @@
             </div>
 
             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12" style="margin-bottom: 20px">
-                <div class="folder-right">
-                    <div class="clearfix"></div>
-                    <div class="row list-folder-right">
-                        <div class="col col-sm-4 col-md-6 col-lg-3">
-                            <div class="right-item-folder flex-column" id="test">
-                                <img src="~/Content/images/folder.png" class="img-responsive" alt="">
-                                <div class="folder-name text-center">
-                                    Tên folder Tên folder Tên folder
-                                </div>
-                            </div>
-                            <div class="right-list-action">
-                                <a href="" title="">Sao Chép</a>
-                                <a href="" title="">Cắt</a>
-                                <a href="" title="">Dán</a>
-                                <hr />
-                                <a href="" title="">Tạo Mới</a>
-                                <a href="" title="">Xóa</a>
-                                <a href="" title="">Sửa Tên</a>
-                                <a href="" title="">Tải Lên</a>
-                            </div>
-                        </div>
-                        <div class="col col-sm-4 col-md-6 col-lg-3">
-                            <div class="right-item-folder flex-column">
-                                <img src="~/Content/images/folder.png" class="img-responsive" alt="">
-                                <div class="folder-name text-center">
-                                    Tên folder Tên folder Tên folder
-                                </div>
-                            </div>
-                            <div class="right-list-action">
-                                <a href="" title="">Sao Chép</a>
-                                <a href="" title="">Cắt</a>
-                                <a href="" title="">Dán</a>
-                                <hr />
-                                <a href="" title="">Tạo Mới</a>
-                                <a href="" title="">Xóa</a>
-                                <a href="" title="">Sửa Tên</a>
-                                <a href="" title="">Tải Lên</a>
-                            </div>
-                        </div>
-                        <div class="col col-sm-4 col-md-6 col-lg-3">
-                            <div class="right-item-folder flex-column">
-                                <img src="~/Content/images/folder.png" class="img-responsive" alt="">
-                                <div class="folder-name text-center">
-                                    Tên folder Tên folder Tên folder
-                                </div>
-                            </div>
-                            <div class="right-list-action">
-                                <a href="" title="">Sao Chép</a>
-                                <a href="" title="">Cắt</a>
-                                <a href="" title="">Dán</a>
-                                <hr />
-                                <a href="" title="">Tạo Mới</a>
-                                <a href="" title="">Xóa</a>
-                                <a href="" title="">Sửa Tên</a>
-                                <a href="" title="">Tải Lên</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="folder-right lst-file-by-Employee" style="height:460px;">
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+@section scripts{
+    <script>
+        // js cho click các thư mục bên trái
+        var IdFolder = "";
+        $(".item-working").dblclick(function () {
+            // $(".item-working").removeClass("active");
+            $(".list-action").css("display", "none");
+            if ($(this).find("i").hasClass("fa-folder-o")) {
+                $(this).find("i.fa-folder-o").removeClass("fa-folder-o").addClass("fa-folder-open-o").hasClass("fa-folder-o");
+                $(this).siblings(':first').css("display", "block");
+                var workingId = $(this).data("id");
+                IdFolder = workingId;
+                $(".inputSearch").removeAttr('disabled');
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("LoadModelAddFolderByEmployee", "Folders")",
+                    data: { id: workingId },
+                    success: function (rps) {
+                        $(".model-add-Folder").html(rps);
+                    }
+                });
 
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("LoadModelAddFileByEmployee", "Folders")",
+                    data: { id: IdFolder },
+                    success: function (rps) {
+                        $(".model-add-File").html(rps);
+                    }
+                });
+
+            } else {
+                $(this).find("i.fa-folder-open-o").removeClass("fa-folder-open-o").addClass("fa-folder-o").hasClass("fa-folder-open-o");
+                $(this).siblings(':first').css("display", "none");
+            }
+            // $(this).addClass("active");
+        });
+        $(".item-working").click(function () {
+            $(".item-working").removeClass("active");
+            $(this).addClass("active");
+            $(".btn-add-folder").removeAttr("disabled");
+            $(".btn-edit-folder").removeAttr("disabled");
+            $(".btn-delete-folder").removeAttr("disabled");
+            IdFolder = $(this).data("id");
+            $(".inputSearch").removeAttr('disabled');
+           
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("LoadModelAddFolderByEmployee", "Folders")",
+                data: { id: IdFolder },
+                success: function (rps) {
+                    $(".model-add-Folder").html(rps);
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("LoadModelAddFileByEmployee", "Folders")",
+                data: { id: IdFolder },
+                success: function (rps) {
+                    $(".model-add-File").html(rps);
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadlistFileByFolderIdByEmployee", "Folders")",
+                data: { id: IdFolder },
+                success: function (rps) {
+                    $(".lst-file-by-Employee").html(rps);
+                }
+
+            });
+        });
+        function updateNameFolder(e) {
+            var content = $(e).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UpdateNameFolderByEmployee","Folders")",
+                data: { id: IdFolder, FolderName: content },
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("loadListFolderByEmployee", "Folders")",
+                        data: {},
+                        success: function (rps) {
+                            $(".lst-Folder-By-Employee").html(rps);
+                        }
+                    });
+                }
+            });
+        }
+
+        function deleteFolder(e) {
+            swal({
+                title: "Bạn Có Muốn Xóa Không?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+              .then((willDelete) => {
+                  if (willDelete) {
+                      $.ajax({
+                          type: "POST",
+                          url: "@Url.Action("DeleteFolderByEmployee", "Folders")",
+                          data: { id: IdFolder },
+                          success: function (rps) {
+                              $.ajax({
+                                  type: "POST",
+                                  url: "@Url.Action("loadListFolderByEmployee", "Folders")",
+                                  data: {},
+                                  success: function (rps) {
+                                      $(".lst-Folder-By-Employee").html(rps);
+                                  }
+                              });
+                          }
+                      });
+                  } else {
+                      return false;
+                  }
+              });
+        }
+        function showFileCol3(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadlistFileByFolderIdByEmployee", "Folders")",
+                data: { id: IdFolder },
+                success: function (rps) {
+                    $(".lst-file-by-Employee").html(rps);
+                }
+
+            });
+        }
+        function showFileCol6(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadlistFileByFolderIdByEmployeeCol6", "Folders")",
+                data: { id: IdFolder },
+                success: function (rps) {
+                    $(".lst-file-by-Employee").html(rps);
+                }
+
+            });
+        }
+        function searchNameFileByEmployee(e) {
+            var name = $(e).val();
+            var namestr = name.trim();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("searchFile", "Folders")",
+                data: { id: IdFolder, name: namestr },
+                success: function (rps) {
+                    $(".lst-file-by-Employee").html(rps);
+                }
+            });
+        }
+
+        function AddFile(e) {
+            var FolderId = IdFolder;
+            var ModalAddFileByEmployee = document.getElementById('ModalAddFileByEmployee');
+            var ModalAddFileByEmployeeclose = document.getElementsByClassName("ModalAddFileByEmployeeclose")[0];
+            if (FolderId >0 ) {
+                ModalAddFileByEmployee.style.display = "block";
+                ModalAddFileByEmployeeclose.onclick = function () {
+                    ModalAddFileByEmployee.style.display = "none";
+                }
+                window.onclick = function (event) {
+                    if (event.target == ModalAddFileByEmployee) {
+                        ModalAddFileByEmployee.style.display = "none";
+                    }
+                }
+            }
+            
+        }
+
+        function addfileByEmployee(e) {
+            e.preventDefault();
+            var FolderId = $("#FolderId").val();
+            var file = $("#files").get(0);
+            var files = file.files;
+            var fileData = new FormData();
+            fileData.append('FolderId', FolderId);
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Folders/addFileByFolderId",
+                dataType: "json",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: fileData,
+                success: function (result, status, xhr) {
+                    if (result == 'True') {
+                        $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("loadlistFileByFolderIdByEmployee", "Folders")",
+                            data: { id: FolderId },
+                            success: function (rps) {
+                                $(".lst-file-by-Employee").html(rps);
+                            }
+
+                        });
+                    }
+                }
+            });
+            var ModalAddFileByEmployee = document.getElementById('ModalAddFileByEmployee');
+            ModalAddFileByEmployee.style.display = "none";
+        }
+
+    </script>
+}

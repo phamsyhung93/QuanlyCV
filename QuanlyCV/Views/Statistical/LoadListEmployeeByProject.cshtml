@@ -1,0 +1,26 @@
+﻿<table class="table table-hover table-bordered">
+    <thead>
+        <tr style="color: #fff">
+            <th>Người Tạo Công Việc</th>
+            <th>Phòng Ban</th>
+            <th>Giao Cho </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="table-body">
+        @foreach (var item in ViewBag.listEmployeeByProjectId)
+        {
+            <tr class="text-center" style="color: #00bcd4">
+                @foreach (var item1 in ViewBag.listEmployeeByRoleId)
+                {
+                    <td>@item1.EmployeeFullname</td>
+                }
+                <td>@item.DepartmentName</td>
+                <td>@item.EmployeeFullname</td>
+                <td>
+                    <a onclick="openModalDetailWork(this)" data-id="@item.ProjectId" data-content="@item.EmployeeId" style="color:#00bcd4">Chi Tiết</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

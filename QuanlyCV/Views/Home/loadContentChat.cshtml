@@ -1,0 +1,16 @@
+﻿@foreach (var lstProDiscussions in ViewBag.lstProjectDiscussionsByProjectId)
+{
+    <li>
+        <div style="width: 8%; float: left; margin-right: 3%;">
+            <img src="Content/images/avatar/@lstProDiscussions.EmployeeAvatar" alt="" style="width:40px;height:40px">
+        </div>
+        <div class="content-discusssion" style="width: 89%; float: left;">
+            <a class="discussion-fullname">@lstProDiscussions.EmployeeFullname</a>
+            <span class="discussion-content-text">@lstProDiscussions.DiscussionContent</span>
+            <div>
+                <a class="discussion-action">Thích</a>
+                <a class="discussion-action">Bình luận</a>
+            </div>
+        </div>
+    </li>
+}
