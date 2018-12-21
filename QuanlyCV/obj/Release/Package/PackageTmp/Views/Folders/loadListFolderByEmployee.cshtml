@@ -1,0 +1,134 @@
+﻿@model IEnumerable<QuanlyCV.Models.Folder>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng nhập website quản lý công việc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Content/css/font.css" type="text/css" />
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/myfolder.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/myworking.css">
+    <script src="~/Scripts/js/jquery2.0.3.min.js"></script>
+    <script src="~/Scripts/js/bootstrap.js"></script>
+    <script src="~/Scripts/js/myscript.js"></script>
+    <script src="~/Scripts/js/myfolder.js"></script>
+    <script src="~/Scripts/js/myworking.js"></script>
+</head>
+<body class="">
+    <ul>
+        @foreach (var item in Model)
+        {
+            if (item.ParentId == 0)
+            {
+                <li>
+                    <a href="javascript:;" title="" class="item-working" data-id="@item.FolderId"><i class="fa fa-folder-o"></i>@item.FolderName</a>
+                    <div class="list-sub-working">
+                        <ul>
+                            @foreach (var item1 in Model)
+                            {
+                                if (item1.ParentId == item.FolderId)
+                                {
+                                    <li>
+                                        <a href="javascript:;" title="" class="item-working" data-id="@item1.FolderId"><i class="fa fa-folder-o"></i><input type="text" name="" value="@item1.FolderName" disabled="" onblur="updateNameFolder(this)" /></a>
+                                        <div class="list-sub-working">
+                                            <ul>
+                                                @foreach (var item2 in Model)
+                                                {
+                                                    if (item2.ParentId == item1.FolderId)
+                                                    {
+                                                        <li><a href="javascript:;" class="item-working" id="left-working-1" data-id="@item2.FolderId"><i class="fa fa-folder-o"></i><input type="text" name="" value="@item2.FolderName" disabled="" onblur="updateNameFolder(this)" /></a></li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </li>
+            }
+
+        }
+    </ul>
+    <script>
+        // js cho click các thư mục bên trái
+        var IdFolder = "";
+        $(".item-working").dblclick(function () {
+            // $(".item-working").removeClass("active");
+            $(".list-action").css("display", "none");
+            if ($(this).find("i").hasClass("fa-folder-o")) {
+                $(this).find("i.fa-folder-o").removeClass("fa-folder-o").addClass("fa-folder-open-o").hasClass("fa-folder-o");
+                $(this).siblings(':first').css("display", "block");
+                var workingId = $(this).data("id");
+                IdFolder = workingId;
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("LoadModelAddFolderByEmployee", "Folders")",
+                    data: { id: workingId },
+                    success: function (rps) {
+                        $(".model-add-Folder").html(rps);
+                    }
+                });
+
+            } else {
+                $(this).find("i.fa-folder-open-o").removeClass("fa-folder-open-o").addClass("fa-folder-o").hasClass("fa-folder-open-o");
+                $(this).siblings(':first').css("display", "none");
+            }
+            // $(this).addClass("active");
+        });
+        $(".item-working").click(function () {
+            $(".item-working").removeClass("active");
+            $(this).addClass("active");
+            $(".btn-add-folder").removeAttr("disabled");
+            $(".btn-edit-folder").removeAttr("disabled");
+            $(".btn-delete-folder").removeAttr("disabled");
+            IdFolder = $(this).data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("LoadModelAddFolderByEmployee", "Folders")",
+                data: { id: IdFolder },
+                success: function (rps) {
+                    $(".model-add-Folder").html(rps);
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadlistFileByFolderIdByEmployee", "Folders")",
+                data: { id: IdFolder },
+                success: function (rps) {
+                    $(".lst-file-by-Employee").html(rps);
+                }
+
+            });
+        });
+        function updateNameFolder(e) {
+            var content = $(e).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UpdateNameFolderByEmployee","Folders")",
+                data: { id: IdFolder, FolderName: content },
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("loadListFolderByEmployee", "Folders")",
+                        data: {},
+                        success: function (rps) {
+                            $(".lst-Folder-By-Employee").html(rps);
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

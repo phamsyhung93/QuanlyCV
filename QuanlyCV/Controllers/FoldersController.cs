@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace QuanlyCV.Controllers
 {
-    //[AuthorizePermissions]
+    [AuthorizePermissions]
     public class FoldersController : Controller
     {
         WorkManagermentEntities db = new WorkManagermentEntities();

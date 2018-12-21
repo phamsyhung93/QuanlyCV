@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng nhập website quản lý công việc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Content/css/font.css" type="text/css" />
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/mystyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/myfolder.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/myworking.css">
+    <script src="~/Scripts/js/jquery2.0.3.min.js"></script>
+    <script src="~/Scripts/js/bootstrap.js"></script>
+    <script src="~/Scripts/js/myscript.js"></script>
+    <script src="~/Scripts/js/myfolder.js"></script>
+    <script src="~/Scripts/js/myworking.js"></script>
+</head>
+<body class="">
+    <ul>
+        @foreach (var listFolder in ViewBag.lstFolderByProject)
+        {
+            if (listFolder.ParentId == 0)
+            {
+                <li>
+                    <a href="javascript:;" title="" class="item-working" data-id="@listFolder.FolderId" data-content="@ViewBag.ProjectId"><i class="fa fa-folder-o"></i>@listFolder.FolderName</a>
+                    <div class="list-sub-working">
+                        <ul>
+                            @foreach (var listFolder1 in ViewBag.lstFolderByProject)
+                            {
+                                if (listFolder1.ParentId == listFolder.FolderId)
+                                {
+                                    <li>
+                                        <a href="javascript:;" title="" class="item-working" data-id="@listFolder1.FolderId" data-content="@ViewBag.ProjectId"><i class="fa fa-folder-o"></i><input type="text" name="" value="@listFolder1.FolderName" disabled="" onblur="updateNameFolder(this)"/></a>
+                                        <div class="list-sub-working">
+                                            <ul>
+                                                @foreach (var listFolder2 in ViewBag.lstFolderByProject)
+                                                {
+                                                    if (listFolder2.ParentId == listFolder1.FolderId)
+                                                    {
+                                                        <li><a href="javascript:;" class="item-working" id="left-working-1" data-id="@listFolder2.FolderId" data-content="@ViewBag.ProjectId"><i class="fa fa-folder-o"></i><input type="text" name="" value="@listFolder2.FolderName" disabled="" onblur="updateNameFolder(this)"/></a></li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </li>
+            }
+        }
+
+    </ul>
+    <script>
+        // js cho click các thư mục bên trái
+        var IdFolder = "";
+        var IdProject = "";
+        $(".item-working").dblclick(function () {
+            // $(".item-working").removeClass("active");
+            $(".list-action").css("display", "none");
+            if ($(this).find("i").hasClass("fa-folder-o")) {
+                $(this).find("i.fa-folder-o").removeClass("fa-folder-o").addClass("fa-folder-open-o").hasClass("fa-folder-o");
+                $(this).siblings(':first').css("display", "block");
+                var workingId = $(this).data("id");
+                var projectId = $(this).data("content");
+                IdFolder = workingId;
+                IdProject = projectId;
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("loadModelAddFolder", "Home")",
+                    data: { id: workingId, ProjectId: projectId },
+                    success: function (rps) {
+                        $(".model-add-Folder").html(rps);
+                    }
+                });
+
+            } else {
+                $(this).find("i.fa-folder-open-o").removeClass("fa-folder-open-o").addClass("fa-folder-o").hasClass("fa-folder-open-o");
+                $(this).siblings(':first').css("display", "none");
+            }
+            // $(this).addClass("active");
+        });
+       $(".item-working").click(function () {
+            $(".item-working").removeClass("active");
+            $(this).addClass("active");
+            $(".btn-add-folder").removeAttr("disabled");
+            $(".btn-edit-folder").removeAttr("disabled");
+            $(".btn-delete-folder").removeAttr("disabled");
+            IdFolder = $(this).data("id");
+            IdProject = $(this).data("content");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadModelAddFolder", "Home")",
+                data: { id: IdFolder, ProjectId: IdProject },
+                success: function (rps) {
+                    $(".model-add-Folder").html(rps);
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadlistFileByFolderId", "Home")",
+                data: { id: IdFolder, ProjectId: IdProject },
+                success: function (rps) {
+                    $(".list-folder-right").html(rps);
+                }
+
+            });
+        });
+
+
+        function deleteFolder(e) {
+            swal({
+                title: "Bạn Có Muốn Xóa Không?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+              .then((willDelete) => {
+                  if (willDelete) {
+                      $.ajax({
+                          type: "POST",
+                          url: "@Url.Action("DeleteFolder", "Home")",
+                          data: { id: IdFolder },
+                          success: function (rps) {
+                              $.ajax({
+                                  type: "POST",
+                                  url: "@Url.Action("loadListFolderByProjectId","Home")",
+                                  data: { id: IdProject },
+                                  success: function (rps) {
+                                      $(".working-left-top").html(rps);
+                                  }
+                              });
+                          }
+                      });
+                  } else {
+                      return false;
+                  }
+              });
+        }
+        function updateNameFolder(e) {
+            var content = $(e).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UpdateNameFolder","Home")",
+                data: { id: IdFolder, FolderName: content, ProjectId: IdProject },
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("loadListFolderByProjectId","Home")",
+                        data: { id: IdProject },
+                        success: function (rps) {
+                            $(".working-left-top").html(rps);
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>

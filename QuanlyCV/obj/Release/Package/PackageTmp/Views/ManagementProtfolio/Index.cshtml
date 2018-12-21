@@ -1,0 +1,947 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-Protfolio">
+    <div class="menu-left-Protfolio col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="menu-header-Protfolio text-center">
+            <span>Menu</span>
+        </div>
+        <div class="menu-content-Protfolio">
+            <ul>
+                <li>
+                    <a data-id="1" onclick="openMenuProtfolio(this)">Quản lý Phòng Ban</a>
+                </li>
+                <li>
+                    <a data-id="2" onclick="openMenuProtfolio(this)">Quản lý Nhân Viên</a>
+                </li>
+                <li>
+                    <a data-id="3" onclick="openMenuProtfolio(this)">Quản lý Phân Quyền</a>
+                </li>
+                <li>
+                    <a data-id="4" onclick="openMenuProtfolio(this)">Quản lý Chức Vụ</a>
+                </li>
+                <li>
+                    <a data-id="5" onclick="openMenuProtfolio(this)">Sét Chức Vụ</a>
+                </li>
+                <li>
+                    <a data-id="6" onclick="openMenuProtfolio(this)">Quản lý Khu Vực</a>
+                </li>
+                <li>
+                    <a data-id="7" onclick="openMenuProtfolio(this)">Quản lý Quyền Của Khu Vực</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-ManagementProtfolio col-lg-10 col-md-10 col-sm-10 col-xs-10" style="height:100%">
+
+    </div>
+</div>
+@section scripts{
+    <script>
+        function openMenuProtfolio(e) {
+            var item = $(e).data("id");
+            switch (item) {
+                case 1:
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Department")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                    break;
+                case 2:
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Employee")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                    break;
+                case 3:
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "GrantPermissions")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                    break;
+                case 4:
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Role")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                    break;
+                case 5:
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "SetPermissions")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                    break;
+                case 6:
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "ManagerZones")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                    break;
+                case 7:
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Permissions")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                    break;
+            }
+        };
+
+        function openViewCreateDepartment(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ViewCreate", "Department")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+        function ViewUpdateDepartment(e) {
+            var DepartmentId = $(e).data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ViewUpdate", "Department")",
+                data: { id: DepartmentId },
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+        function CreateDepartment(e) {
+            e.preventDefault();
+            var DepartmentName = $("#DepartmentName").val();
+            var DepartmentId = $("#DepartmentId").val();
+            var DepartmentStatus = $("#DepartmentStatus").val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Create", "Department")",
+                data: { DepartmentName: DepartmentName, DepartmentId: DepartmentId, DepartmentStatus: DepartmentStatus },
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Department")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                }
+            });
+        }
+        function updateDeparment(e) {
+            e.preventDefault();
+            var DepartmentIdUpdate = $("#DepartmentIdUpdate").val();
+            var DepartmentNameUpdate = $("#DepartmentNameUpdate").val();
+            var ParentIdUpdate = $("#ParentIdUpdate").val();
+            var DepartmentStatusUpdate = $("#DepartmentStatusUpdate").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Update", "Department")",
+                data: { DepartmentId: DepartmentIdUpdate, DepartmentName: DepartmentNameUpdate, ParentId: ParentIdUpdate, DepartmentStatus: DepartmentStatusUpdate },
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Department")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                }
+            });
+        }
+        function deleteDepartment(e) {
+            var id = $(e).data("id");
+            swal({
+                title: "Bạn Có Muốn Xóa Không?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+             .then((willDelete) => {
+                 if (willDelete) {
+                     $.ajax({
+                         type: "POST",
+                         url: "@Url.Action("Delete", "Department")",
+                         data: { id: id },
+                         success: function (rps) {
+                             $.ajax({
+                                 type: "POST",
+                                 url: "@Url.Action("Index", "Department")",
+                                 data: {},
+                                 success: function (rps) {
+                                     $(".content-ManagementProtfolio").html(rps);
+                                 }
+                             });
+                         }
+                     });
+                 } else {
+                     return false;
+                 }
+             });
+        }
+        function backCreateDepartment(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "Department")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+        function backEmployee(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "Employee")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+        function CreateEmployee(e) {
+            e.preventDefault();
+            var EmployeeFullname = $("#EmployeeFullname").val();
+            var EmployeeBirthday = $("#EmployeeBirthday").val();
+            var EmployeeGender = $("#EmployeeGender").val();
+            var EmployeeIdCard = $("#EmployeeIdCard").val();
+            var EmployeePhone = $("#EmployeePhone").val();
+            var EmployeeAddress = $("#EmployeeAddress").val();
+            var EmployeeEmail = $("#EmployeeEmail").val();
+            var EmployeeAvatarFile = $("#EmployeeAvatarFile").get(0);
+            var filesAvatar = EmployeeAvatarFile.files;
+            var EmployeeCoverPictureFile = $("#EmployeeCoverPictureFile").get(0);
+            var fliesCoverPictureFile = EmployeeCoverPictureFile.files;
+            var DepartmentId = $("#DepartmentId").val();
+            var RoleId = $("#RoleId").val();
+            var EmployeeCode = $("#EmployeeCode").val();
+            var EmployeeAccountNumber = $("#EmployeeAccountNumber").val();
+            var EmployeeAccountName = $("#EmployeeAccountName").val();
+            var EmployeeType = $("#EmployeeType").val();
+            var EmployeeStatus = $("#EmployeeStatus").val();
+            var fileData = new FormData();
+            for (var i = 0; i < filesAvatar.length; i++) {
+                fileData.append(filesAvatar[i].name, filesAvatar[i]);
+            }
+            for (var i = 0; i < fliesCoverPictureFile.length; i++) {
+                fileData.append(fliesCoverPictureFile[i].name, fliesCoverPictureFile[i]);
+            }
+            fileData.append('EmployeeFullname', EmployeeFullname);
+            fileData.append('EmployeeBirthday', EmployeeBirthday);
+            fileData.append('EmployeeGender', EmployeeGender);
+            fileData.append('EmployeeIdCard', EmployeeIdCard);
+            fileData.append('EmployeePhone', EmployeePhone);
+            fileData.append('EmployeeAddress', EmployeeAddress);
+            fileData.append('EmployeeEmail', EmployeeEmail);
+            fileData.append('DepartmentId', DepartmentId);
+            fileData.append('RoleId', RoleId);
+            fileData.append('EmployeeCode', EmployeeCode);
+            fileData.append('EmployeeAccountNumber', EmployeeAccountNumber);
+            fileData.append('EmployeeAccountName', EmployeeAccountName);
+            fileData.append('EmployeeType', EmployeeType);
+            fileData.append('EmployeeStatus', EmployeeStatus);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CreateEmployee", "Employee")",
+                dataType: "json",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: fileData,
+                success: function (result, status, xhr) {
+                    if (result == 'True') {
+                        $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("loadTableEmployee", "Employee")",
+                            data: {},
+                            success: function (rps) {
+                                $(".tbl-list-Employee").html(rps);
+                            }
+                        });
+                    }
+                }
+            });
+            $("#EmployeeFullname").val("");
+            $("#EmployeeBirthday").val("");
+            $("#EmployeeGender").val("");
+            $("#EmployeeIdCard").val("");
+            $("#EmployeePhone").val("");
+            $("#EmployeeAddress").val("");
+            $("#EmployeeEmail").val("");
+            $("#EmployeeAvatarFile").val("");
+            $("#EmployeeCoverPictureFile").val("");
+            $("#DepartmentId").val("");
+            $("#RoleId").val("");
+            $("#EmployeeCode").val("");
+            $("#EmployeeAccountNumber").val("");
+            $("#EmployeeAccountName").val("");
+            $("#EmployeeType").val("");
+            $("#EmployeeStatus").val("");
+            var modalAddEmployee = document.getElementById('modalAddEmployee');
+            modalAddEmployee.style.display = "none";
+        }
+
+        function deleteEmployee(e) {
+            var id = $(e).data("id");
+            swal({
+                title: "Bạn Có Muốn Xóa Không?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+             .then((willDelete) => {
+                 if (willDelete) {
+                     $.ajax({
+                         type: "POST",
+                         url: "@Url.Action("deleteEmployee", "Department")",
+                         data: { id: id },
+                         success: function (rps) {
+                             $.ajax({
+                                 type: "POST",
+                                 url: "@Url.Action("Index", "Employee")",
+                                 data: {},
+                                 success: function (rps) {
+                                     $(".content-ManagementProtfolio").html(rps);
+                                 }
+                             });
+                         }
+                     });
+                 } else {
+                     return false;
+                 }
+             });
+        }
+
+        function updateEmployee(e) {
+            e.preventDefault();
+            var EmployeeId = $("#EmployeeIdEdit").val();
+            var DepartmentIdOldEdit = $("#DepartmentIdOldEdit").val();
+            var EmployeeFullname = $("#EmployeeFullnameEdit").val();
+            var EmployeeBirthday = $("#EmployeeBirthdayEdit").val();
+            var EmployeeGender = $("#EmployeeGenderEdit").val();
+            var EmployeeIdCard = $("#EmployeeIdCardEdit").val();
+            var EmployeePhone = $("#EmployeePhoneEdit").val();
+            var EmployeeAddress = $("#EmployeeAddressEdit").val();
+            var EmployeeEmail = $("#EmployeeEmailEdit").val();
+            var DepartmentId = $("#DepartmentIdEdit").val();
+            var RoleId = $("#RoleIdEdit").val();
+            var EmployeeCode = $("#EmployeeCodeEdit").val();
+            var EmployeeAccountNumber = $("#EmployeeAccountNumberEdit").val();
+            var EmployeeAccountName = $("#EmployeeAccountNameEdit").val();
+            var EmployeeType = $("#EmployeeTypeEdit").val();
+            var EmployeeStatus = $("#EmployeeStatusEdit").val();
+            var fileData = new FormData();
+            fileData.append('EmployeeId', EmployeeId);
+            fileData.append('DepartmentIdOldEdit', DepartmentIdOldEdit);
+            fileData.append('EmployeeFullname', EmployeeFullname);
+            fileData.append('EmployeeBirthday', EmployeeBirthday);
+            fileData.append('EmployeeGender', EmployeeGender);
+            fileData.append('EmployeeIdCard', EmployeeIdCard);
+            fileData.append('EmployeePhone', EmployeePhone);
+            fileData.append('EmployeeAddress', EmployeeAddress);
+            fileData.append('EmployeeEmail', EmployeeEmail);
+            fileData.append('DepartmentId', DepartmentId);
+            fileData.append('RoleId', RoleId);
+            fileData.append('EmployeeCode', EmployeeCode);
+            fileData.append('EmployeeAccountNumber', EmployeeAccountNumber);
+            fileData.append('EmployeeAccountName', EmployeeAccountName);
+            fileData.append('EmployeeType', EmployeeType);
+            fileData.append('EmployeeStatus', EmployeeStatus);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("updateEmployee", "Employee")",
+                dataType: "json",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: fileData,
+                success: function (result, status, xhr) {
+                    if (result == 'True') {
+                        $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("loadTableEmployee", "Employee")",
+                            data: {},
+                            success: function (rps) {
+                                $(".tbl-list-Employee").html(rps);
+                            }
+                        });
+                    }
+                }
+            });
+            $("#EmployeeIdEdit").val("");
+            $("#DepartmentIdOldEdit").val("");
+            $("#EmployeeFullname").val("");
+            $("#EmployeeBirthday").val("");
+            $("#EmployeeGender").val("");
+            $("#EmployeeIdCard").val("");
+            $("#EmployeePhone").val("");
+            $("#EmployeeAddress").val("");
+            $("#EmployeeEmail").val("");
+            $("#DepartmentId").val("");
+            $("#RoleId").val("");
+            $("#EmployeeCode").val("");
+            $("#EmployeeAccountNumber").val("");
+            $("#EmployeeAccountName").val("");
+            $("#EmployeeType").val("");
+            $("#EmployeeStatus").val("");
+            var modalEditEmployee = document.getElementById('modalEditEmployee');
+            modalEditEmployee.style.display = "none";
+        }
+
+        function goToGrantPermissions(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "GrantPermissions")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function SetGrantPermissions(e) {
+            var id = $(e).data("id");
+            var idDepartment = $(e).data("content");
+            $.ajax({
+                type: "POST",
+                url: " @Url.Action("setGrantPermissions", "GrantPermissions")",
+                data: { id: id, idDepartment: idDepartment },
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function insertGrantPermissions(e) {
+            e.preventDefault();
+            var EmployeeId = $("#EmployeeIdGrantPermissions").val();
+            var DepartmentId = $("#DepartmentIdGrantPermissions").val();
+            var RoleId = $("#RoleIdGrantPermissions").val();
+            $.ajax({
+                type: "POST",
+                url: " @Url.Action("insertGrantPermissions", "GrantPermissions")",
+                data: { EmployeeId: EmployeeId, DepartmentId: DepartmentId, RoleId: RoleId },
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "GrantPermissions")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                }
+            });
+
+        }
+
+        function backRole(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "Role")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function ViewCreateRole(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ViewCreate", "Role")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function CreateRole(e) {
+            e.preventDefault();
+            var RoleName = $("#RoleNameRole").val();
+            var RoleStatus = $("#RoleStatusRole").val();
+            var r = { RoleName, RoleStatus};
+            $.ajax({
+                type: "POST",
+                url: " @Url.Action("Create", "Role")",
+                data: r,
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Role")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                }
+            });
+        }
+
+        function ViewUpdateRole(e) {
+            var id = $(e).data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ViewUpdate", "Role")",
+                data: { id: id },
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function updateRole(e) {
+            e.preventDefault();
+            var RoleId = $("#RoleIdEdit").val();
+            var RoleName = $("#RoleNameEdit").val();
+            var RoleStatus = $("#RoleStatusEdit").val();
+            var r = { RoleId, RoleName, RoleStatus};
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Update", "Role")",
+                data: r,
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Role")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });;
+                }
+            });
+
+        }
+
+        function DeleteRole(e) {
+            var id = $(e).data("id");
+            swal({
+                title: "Bạn Có Muốn Xóa Không?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+             .then((willDelete) => {
+                 if (willDelete) {
+                     $.ajax({
+                         type: "POST",
+                         url: "@Url.Action("Delete", "Role")",
+                         data: { id: id },
+                         success: function (rps) {
+                             $.ajax({
+                                 type: "POST",
+                                 url: "@Url.Action("Index", "Role")",
+                                 data: {},
+                                 success: function (rps) {
+                                     $(".content-ManagementProtfolio").html(rps);
+                                 }
+                             });
+                         }
+                     });
+                 } else {
+                     return false;
+                 }
+             });
+        }
+
+        function setPermissionsByManagerZone(e) {
+            var id = $(e).data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("setPermissionsByManagerZone", "SetPermissions")",
+                data: { id: id },
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function backSetPermissions(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "SetPermissions")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function createManagerZones(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Create", "ManagerZones")",
+                data: {},
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "ManagerZones")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                            alert("Thêm mới thành công");
+                        }
+                    });
+                }
+            });
+        }
+
+        function ViewUpdateManagerZone(e) {
+            var id = $(e).data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ViewUpdate", "ManagerZones")",
+                data: { id: id },
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+
+        function DeleteManagerZone(e) {
+            var id = $(e).data("id");
+            swal({
+                title: "Bạn Có Muốn Xóa Không?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+             .then((willDelete) => {
+                 if (willDelete) {
+                     $.ajax({
+                         type: "POST",
+                         url: "@Url.Action("Delete", "ManagerZones")",
+                         data: { id: id },
+                         success: function (rps) {
+                             $.ajax({
+                                 type: "POST",
+                                 url: "@Url.Action("Index", "ManagerZones")",
+                                 data: {},
+                                 success: function (rps) {
+                                     $(".content-ManagementProtfolio").html(rps);
+                                 }
+                             });
+                         }
+                     });
+                 } else {
+                     return false;
+                 }
+             });
+        }
+
+
+        function UpdateManagerZones(e) {
+            e.preventDefault();
+            var ManagerZoneId = $("#ManagerZoneIdManagerZones").val();
+            var ManagerZoneName = $("#ManagerZoneNameManagerZones").val();
+            var DisplayNameController = $("#DisplayNameControllerManagerZones").val();
+            var ManagerZoneStatus = $("#ManagerZoneStatusManagerZones").val();
+
+            var m = { ManagerZoneId, ManagerZoneName, DisplayNameController, ManagerZoneStatus};
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Update", "ManagerZones")",
+                data: m,
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "ManagerZones")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                }
+            });
+        }
+        function BackManagerZones(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "ManagerZones")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function GoToPermissions(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "Permissions")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function CreatePermissions(e) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Create", "Permissions")",
+                data: {},
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Permissions")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                            alert("Thêm mới Thành Công");
+                        }
+                    });
+                }
+            });
+        }
+
+        function ViewUpdatePermissions(e) {
+            var id = $(e).data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ViewUpdate", "Permissions")",
+                data: { id: id },
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+
+        function UpdatePermissions(e) {
+            e.preventDefault();
+            var PermissionId = $("#PermissionIdUpdate").val();
+            var PermissionName = $("#PermissionNameUpdate").val();
+            var DisplayNameAction = $("#DisplayNameActionUpdate").val();
+            var ManagerZoneID = $("#ManagerZoneIDUpdate").val();
+            var PermissionStatus = $("#PermissionStatusUpdate").val();
+
+            var p = { PermissionId, PermissionName, DisplayNameAction, ManagerZoneID, PermissionStatus};
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UpdatePermissions", "Permissions")",
+                data: p,
+                success: function (rps) {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Index", "Permissions")",
+                        data: {},
+                        success: function (rps) {
+                            $(".content-ManagementProtfolio").html(rps);
+                        }
+                    });
+                }
+            });
+        }
+
+
+        function DeletePermissions(e) {
+            var id = $(e).data("id");
+            swal({
+                title: "Bạn Có Muốn Xóa Không?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+             .then((willDelete) => {
+                 if (willDelete) {
+                     $.ajax({
+                         type: "POST",
+                         url: "@Url.Action("Delete", "Permissions")",
+                         data: { id: id },
+                         success: function (rps) {
+                             $.ajax({
+                                 type: "POST",
+                                 url: "@Url.Action("Index", "Permissions")",
+                                 data: {},
+                                 success: function (rps) {
+                                     $(".content-ManagementProtfolio").html(rps);
+                                 }
+                             });
+                         }
+                     });
+                 } else {
+                     return false;
+                 }
+             });
+        }
+
+        function BackPermissions() {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Index", "Permissions")",
+                data: {},
+                success: function (rps) {
+                    $(".content-ManagementProtfolio").html(rps);
+                }
+            });
+        }
+        $('#table').basictable();
+
+        $('#table-breakpoint').basictable({
+            breakpoint: 768
+        });
+
+        $('#table-swap-axis').basictable({
+            swapAxis: true
+        });
+
+        $('#table-force-off').basictable({
+            forceResponsive: false
+        });
+
+        $('#table-no-resize').basictable({
+            noResize: true
+        });
+
+        $('#table-two-axis').basictable();
+
+        $('#table-max-height').basictable({
+            tableWrapper: true
+        });
+
+
+
+        function openModalEditEmployee(e) {
+            var modalEditEmployee = document.getElementById('modalEditEmployee');
+            var closeModalEditEmployee = document.getElementsByClassName("closeModalEditEmployee")[0];
+            modalEditEmployee.style.display = "block";
+            var idEmployee = $(e).data("id");
+            //alert(idEmployee);
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadModelEditEmployee", "Employee")",
+                data: { id: idEmployee },
+                success: function (rps) {
+                    $(".model-edit-Employee").html(rps);
+                }
+            });
+            closeModalEditEmployee.onclick = function () {
+                modalEditEmployee.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target == modalEditEmployee) {
+                    modalEditEmployee.style.display = "none";
+                }
+            }
+        }
+
+
+        function FindByDeparment(e) {
+            var val = $(e).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadListEmployeeByDepartment", "Employee")",
+                data: { id: val },
+                success: function (rps) {
+                    $(".tbl-list-Employee").html(rps);
+                }
+            });
+        };
+        function findEmployeeByDepartment(e) {
+            var val = $(e).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadListEmployeeByDepartmentGranPermissions", "GrantPermissions")",
+                data: { id: val },
+                success: function (rps) {
+                    $(".tbl-list-Employee-by-Department").html(rps);
+                }
+            });
+        };
+
+        function findByManagerZone(e) {
+            var val = $(e).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadListPermissionsManagerZone", "Permissions")",
+                data: { id: val },
+                success: function (rps) {
+                    $(".tbl-list-Permisstion").html(rps);
+                }
+            });
+        };
+
+        function listPermissionsByManagerZone(e) {
+            var val = $(e).val();
+            var RoleId = $("#list-permissions-by-managerZone option:selected").data("id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("loadListPermissionsManagerZone", "SetPermissions")",
+                data: { id: val, roleId: RoleId },
+                success: function (rps) {
+                    $(".tbl-list-Permisstion-by-ManagerZone").html(rps);
+                }
+            });
+        };
+
+        function setPermission(e) {
+            var permissionsId = $(e).val();
+            var managerZoneId = $(e).data("id");
+            var RoleId = $(e).data("content");
+            if ($(e).prop('checked')) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("insertSetPermissions", "SetPermissions")",
+                    data: { idPermissions: permissionsId, managerZoneName: managerZoneId, roleId: RoleId },
+                    success: function (rps) {
+                        if (rps == 'True') {
+                            alert("Thêm quyền thành công");
+                        }
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("deleteSetPermissions", "SetPermissions")",
+                    data: { idPermissions: permissionsId, managerZoneName: managerZoneId, roleId: RoleId },
+                    success: function (rps) {
+                        if (rps == 'True') {
+                            alert("Xóa quyền thành công");
+                        }
+                    }
+                });
+            }
+
+        }
+    </script>
+}

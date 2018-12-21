@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace QuanlyCV.Controllers
 {
-    //[AuthorizePermissions]
+
     public class InfomationController : Controller
     {
         WorkManagermentEntities db = new WorkManagermentEntities();
@@ -156,17 +156,17 @@ namespace QuanlyCV.Controllers
                             db.Entry(e).State = System.Data.Entity.EntityState.Modified;
                             db.SaveChanges();
                             TempData["error"] = "đổi mật khẩu thành công";
-                            return View();
+                            return RedirectToAction("Index","Home");
                         }
                         else
                         {
                             TempData["error"] = "mật khẩu mới không khớp";
-                            return View();
+                            return RedirectToAction("ViewChangePassword");
                         }
                     }else
                     {
                         TempData["error"] = "mật khẩu cũ không đúng";
-                        return View();
+                        return RedirectToAction("ViewChangePassword");
                     }
                 }else
                 {

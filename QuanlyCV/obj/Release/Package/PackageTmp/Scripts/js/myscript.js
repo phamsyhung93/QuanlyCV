@@ -130,10 +130,7 @@ $(".btn-do-add").click(function() {
 	    	$(".cvthuong").css("display","none");
 	    }
 });
-function setActiveMenuleft(e){
-  $(".li-menu-left").removeClass('active');
-  $(e).addClass('active');
-}
+
 
 $(".input1").click(function(event) {
 	var form1 = document.getElementById('form1');
@@ -214,7 +211,7 @@ function openModalDiscussion() {
 
 function textAreaAdjust(o) {
 	o.style.height = "1px";
-	o.style.height = (25+o.scrollHeight)+"px";
+	o.style.height = (25 + o.scrollHeight) + "px";
 }
 // ========== modal open discussion ==========>>>>>
 // ========== modal  chi tiet them cong viec =============>>>>>>
@@ -538,19 +535,7 @@ function openModalGhiChu(){
 		}
 	}
 }
-function openModalDetailWork(){
-	var modalDetailWork= document.getElementById('modalDetailWork');
-	var closeModalDetailWork= document.getElementsByClassName("closeModalDetailWork")[0];
-	modalDetailWork.style.display = "block";
-	closeModalDetailWork.onclick = function() {
-		modalDetailWork.style.display = "none";
-	}
-	window.onclick = function(event) {
-		if (event.target == modalDetailWork) {
-			modalDetailWork.style.display = "none";
-		}
-	}
-}
+
 
 function openModalAddEmloyee(){
 	var modalAddEmployee= document.getElementById('modalAddEmployee');
@@ -732,6 +717,7 @@ $(".btn-edit-folder").click(function(event) {
 	$(".enable-edit").removeClass('enable-edit');
 	$(".active").children('input').addClass('enable-edit');
 	$(".enable-edit").removeAttr('disabled');
+
 });
 
 // ========== modal list project ==========>>>>>

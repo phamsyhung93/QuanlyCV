@@ -1,23 +1,19 @@
 ﻿
-@{
-    ViewBag.Title = "setPermissionsByManagerZone";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 <div class="main-grid">
     <div class="agile-grids">
         <!-- tables -->
 
         <div class="table-heading">
-            <h2>Xét Quyền</h2>
+            <h2>Sét Quyền</h2>
             <h4 style="color:darkred">@TempData["error"]</h4>
         </div>
-        <a href="@Url.Action("Index","SetPermissions")">Quay về</a>
-        <select id="list-permissions-by-managerZone" style="padding:5px;">
-                <option value="0">Lọc theo Khu Vực</option>
+        <a onclick="backSetPermissions(this)">Quay về</a>
+        <select id="list-permissions-by-managerZone" style="padding:5px;" onchange="listPermissionsByManagerZone(this)">
+                <option value="0">Khu Vực Quản Lý</option>
                 @foreach (var item in ViewBag.ManagerZone)
                 {
-                    <option value="@item.ManagerZoneId" data-id="@ViewBag.Role.RoleId">@item.ManagerZoneName</option>
+                    <option value="@item.ManagerZoneId" data-id="@ViewBag.Role.RoleId">@item.DisplayNameController</option>
                 }
             </select>
         <span class="text-right">Xét Quyền cho: @ViewBag.Role.RoleName</span>
@@ -29,50 +25,5 @@
         <!-- //tables -->
     </div>
 </div>
-@section scripts{
-    <script>
-        $('#list-permissions-by-managerZone').change(function () {
-            var val = $("#list-permissions-by-managerZone option:selected").val();
-            var RoleId = $("#list-permissions-by-managerZone option:selected").data("id");
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("loadListPermissionsManagerZone", "SetPermissions")",
-                data: { id: val,roleId : RoleId },
-            success: function (rps) {
-                $(".tbl-list-Permisstion-by-ManagerZone").html(rps);
-            }
-            });
-        });
 
-        function setPermission(e) {
-            var permissionsId = $(e).val();
-            var managerZoneId = $(e).data("id");
-            var RoleId = $(e).data("content");
-            if ($(e).prop('checked')) {
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("insertSetPermissions", "SetPermissions")",
-                    data: { idPermissions: permissionsId, managerZoneName: managerZoneId, roleId: RoleId },
-                    success: function (rps) {
-                        if (rps == 'True') {
-                            alert("Thêm quyền thành công");
-                        }
-                    }
-                });
-            } else {
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("deleteSetPermissions", "SetPermissions")",
-                    data: { idPermissions: permissionsId, managerZoneName: managerZoneId, roleId: RoleId },
-                success: function (rps) {
-                    if (rps == 'True') {
-                        alert("Xóa quyền thành công");
-                    }
-                }
-            });
-            }
-            
-        }
-</script>
-}
 

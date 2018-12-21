@@ -1303,7 +1303,7 @@ select::-ms-expand {
 		margin: 7% auto;
 		padding: 20px;
 		border: 1px solid #888;
-		width: 60%;
+		width: 23%;
 	}
 	.close-modal-list-project {
 		color: #aaa;
@@ -2842,4 +2842,12 @@ select::-ms-expand {
 
 .agile-tables{
     margin-bottom:30px!important;
+    height: 450px!important;
+    max-height: 450px!important;
+    overflow-x: hidden!important;
+    overflow: auto!important;
+    width:100%!important
+}
+.li-nhan{
+    display:flex;
 }

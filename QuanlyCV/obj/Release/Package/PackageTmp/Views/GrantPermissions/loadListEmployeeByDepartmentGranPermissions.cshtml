@@ -23,7 +23,7 @@
                 <td class="text-center">@item.RoleName</td>
                 <td class="text-center">
                     <ul class="ul-table-content-employee">
-                        <li><a href="@Url.Action("setGrantPermissions","GrantPermissions",new { id = @item.EmployeeId ,idDepartment = @item.DepartmentId})" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
+                        <li><a onclick="SetGrantPermissions(this)" data-id="@item.EmployeeId" data-content="@item.DepartmentId" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
                     </ul>
                 </td>
             </tr>

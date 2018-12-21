@@ -5,7 +5,9 @@
             <th></th>
             <th class="text-center">STT</th>
             <th class="text-center">Tên Quyền</th>
+            <th class="text-center">Tên Quyền Tiếng Việt</th>
             <th class="text-center">Tên Khu Vực</th>
+            <th class="text-center">Tên Khu Vực Tiếng Việt</th>
             <th class="text-center">Trạng Thái</th>
                 @*<th class="text-center">Thao Tác</th>*@
         </tr>
@@ -41,9 +43,17 @@
                         }
                     }
                 </td>
-                <td class="text-center">@stt</td>
-                <td class="text-center">@item.PermissionName</td>
-                <td class="text-center">@item.ManagerZoneID</td>
+                <td>@stt</td>
+                <td>@item.PermissionName</td>
+                <td>@item.DisplayNameAction</td>
+                <td>@item.ManagerZoneID</td>
+                @foreach (var item2 in ViewBag.lstManagerZones)
+                {
+                    if (item2.ManagerZoneName == item.ManagerZoneID)
+                    {
+                        <td>@item2.DisplayNameController</td>
+                    }
+                }
                 <td class="text-center">
                     @if (item.PermissionStatus == 1)
                     {

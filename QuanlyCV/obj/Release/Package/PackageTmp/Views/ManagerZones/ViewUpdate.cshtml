@@ -17,20 +17,25 @@
                     <div class="form-grids widget-shadow" data-example-id="basic-forms">
                         <div class="form-title">
                             <h4>Sửa Khu vực</h4>
+                            <a onclick="BackManagerZones(this)">Quay Về</a>
                         </div>
                         <div class="form-body">
-                            <form action="@Url.Action("Update","ManagerZones")" method="post">
-                                <input type="hidden" name="ManagerZoneId" id="ManagerZoneId" value="@Model.ManagerZoneId" />
+                            <form  method="post" onsubmit="UpdateManagerZones(event)">
+                                <input type="hidden" name="ManagerZoneId" id="ManagerZoneIdManagerZones" value="@Model.ManagerZoneId" />
                                 <div class="form-group">
                                     <label for="ManagerZoneName">Tên Khu Vực</label>
-                                    <input type="hidden" name="ManagerZoneName" class="form-control" id="ManagerZoneName" placeholder="Tên chức vụ" value="@Model.ManagerZoneName">
+                                    <input type="hidden" name="ManagerZoneName" class="form-control" id="ManagerZoneNameManagerZones" placeholder="Tên chức vụ" value="@Model.ManagerZoneName">
                                     <input type="text" name="" class="form-control" id="" placeholder="Tên chức vụ" disabled value="@Model.ManagerZoneName">
                                 </div>
                                 <div class="form-group">
+                                    <label for="ManagerZoneName">Tên Khu Vực Tiếng Việt</label>
+                                    <input type="text" name="DisplayNameController" class="form-control" id="DisplayNameControllerManagerZones" placeholder="Tên chức vụ" value="@Model.DisplayNameController">
+                                </div>
+                                <div class="form-group">
                                     <label for="ManagerZoneStatus">Trạng thái</label>
-                                    <select name="ManagerZoneStatus" class="form-control">
-                                        <option value="1" @(Model.ManagerZoneStatus == 1 ? "selected" : "")>Kích hoạt</option>
-                                        <option value="2" @(Model.ManagerZoneStatus == 2 ? "selected" : "")>Không kích hoạt</option>
+                                    <select name="ManagerZoneStatus" id="ManagerZoneStatusManagerZones" class="form-control">
+                                        <option value="1" @(Model.ManagerZoneStatus == 1 ? "selected" : "")>Hiển Thị</option>
+                                        <option value="2" @(Model.ManagerZoneStatus == 2 ? "selected" : "")>Không Hiển Thị</option>
                                     </select>
                                 </div>
 

@@ -1,9 +1,4 @@
 ﻿@model IEnumerable<QuanlyCV.Models.Role>
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 <div class="main-grid">
     <div class="agile-grids">
         <!-- tables -->
@@ -12,8 +7,7 @@
             <h2>Danh Sách Chức Vụ</h2>
             <h4 style="color:darkred">@TempData["error"]</h4>
         </div>
-        <a href="@Url.Action("ViewCreate","Role")"><img src="~/Content/images/add-member-icon-32.png" /></a>
-        <a class="text-right" href="@Url.Action("Index","SetPermissions")">Sét Quyền</a>
+        <a  onclick="ViewCreateRole(this)"><img src="~/Content/images/add-member-icon-32.png" /></a>
         <div class="agile-tables">
             <div class="w3l-table-info">
                 <table id="table">
@@ -35,18 +29,18 @@
                                 <td class="text-center">
                                     @if (item.RoleStatus == 1)
                                     {
-                                        <i class="fa fa-check" style="font-size: 20px; color: green;">Đang bật</i>
+                                        <i class="fa fa-check" style="font-size: 20px; color: green;">Hiển Thị</i>
                                     }
                                     else
                                     {
 
-                                        <i class="fa fa-times" style="font-size: 20px; color: red;">Đang tắt</i>
+                                        <i class="fa fa-times" style="font-size: 20px; color: red;">Không Hiển Thị</i>
                                     }
                                 </td>
                                 <td class="text-center">
                                     <ul style="display: flex; flex-direction: row; list-style: none; justify-content: center;">
-                                        <li><a href="@Url.Action("ViewUpdate","Role",new { id = @item.RoleId})" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
-                                        <li><a href="@Url.Action("Delete","Role",new { id = @item.RoleId})" title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
+                                        <li><a onclick="ViewUpdateRole(this)" data-id ="@item.RoleId" title="Chi tiết"><img src="~/Content/images/detail-icon-24.png" alt="Chi tiết" class="img-responsive"></a></li>
+                                        <li><a onclick="DeleteRole(this)" data-id="@item.RoleId" title="Xóa"><img src="~/Content/images/delete-icon-24.png" alt="xóa"></a></li>
                                     </ul>
                                 </td>
                             </tr>

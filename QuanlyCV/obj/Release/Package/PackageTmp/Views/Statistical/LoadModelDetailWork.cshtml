@@ -1,0 +1,34 @@
+﻿@foreach (var item in ViewBag.DetailEmployeeByWork)
+{
+    <div class="modal-content">
+        @*<span class="closeModalDetailWork">&times;</span>*@
+        <br />
+        <br />
+        <div class="text-center" style="width: 100%"><b style="color: #eb5a46">Chi Tiết Công Viêc:</b></div>
+        <form>
+            <div class="subdiv-modal-chi-tiet">
+                <span class="span-subdiv-modal-chi-tiet">Tên Công Viêc:</span>
+                <input type="text" name="ProjectName" id="ProjectName" value="@item.ProjectName" class="input-subdiv-modal-chi-tiet" />
+            </div>
+            <div class="subdiv-modal-chi-tiet">
+                <span class="span-subdiv-modal-chi-tiet">Người Thực Hiện:</span>
+                <input type="text" name="EmployeeFullname" id="EmployeeFullname" value="@item.EmployeeFullname" class="input-subdiv-modal-chi-tiet" />
+            </div>
+            <div class="subdiv-modal-chi-tiet">
+                <span class="span-subdiv-modal-chi-tiet">Phòng Ban:</span>
+                <input type="text" name="DepartmentName" id="DepartmentName" value="@item.DepartmentName" class="input-subdiv-modal-chi-tiet" />
+            </div>
+            <div class="subdiv-modal-chi-tiet">
+                <span class="span-subdiv-modal-chi-tiet">Chức Vụ</span>
+                <input type="text" name="RoleName" id="RoleName" value="@item.RoleName" class="input-subdiv-modal-chi-tiet" />
+            </div>
+            <div class="subdiv-modal-chi-tiet">
+                <span class="span-subdiv-modal-chi-tiet">Kiểu Dự Án</span>
+                <input type="text" name="ProjectTypeName" id="ProjectTypeName" value="@item.ProjectTypeName" class="input-subdiv-modal-chi-tiet" />
+            </div>
+            @*<div style="width: 100%">
+                <input type="Submit" name="" value="Lưu" class="inputsubmit-subdiv-modal-chi-tiet">
+            </div>*@
+        </form>
+    </div>
+}

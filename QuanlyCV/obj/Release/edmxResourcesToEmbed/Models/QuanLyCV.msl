@@ -83,6 +83,10 @@
           <ScalarProperty Name="EmployeeCoverPicture" ColumnName="EmployeeCoverPicture" />
           <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
           <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="EmployeeAccountNumber" ColumnName="EmployeeAccountNumber" />
+          <ScalarProperty Name="EmployeeAccountName" ColumnName="EmployeeAccountName" />
+          <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -218,6 +222,7 @@
           <ScalarProperty Name="ManagerZoneId" ColumnName="ManagerZoneId" />
           <ScalarProperty Name="ManagerZoneName" ColumnName="ManagerZoneName" />
           <ScalarProperty Name="ManagerZoneStatus" ColumnName="ManagerZoneStatus" />
+          <ScalarProperty Name="DisplayNameController" ColumnName="DisplayNameController" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -250,6 +255,7 @@
           <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
           <ScalarProperty Name="PermissionStatus" ColumnName="PermissionStatus" />
           <ScalarProperty Name="ManagerZoneID" ColumnName="ManagerZoneID" />
+          <ScalarProperty Name="DisplayNameAction" ColumnName="DisplayNameAction" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -313,8 +319,17 @@
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
           <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
-          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="ProjectStatus" ColumnName="ProjectStatus" />
+          <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectTypes">
+      <EntityTypeMapping TypeName="WorkManagermentModel.ProjectType">
+        <MappingFragment StoreEntitySet="ProjectType">
+          <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+          <ScalarProperty Name="ProjectTypeName" ColumnName="ProjectTypeName" />
+          <ScalarProperty Name="ProjectTypeStatus" ColumnName="ProjectTypeStatus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -376,6 +391,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SmallStepComments">
+      <EntityTypeMapping TypeName="WorkManagermentModel.SmallStepComment">
+        <MappingFragment StoreEntitySet="SmallStepComment">
+          <ScalarProperty Name="SmallStepCommentId" ColumnName="SmallStepCommentId" />
+          <ScalarProperty Name="SmallStepCommentContent" ColumnName="SmallStepCommentContent" />
+          <ScalarProperty Name="SmallStepCommentImage" ColumnName="SmallStepCommentImage" />
+          <ScalarProperty Name="SmallStepId" ColumnName="SmallStepId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="SmallStepCommentTime" ColumnName="SmallStepCommentTime" />
+          <ScalarProperty Name="SmallStepCommentStatus" ColumnName="SmallStepCommentStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SmallStepMembers">
       <EntityTypeMapping TypeName="WorkManagermentModel.SmallStepMember">
         <MappingFragment StoreEntitySet="SmallStepMembers">
@@ -386,6 +414,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SmallStepPriorityLevels">
+      <EntityTypeMapping TypeName="WorkManagermentModel.SmallStepPriorityLevel">
+        <MappingFragment StoreEntitySet="SmallStepPriorityLevel">
+          <ScalarProperty Name="SmallStepPriorityLevelId" ColumnName="SmallStepPriorityLevelId" />
+          <ScalarProperty Name="SmallStepPriorityLevelColor" ColumnName="SmallStepPriorityLevelColor" />
+          <ScalarProperty Name="SmallStepId" ColumnName="SmallStepId" />
+          <ScalarProperty Name="SmallStepPriorityLevelStatus" ColumnName="SmallStepPriorityLevelStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SmallSteps">
       <EntityTypeMapping TypeName="WorkManagermentModel.SmallStep">
         <MappingFragment StoreEntitySet="SmallSteps">
@@ -393,6 +431,18 @@
           <ScalarProperty Name="StepId" ColumnName="StepId" />
           <ScalarProperty Name="SmallStepDescription" ColumnName="SmallStepDescription" />
           <ScalarProperty Name="SmallStepStatus" ColumnName="SmallStepStatus" />
+          <ScalarProperty Name="SmallStepDescriptionDetail" ColumnName="SmallStepDescriptionDetail" />
+          <ScalarProperty Name="SmallStepLocation" ColumnName="SmallStepLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SmallStepWorkToDoes">
+      <EntityTypeMapping TypeName="WorkManagermentModel.SmallStepWorkToDo">
+        <MappingFragment StoreEntitySet="SmallStepWorkToDo">
+          <ScalarProperty Name="SmallStepWorkToDoId" ColumnName="SmallStepWorkToDoId" />
+          <ScalarProperty Name="SmallStepWorkToDoContent" ColumnName="SmallStepWorkToDoContent" />
+          <ScalarProperty Name="SmallStepId" ColumnName="SmallStepId" />
+          <ScalarProperty Name="SmallStepWorkToDoStatus" ColumnName="SmallStepWorkToDoStatus" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -416,6 +466,17 @@
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
           <ScalarProperty Name="StepStatus" ColumnName="StepStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="WorkManagermentModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -450,6 +511,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WorkManagermentModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WorkManagermentModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WorkManagermentModel.Store.sp_dropdiagram" />
     <FunctionImportMapping FunctionImportName="sp_getAllDepartmentByEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getAllDepartmentByEmployeeId">
       <ResultMapping>
         <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllDepartmentByEmployeeId_Result">
@@ -480,6 +544,8 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getAllPermissionsNameByRoleId" FunctionName="WorkManagermentModel.Store.sp_getAllPermissionsNameByRoleId" />
+    <FunctionImportMapping FunctionImportName="sp_GetAllYEARByProjectType" FunctionName="WorkManagermentModel.Store.sp_GetAllYEARByProjectType" />
     <FunctionImportMapping FunctionImportName="sp_getEmployeeByDepartmentWhereDepartmentId" FunctionName="WorkManagermentModel.Store.sp_getEmployeeByDepartmentWhereDepartmentId">
       <ResultMapping>
         <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result">
@@ -542,6 +608,10 @@
           <ScalarProperty Name="EmployeePhone" ColumnName="EmployeePhone" />
           <ScalarProperty Name="EmployeeStatus" ColumnName="EmployeeStatus" />
           <ScalarProperty Name="EmployeeGender" ColumnName="EmployeeGender" />
+          <ScalarProperty Name="EmployeeAccountName" ColumnName="EmployeeAccountName" />
+          <ScalarProperty Name="EmployeeAccountNumber" ColumnName="EmployeeAccountNumber" />
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="EmployeeType" ColumnName="EmployeeType" />
           <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
           <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
           <ScalarProperty Name="ParentId" ColumnName="ParentId" />
@@ -608,6 +678,101 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="sp_getAllPermissionsNameByRoleId" FunctionName="WorkManagermentModel.Store.sp_getAllPermissionsNameByRoleId" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="WorkManagermentModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="WorkManagermentModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WorkManagermentModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WorkManagermentModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_getAllProjectDiscussionsByProjectId" FunctionName="WorkManagermentModel.Store.sp_getAllProjectDiscussionsByProjectId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllProjectDiscussionsByProjectId_Result">
+          <ScalarProperty Name="DiscussionContent" ColumnName="DiscussionContent" />
+          <ScalarProperty Name="ProjectDiscussionId" ColumnName="ProjectDiscussionId" />
+          <ScalarProperty Name="ProjectDiscussionStatus" ColumnName="ProjectDiscussionStatus" />
+          <ScalarProperty Name="MemberDiscussionId" ColumnName="MemberDiscussionId" />
+          <ScalarProperty Name="MemberDiscussionStatus" ColumnName="MemberDiscussionStatus" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeAvatar" ColumnName="EmployeeAvatar" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_GetAllEmployeeByProjectID" FunctionName="WorkManagermentModel.Store.sp_GetAllEmployeeByProjectID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_GetAllEmployeeByProjectID_Result">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectMemberStatus" ColumnName="ProjectMemberStatus" />
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getAllEmployeeByRoleID" FunctionName="WorkManagermentModel.Store.sp_getAllEmployeeByRoleID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllEmployeeByRoleID_Result">
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getAllByProjectIdAndEmployeeId" FunctionName="WorkManagermentModel.Store.sp_getAllByProjectIdAndEmployeeId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="WorkManagermentModel.sp_getAllByProjectIdAndEmployeeId_Result">
+          <ScalarProperty Name="ProjectMemberId" ColumnName="ProjectMemberId" />
+          <ScalarProperty Name="ProjectMemberStatus" ColumnName="ProjectMemberStatus" />
+          <ScalarProperty Name="GrantPermissionId" ColumnName="GrantPermissionId" />
+          <ScalarProperty Name="GrantPermissionStatus" ColumnName="GrantPermissionStatus" />
+          <ScalarProperty Name="DepartmentEmployeeId" ColumnName="DepartmentEmployeeId" />
+          <ScalarProperty Name="DepartmentEmployeeStatus" ColumnName="DepartmentEmployeeStatus" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+          <ScalarProperty Name="DepartmentStatus" ColumnName="DepartmentStatus" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeFullname" ColumnName="EmployeeFullname" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleStatus" ColumnName="RoleStatus" />
+          <ScalarProperty Name="ProjectTypeId" ColumnName="ProjectTypeId" />
+          <ScalarProperty Name="ProjectTypeName" ColumnName="ProjectTypeName" />
+          <ScalarProperty Name="ProjectTypeStatus" ColumnName="ProjectTypeStatus" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

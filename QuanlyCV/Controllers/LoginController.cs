@@ -27,6 +27,8 @@ namespace QuanlyCV.Controllers
                 {
                     Session["EmployeeId"] = e.EmployeeId;
                     Session["EmployeeName"] = e.EmployeeFullname;
+                    DepartmentEmployee de = db.DepartmentEmployees.SingleOrDefault(x => x.EmployeeId == e.EmployeeId);
+                    Session["DepartmentId"] = de.DepartmentId;
                     return RedirectToAction("Index","Home");
                 }else
                 {
