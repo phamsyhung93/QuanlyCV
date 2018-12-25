@@ -16,10 +16,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link rel="stylesheet" type="text/css" href="~/Content/css/mystyle.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/myfolder.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/myworking.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/grouppage.css">
     <script src="~/Scripts/js/jquery2.0.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/css/table-style.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/css/basictable.css" />
     <script type="text/javascript" src="~/Scripts/js/jquery.basictable.min.js"></script>
+    @RenderSection("styles", required: false)
     <script type="text/javascript">
     $(document).ready(function() {
       $('#table').basictable();
@@ -117,7 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </a>
             </li>
             <li>
-                <a href="grouppage.html">
+                <a href="@Url.Action("SelectGroup","Home")">
                     <i class="fa fa-commenting nav_icon"></i>
                     <span class="nav-text">
                         Nhóm
@@ -296,12 +298,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li class="dropdown profile_details_drop">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <div class="profile_img">
-                                        <img src="~/Content/images/3.png" title="ảnh đại diện" class="img-responsive" alt="">
+                                        <img src="~/Content/images/avatar/@Session["EmployeeAvatar"]" title="ảnh đại diện" class="img-responsive" alt="" width="40" height="40">
                                         <div class="clearfix"></div>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu drp-mnu">
-                                    <li> <a href="timeline.html"><i class="fa fa-user"></i>Trang Cá Nhân</a> </li>
+                                    <li> <a href="@Url.Action("Index","Timeline")"><i class="fa fa-user"></i>Trang Cá Nhân</a> </li>
                                     <li> <a href="@Url.Action("Index","Infomation")"><i class="fa fa-user"></i> Thông tin</a> </li>
                                     <li> <a href="@Url.Action("ViewChangePassword","Infomation")"><i class="fa fa-cog"></i> Thay đổi mật khẩu</a> </li>
                                     <li> <a href="@Url.Action("logout","Login")"><i class="fa fa-sign-out"></i> Đăng xuất</a> </li>

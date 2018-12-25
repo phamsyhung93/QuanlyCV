@@ -1,0 +1,62 @@
+﻿@foreach (var lstComment in ViewBag.listCommentPost)
+{
+
+    if (lstComment.ParentId == 0)
+    {
+        <div class="comment-item comment-post">
+
+            <div class="comment-avatar">
+                <img src="~/Content/images/avatar/@lstComment.EmployeeAvatar" class="img-responsive" alt="avatar">
+            </div>
+            <div class="comment-content">
+
+                <div class="">
+                    <a href="" class="a-hover-underline coment-content-fullname">@lstComment.EmployeeFullname</a>
+                    <span class="coment-content-text">@lstComment.CommentContent</span>
+                </div>
+                <div class="comment-content-action">
+                    <a class="a-hover-pointer a-hover-underline">Thích</a>
+                    <a class="a-hover-pointer a-hover-underline">Bình luận</a>
+                </div>
+            </div>
+        </div>
+
+        foreach (var lstComment1 in ViewBag.listCommentPost)
+        {
+            if (lstComment1.ParentId == lstComment.CommentId)
+            {
+                <ul class="comment-level-2">
+                    <li>
+                        <div class="comment-item lst-SubComment-Post-@lstComment.PostId">
+
+                            <div class="comment-avatar">
+                                <img src="~/Content/images/avatar/@lstComment1.EmployeeAvatar" class="img-responsive" alt="avatar">
+                            </div>
+                            <div class="subcomment-content-post">
+                                <div>
+                                    <a href="" class="a-hover-underline coment-content-fullname">@lstComment1.EmployeeFullname</a>
+                                    <span class="coment-content-text">@lstComment1.CommentContent</span>
+                                </div>
+                                <div class="comment-content-action">
+                                    <a class="a-hover-pointer a-hover-underline">Thích</a>
+                                    <a class="a-hover-pointer a-hover-underline">Bình luận</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            }
+        }
+        <div class="wrapper-input-comment" style="margin-left: 60px;">
+            <img src="~/Content/images/avatar/@ViewBag.Employee.EmployeeAvatar" class="img-responsive" alt="">
+            <div class="input-comment">
+                <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" class="Content-SubComment-Post-@lstComment.CommentId" style="overflow:hidden"></textarea>
+                <ul class="input-comment-level-2-icon">
+                    <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
+                    <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
+                    <li><a class="a-hover-pointer" data-id="@lstComment.PostId" data-content="@lstComment.CommentId" onclick="submitSubCommentPost(this)"><i class="fa fa-paper-plane-o"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    }
+}

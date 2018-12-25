@@ -16,7 +16,7 @@ namespace QuanlyCV.Models
     {
         public int PostImageId { get; set; }
         public int PostId { get; set; }
-        public string PostImage1 { get; set; }
+        public string PostImages { get; set; }
         public int PostImageStatus { get; set; }
     
         public virtual Post Post { get; set; }

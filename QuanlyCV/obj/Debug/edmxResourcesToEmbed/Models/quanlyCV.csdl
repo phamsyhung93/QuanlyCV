@@ -326,9 +326,9 @@
     </Key>
     <Property Name="PostImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PostId" Type="Int32" Nullable="false" />
-    <Property Name="PostImage1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PostImages" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="PostImageStatus" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Post" Relationship="Self.FK__PostImage__PostI__7F2BE32F" FromRole="PostImages" ToRole="Posts" />
+    <NavigationProperty Name="Post" Relationship="Self.FK__PostImage__PostI__24E777C3" FromRole="PostImages" ToRole="Posts" />
   </EntityType>
   <EntityType Name="Post">
     <Key>
@@ -344,7 +344,7 @@
     <NavigationProperty Name="GroupMember" Relationship="Self.FK__Posts__GroupMemb__797309D9" FromRole="Posts" ToRole="GroupMembers" />
     <NavigationProperty Name="Group" Relationship="Self.FK__Posts__GroupId__787EE5A0" FromRole="Posts" ToRole="Groups" />
     <NavigationProperty Name="Likes" Relationship="Self.FK__Likes__PostId__1AD3FDA4" FromRole="Posts" ToRole="Likes" />
-    <NavigationProperty Name="PostImages" Relationship="Self.FK__PostImage__PostI__7F2BE32F" FromRole="Posts" ToRole="PostImages" />
+    <NavigationProperty Name="PostImages" Relationship="Self.FK__PostImage__PostI__24E777C3" FromRole="Posts" ToRole="PostImages" />
     <NavigationProperty Name="Shares" Relationship="Self.FK__Shares__PostId__06CD04F7" FromRole="Posts" ToRole="Shares" />
   </EntityType>
   <EntityType Name="ProjectDiscussion">
@@ -578,7 +578,7 @@
     <NavigationProperty Name="Likes" Relationship="Self.FK__Likes__TimeLineD__1BC821DD" FromRole="TimeLineDetails" ToRole="Likes" />
     <NavigationProperty Name="Shares" Relationship="Self.FK__Shares__TimeLine__04E4BC85" FromRole="TimeLineDetails" ToRole="Shares" />
     <NavigationProperty Name="TimeLine" Relationship="Self.FK__TimeLineD__TimeL__628FA481" FromRole="TimeLineDetails" ToRole="TimeLines" />
-    <NavigationProperty Name="TimeLineImages" Relationship="Self.FK__TimeLineI__TimeL__693CA210" FromRole="TimeLineDetails" ToRole="TimeLineImages" />
+    <NavigationProperty Name="TimeLineImages" Relationship="Self.FK__TimeLineI__TimeL__2116E6DF" FromRole="TimeLineDetails" ToRole="TimeLineImages" />
   </EntityType>
   <EntityType Name="TimeLineImage">
     <Key>
@@ -586,9 +586,9 @@
     </Key>
     <Property Name="TimeLineImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TimeLineDetailId" Type="Int32" Nullable="false" />
-    <Property Name="TimeLineImage1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TimeLineImages" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TimeLineImageStatus" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="TimeLineDetail" Relationship="Self.FK__TimeLineI__TimeL__693CA210" FromRole="TimeLineImages" ToRole="TimeLineDetails" />
+    <NavigationProperty Name="TimeLineDetail" Relationship="Self.FK__TimeLineI__TimeL__2116E6DF" FromRole="TimeLineImages" ToRole="TimeLineDetails" />
   </EntityType>
   <EntityType Name="TimeLine">
     <Key>
@@ -597,6 +597,7 @@
     <Property Name="TimeLineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EmployeeId" Type="Int32" />
     <Property Name="TimeLineStatus" Type="Int32" Nullable="false" />
+    <Property Name="TimeLineDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Employee" Relationship="Self.FK__TimeLines__Emplo__5EBF139D" FromRole="TimeLines" ToRole="Employees" />
     <NavigationProperty Name="Shares" Relationship="Self.FK__Shares__TimeLine__03F0984C" FromRole="TimeLines" ToRole="Shares" />
     <NavigationProperty Name="TimeLineDetails" Relationship="Self.FK__TimeLineD__TimeL__628FA481" FromRole="TimeLines" ToRole="TimeLineDetails" />
@@ -1201,7 +1202,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PostImage__PostI__7F2BE32F">
+  <Association Name="FK__PostImage__PostI__24E777C3">
     <End Role="Posts" Type="Self.Post" Multiplicity="1" />
     <End Role="PostImages" Type="Self.PostImage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1405,7 +1406,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TimeLineI__TimeL__693CA210">
+  <Association Name="FK__TimeLineI__TimeL__2116E6DF">
     <End Role="TimeLineDetails" Type="Self.TimeLineDetail" Multiplicity="1" />
     <End Role="TimeLineImages" Type="Self.TimeLineImage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1663,7 +1664,7 @@
       <End Role="Permissions" EntitySet="Permissions" />
       <End Role="SetPermissions" EntitySet="SetPermissions" />
     </AssociationSet>
-    <AssociationSet Name="FK__PostImage__PostI__7F2BE32F" Association="Self.FK__PostImage__PostI__7F2BE32F">
+    <AssociationSet Name="FK__PostImage__PostI__24E777C3" Association="Self.FK__PostImage__PostI__24E777C3">
       <End Role="Posts" EntitySet="Posts" />
       <End Role="PostImages" EntitySet="PostImages" />
     </AssociationSet>
@@ -1731,7 +1732,7 @@
       <End Role="TimeLines" EntitySet="TimeLines" />
       <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__TimeLineI__TimeL__693CA210" Association="Self.FK__TimeLineI__TimeL__693CA210">
+    <AssociationSet Name="FK__TimeLineI__TimeL__2116E6DF" Association="Self.FK__TimeLineI__TimeL__2116E6DF">
       <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
       <End Role="TimeLineImages" EntitySet="TimeLineImages" />
     </AssociationSet>
@@ -1751,12 +1752,51 @@
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_getAllByProjectIdAndEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getAllByProjectIdAndEmployeeId_Result)">
+      <Parameter Name="ProjectId" Mode="In" Type="Int32" />
+      <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllCommentByGroupId" ReturnType="Collection(WorkManagermentModel.sp_getAllCommentByGroupId_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllCommentByPostId" ReturnType="Collection(WorkManagermentModel.sp_getAllCommentByPostId_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllCommentByTimelineDetailId" ReturnType="Collection(WorkManagermentModel.sp_getAllCommentByTimelineDetailId_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllCommentByTimeLineId" ReturnType="Collection(WorkManagermentModel.sp_getAllCommentByTimeLineId_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_getAllDepartmentByEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getAllDepartmentByEmployeeId_Result)">
       <Parameter Name="so" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_GetAllEmployeeByDepartment" ReturnType="Collection(WorkManagermentModel.sp_GetAllEmployeeByDepartment_Result)" />
+    <FunctionImport Name="sp_GetAllEmployeeByProjectID" ReturnType="Collection(WorkManagermentModel.sp_GetAllEmployeeByProjectID_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllEmployeeByRoleID" ReturnType="Collection(WorkManagermentModel.sp_getAllEmployeeByRoleID_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllEmployeeLikePost" ReturnType="Collection(WorkManagermentModel.sp_getAllEmployeeLikePost_Result)" />
+    <FunctionImport Name="sp_getAllEmployeeLikePostByPostid" ReturnType="Collection(WorkManagermentModel.sp_getAllEmployeeLikePostByPostid_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllEmployeeLikeTimeLineDetail" ReturnType="Collection(WorkManagermentModel.sp_getAllEmployeeLikeTimeLineDetail_Result)" />
+    <FunctionImport Name="sp_getAllEmployeeLikeTimeLineDetailByDetailId" ReturnType="Collection(WorkManagermentModel.sp_getAllEmployeeLikeTimeLineDetailByDetailId_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_getAllPermissionsNameByRoleId" ReturnType="Collection(String)">
       <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllPostbyGroupID" ReturnType="Collection(WorkManagermentModel.sp_getAllPostbyGroupID_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getAllProjectDiscussionsByProjectId" ReturnType="Collection(WorkManagermentModel.sp_getAllProjectDiscussionsByProjectId_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetAllTimeLineDetail" ReturnType="Collection(WorkManagermentModel.sp_GetAllTimeLineDetail_Result)">
+      <Parameter Name="employeeId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_GetAllYEARByProjectType" ReturnType="Collection(Int32)" />
     <FunctionImport Name="sp_getEmployeeByDepartmentWhereDepartmentId" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereDepartmentId_Result)">
@@ -1768,8 +1808,17 @@
     <FunctionImport Name="sp_getEmployeeByDepartmentWhereEmployeeIds" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByDepartmentWhereEmployeeIds_Result)">
       <Parameter Name="so" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_getEmployeeByGroupMember" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByGroupMember_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="sp_getEmployeeByRole" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByRole_Result)" />
     <FunctionImport Name="sp_getEmployeeByRoleByDepartment" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByRoleByDepartment_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getEmployeeByTimeLine" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeByTimeLine_Result)">
+      <Parameter Name="so" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getEmployeeCreateGroup" ReturnType="Collection(WorkManagermentModel.sp_getEmployeeCreateGroup_Result)">
       <Parameter Name="so" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WorkManagermentModel.sp_helpdiagramdefinition_Result)">
@@ -1786,20 +1835,80 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <FunctionImport Name="sp_getAllProjectDiscussionsByProjectId" ReturnType="Collection(WorkManagermentModel.sp_getAllProjectDiscussionsByProjectId_Result)">
-      <Parameter Name="so" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_GetAllEmployeeByProjectID" ReturnType="Collection(WorkManagermentModel.sp_GetAllEmployeeByProjectID_Result)">
-      <Parameter Name="so" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_getAllEmployeeByRoleID" ReturnType="Collection(WorkManagermentModel.sp_getAllEmployeeByRoleID_Result)">
-      <Parameter Name="so" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_getAllByProjectIdAndEmployeeId" ReturnType="Collection(WorkManagermentModel.sp_getAllByProjectIdAndEmployeeId_Result)">
-      <Parameter Name="ProjectId" Mode="In" Type="Int32" />
-      <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
-    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="sp_getAllByProjectIdAndEmployeeId_Result">
+    <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
+    <Property Type="Int32" Name="ProjectMemberStatus" Nullable="false" />
+    <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
+    <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
+    <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
+    <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+    <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="RoleId" Nullable="false" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="RoleStatus" Nullable="false" />
+    <Property Type="Int32" Name="ProjectTypeId" Nullable="false" />
+    <Property Type="String" Name="ProjectTypeName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ProjectTypeStatus" Nullable="false" />
+    <Property Type="Int32" Name="ProjectId" Nullable="false" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllCommentByGroupId_Result">
+    <Property Type="String" Name="CommentContent" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="CommentId" Nullable="false" />
+    <Property Type="String" Name="CommentImage" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="CommentStatus" Nullable="false" />
+    <Property Type="DateTime" Name="CommentTime" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ParentId" Nullable="false" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="Int32" Name="PostId" Nullable="false" />
+    <Property Type="Int32" Name="GroupId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllCommentByPostId_Result">
+    <Property Type="String" Name="CommentContent" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="CommentId" Nullable="false" />
+    <Property Type="String" Name="CommentImage" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="CommentStatus" Nullable="false" />
+    <Property Type="DateTime" Name="CommentTime" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ParentId" Nullable="false" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="Int32" Name="PostId" Nullable="false" />
+    <Property Type="Int32" Name="GroupId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllCommentByTimelineDetailId_Result">
+    <Property Type="String" Name="CommentContent" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="CommentId" Nullable="false" />
+    <Property Type="String" Name="CommentImage" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="CommentStatus" Nullable="false" />
+    <Property Type="DateTime" Name="CommentTime" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ParentId" Nullable="false" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineDetailId" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllCommentByTimeLineId_Result">
+    <Property Type="String" Name="CommentContent" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="CommentId" Nullable="false" />
+    <Property Type="String" Name="CommentImage" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="CommentStatus" Nullable="false" />
+    <Property Type="DateTime" Name="CommentTime" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="ParentId" Nullable="false" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineDetailId" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineId" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="sp_getAllDepartmentByEmployeeId_Result">
     <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
     <Property Type="Int32" Name="DepartmentId" Nullable="false" />
@@ -1821,6 +1930,99 @@
     <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
     <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
     <Property Type="Int32" Name="ParentId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllEmployeeByProjectID_Result">
+    <Property Type="Int32" Name="ProjectId" Nullable="false" />
+    <Property Type="Int32" Name="ProjectMemberStatus" Nullable="false" />
+    <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
+    <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
+    <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
+    <Property Type="Int32" Name="RoleId" Nullable="false" />
+    <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
+    <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllEmployeeByRoleID_Result">
+    <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
+    <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
+    <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
+    <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
+    <Property Type="Int32" Name="DepartmentId" Nullable="false" />
+    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="RoleId" Nullable="false" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllEmployeeLikePost_Result">
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="LikeId" Nullable="false" />
+    <Property Type="Int32" Name="PostId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllEmployeeLikePostByPostid_Result">
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="LikeId" Nullable="false" />
+    <Property Type="Int32" Name="PostId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllEmployeeLikeTimeLineDetail_Result">
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="LikeId" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineDetailId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllEmployeeLikeTimeLineDetailByDetailId_Result">
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="LikeId" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineDetailId" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllPostbyGroupID_Result">
+    <Property Type="Int32" Name="GroupId" Nullable="false" />
+    <Property Type="Int32" Name="GroupMemberId" Nullable="false" />
+    <Property Type="Int32" Name="GroupMemberStatus" Nullable="false" />
+    <Property Type="String" Name="GroupRole" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="PostContent" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="PostId" Nullable="false" />
+    <Property Type="Int32" Name="PostStatus" Nullable="false" />
+    <Property Type="DateTime" Name="PostedTime" Nullable="false" Precision="23" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="PostImages" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="PostImageId" Nullable="false" />
+    <Property Type="Int32" Name="PostImageStatus" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getAllProjectDiscussionsByProjectId_Result">
+    <Property Type="String" Name="DiscussionContent" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="ProjectDiscussionId" Nullable="false" />
+    <Property Type="Int32" Name="ProjectDiscussionStatus" Nullable="false" />
+    <Property Type="Int32" Name="MemberDiscussionId" Nullable="false" />
+    <Property Type="Int32" Name="MemberDiscussionStatus" Nullable="false" />
+    <Property Type="Int32" Name="ProjectId" Nullable="false" />
+    <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllTimeLineDetail_Result">
+    <Property Type="Int32" Name="TimeLineId" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineStatus" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineDetailId" Nullable="false" />
+    <Property Type="String" Name="TimeLineDetailContent" Nullable="false" MaxLength="Max" />
+    <Property Type="DateTime" Name="TimeLineDetailPostedTime" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="TimeLineDetailType" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineDetailStatus" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineImageId" Nullable="false" />
+    <Property Type="String" Name="TimeLineImages" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="TimeLineImageStatus" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
   </ComplexType>
   <ComplexType Name="sp_getEmployeeByDepartmentWhereDepartmentId_Result">
     <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
@@ -1886,6 +2088,22 @@
     <Property Type="Int32" Name="DepartmentId" Nullable="false" />
     <Property Type="Int32" Name="EmployeeId" Nullable="false" />
   </ComplexType>
+  <ComplexType Name="sp_getEmployeeByGroupMember_Result">
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeCoverPicture" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="EmployeeBirthday" Nullable="false" />
+    <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="EmployeeEmail" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="EmployeeAccountName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="EmployeeAccountNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
+    <Property Type="Int32" Name="GroupMemberId" Nullable="false" />
+    <Property Type="Int32" Name="GroupMemberStatus" Nullable="false" />
+    <Property Type="String" Name="GroupRole" Nullable="false" MaxLength="250" />
+  </ComplexType>
   <ComplexType Name="sp_getEmployeeByRole_Result">
     <Property Type="Int32" Name="EmployeeId" Nullable="false" />
     <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
@@ -1934,6 +2152,31 @@
     <Property Type="Int32" Name="RoleStatus" Nullable="false" />
     <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
   </ComplexType>
+  <ComplexType Name="sp_getEmployeeByTimeLine_Result">
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeeCoverPicture" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="EmployeeBirthday" Nullable="false" />
+    <Property Type="String" Name="EmployeeAddress" Nullable="true" MaxLength="Max" />
+    <Property Type="String" Name="EmployeeEmail" Nullable="false" MaxLength="250" />
+    <Property Type="String" Name="EmployeePhone" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="EmployeeAccountName" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="EmployeeAccountNumber" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="EmployeeGender" Nullable="true" />
+    <Property Type="Int32" Name="TimeLineId" Nullable="false" />
+    <Property Type="Int32" Name="TimeLineStatus" Nullable="false" />
+    <Property Type="String" Name="TimeLineDescription" Nullable="true" MaxLength="Max" />
+  </ComplexType>
+  <ComplexType Name="sp_getEmployeeCreateGroup_Result">
+    <Property Type="DateTime" Name="CreatedTime" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="GroupId" Nullable="false" />
+    <Property Type="String" Name="GroupName" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="GroupStatus" Nullable="false" />
+    <Property Type="Int32" Name="GroupType" Nullable="false" />
+    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
+  </ComplexType>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
     <Property Type="Binary" Name="definition" Nullable="true" />
@@ -1944,64 +2187,5 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="sp_getAllProjectDiscussionsByProjectId_Result">
-    <Property Type="String" Name="DiscussionContent" Nullable="false" MaxLength="Max" />
-    <Property Type="Int32" Name="ProjectDiscussionId" Nullable="false" />
-    <Property Type="Int32" Name="ProjectDiscussionStatus" Nullable="false" />
-    <Property Type="Int32" Name="MemberDiscussionId" Nullable="false" />
-    <Property Type="Int32" Name="MemberDiscussionStatus" Nullable="false" />
-    <Property Type="Int32" Name="ProjectId" Nullable="false" />
-    <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
-    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
-    <Property Type="String" Name="EmployeeAvatar" Nullable="false" MaxLength="250" />
-    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
-  </ComplexType>
-  <ComplexType Name="sp_GetAllEmployeeByProjectID_Result">
-    <Property Type="Int32" Name="ProjectId" Nullable="false" />
-    <Property Type="Int32" Name="ProjectMemberStatus" Nullable="false" />
-    <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
-    <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
-    <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
-    <Property Type="Int32" Name="RoleId" Nullable="false" />
-    <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
-    <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
-    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
-    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="DepartmentId" Nullable="false" />
-    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
-  </ComplexType>
-  <ComplexType Name="sp_getAllEmployeeByRoleID_Result">
-    <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
-    <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
-    <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
-    <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
-    <Property Type="Int32" Name="DepartmentId" Nullable="false" />
-    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
-    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="RoleId" Nullable="false" />
-    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
-  </ComplexType>
-  <ComplexType Name="sp_getAllByProjectIdAndEmployeeId_Result">
-    <Property Type="Int32" Name="ProjectMemberId" Nullable="false" />
-    <Property Type="Int32" Name="ProjectMemberStatus" Nullable="false" />
-    <Property Type="Int32" Name="GrantPermissionId" Nullable="false" />
-    <Property Type="Int32" Name="GrantPermissionStatus" Nullable="false" />
-    <Property Type="Int32" Name="DepartmentEmployeeId" Nullable="false" />
-    <Property Type="Int32" Name="DepartmentEmployeeStatus" Nullable="false" />
-    <Property Type="Int32" Name="DepartmentId" Nullable="false" />
-    <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="DepartmentStatus" Nullable="false" />
-    <Property Type="Int32" Name="EmployeeId" Nullable="false" />
-    <Property Type="String" Name="EmployeeFullname" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="RoleId" Nullable="false" />
-    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" />
-    <Property Type="Int32" Name="RoleStatus" Nullable="false" />
-    <Property Type="Int32" Name="ProjectTypeId" Nullable="false" />
-    <Property Type="String" Name="ProjectTypeName" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="ProjectTypeStatus" Nullable="false" />
-    <Property Type="Int32" Name="ProjectId" Nullable="false" />
-    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="250" />
   </ComplexType>
 </Schema>

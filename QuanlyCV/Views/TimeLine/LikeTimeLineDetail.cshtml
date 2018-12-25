@@ -1,0 +1,5 @@
+﻿<img src="~/Content/images/facebook-like-icon.png" class="img-responsive" alt="like">
+@foreach (var item in ViewBag.listLike)
+{
+    <a class="a-hover-pointer a-hover-underline list-like"> @item.EmployeeFullname, </a>
+}

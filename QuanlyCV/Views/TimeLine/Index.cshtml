@@ -4,22 +4,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section styles {
+    <style>
+        .selected-image img {
+            /*width: 100%;*/
+            height: 100%;
+        }
+    </style>
+}
+
 <div class="main-grids">
     <div class="agile-grids">
         <div id="wrapper-timeline">
             <div id="tl-banner">
                 <div class="timeline-banner">
-                    <img src="~/Content/images/g5.jpg" class="img-responsive" style="width: 100%; max-height: 350px;" alt="">
-                    <div class="tl-banner-avatar">
-                        <img src="~/Content/images/tuong-giai-an-7.jpg" class="img-responsive img-circle" alt="">
-                        <a href="">Đoàn Văn Tùng</a>
-                    </div>
+                    @foreach (var item in ViewBag.Timeline)
+                    {
+                        <img src="~/Content/images/coverPicture/@item.EmployeeCoverPicture" class="img-responsive" style="width: 100%; max-height: 350px;" alt="">
+                        <div class="tl-banner-avatar">
+                            <img src="~/Content/images/avatar/@item.EmployeeAvatar" class="img-responsive img-circle" alt="">
+                            <a href="">@item.EmployeeFullname</a>
+                        </div>
+                    }
                 </div>
                 <div class="timeline-option">
                     <ul>
-                        <li><a href="#">Thông Tin</a></li>
+                        <li><a href="@Url.Action("Index","Infomation")">Thông Tin</a></li>
                         <li><a href="#">Ảnh</a></li>
-                        <li><a href="#">Lưu Trữ</a></li>
+                        <li><a href="@Url.Action("Index","Folders")">Lưu Trữ</a></li>
                         <li><a href="#">Xem Thêm</a></li>
                     </ul>
                 </div>
@@ -33,14 +45,11 @@
                                 <p class="text-center">Ghi Chú</p>
                             </div>
                             <div class="timeline-note-content">
-                                <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </span>
+                                @foreach (var item in ViewBag.Timeline)
+                                {
+                                    <textarea style="resize:none;border:none" rows="20" id="TimelineDescription" name="TimelineDescription" onchange="updateTimelineDescription(this)">@item.TimeLineDescription</textarea>
+                                }
+
                             </div>
                         </div>
                         <div class="timeline-image">
@@ -49,15 +58,10 @@
                             </div>
                             <div class="timeline-image-content">
                                 <ul>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-1.jpg" alt="Hình ảnh"></a></li>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-2.jfif" alt="Hình ảnh"></a></li>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-3.jpg" alt="Hình ảnh"></a></li>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-4.jpg" alt="Hình ảnh"></a></li>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-5.jfif" alt="Hình ảnh"></a></li>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-6.jfif" alt="Hình ảnh"></a></li>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-7.jpg" alt="Hình ảnh"></a></li>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-8.jfif" alt="Hình ảnh"></a></li>
-                                    <li><a class="a-hover-pointer"><img class="img-responsive" src="~/Content/images/tuong-giai-an-9.jpg" alt="Hình ảnh"></a></li>
+                                    @foreach (var item in ViewBag.NoteEmployee)
+                                    {
+                                        <li><a class="a-hover-pointer">@item.NoteContent</a></li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -73,125 +77,183 @@
                                     <p class="text-center">Tạo bài viết</p>
                                 </div>
                                 <div class="create-post-content">
-                                    <div class="container-create-post-content">
-                                        <img src="~/Content/images/3.png" class="img-responsive" alt="">
-                                        <textarea onkeyup="textAreaAdjust(this)" name="" placeholder="Bạn đang nghĩ gì..." rows="1"></textarea>
-                                    </div>
-                                    <div class="create-post-option">
-                                        <ul>
-                                            <li>
-                                                <input type="file" id="upload" name="upload" style="visibility: hidden; width: 1px; height: 1px" multiple />
-                                                <a class="a-hover-pointer" onclick="document.getElementById('upload').click(); return false"><i class="fa fa-picture-o"></i>Ảnh</a>
-                                            </li>
-                                            <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i>Icon</a></li>
-                                            <li><a class="a-hover-pointer"><i class="fa fa-tags"></i>Gắn thẻ</a></li>
-                                        </ul>
-                                        <a class="a-hover-pointer btn-post text-center">Đăng bài</a>
-                                    </div>
+                                    <form action="@Url.Action("Create", "TimeLine")" method="post" enctype="multipart/form-data">
+                                        <div class="container-create-post-content">
+                                            <img src="~/Content/images/avatar/@ViewBag.Employee.EmployeeAvatar" class="img-responsive" alt="">
+                                            <textarea onkeyup="textAreaAdjust(this)" name="TimeLineDetailContent" placeholder="Bạn đang gặp khó khăn gì..." rows="1"></textarea>
+                                        </div>
+                                        <div class="selected-image">
+                                            <img />
+                                        </div>
+                                        <div class="create-post-option">
+                                            <ul>
+                                                <li>
+                                                    <input type="file" id="upload" name="TimeLineImage" style="visibility: hidden; width: 1px; height: 1px" />
+                                                    <a class="a-hover-pointer" onclick="document.getElementById('upload').click(); return false"><i class="fa fa-picture-o"></i>Ảnh</a>
+                                                </li>
+                                                <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i>Icon</a></li>
+                                                <li><a class="a-hover-pointer"><i class="fa fa-tags"></i>Gắn thẻ</a></li>
+                                                <li>
+                                                    <select name="TimeLineDetailType">
+                                                        <option value="1">Đồng Nghiệp</option>
+                                                        <option value="2">Cá Nhân</option>
+                                                    </select>
+                                                </li>
+                                            </ul>
+                                            <input type="submit" class="a-hover-pointer btn-post text-center" name="name" value="Đăng bài" />
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="timeline-item">
-                            <div class="timeline-item-title">
-                                <div class="timeline-item-title-avatar">
-                                    <img src="~/Content/images/3.png" class="img-responsive" alt="avatar">
-                                </div>
-                                <div class="timeline-item-title-event">
-                                    <div>
-                                        <a href="#" class="a-hover-underline">Nguyễn Văn Anh</a>
-                                        <span> Đã đăng một nội dung</span>
+                        @foreach (var item in ViewBag.TimeLineDetail)
+                        {
+                            <div class="timeline-item">
+                                <div class="timeline-item-title">
+                                    <div class="timeline-item-title-avatar">
+                                        <img src="~/Content/images/avatar/@item.EmployeeAvatar" class="img-responsive img-circle" alt="avatar">
                                     </div>
-                                    <span>Thời gian</span>
-                                </div>
-                            </div>
-                            <div class="timeline-item-text">
-                                <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </span>
-                            </div>
-                            <div class="timeline-item-image">
-                                <img src="~/Content/images/tuong-giai-an-3.jpg" class="img-responsive" alt="Hình ảnh">
-                            </div>
-                            <div class="timeline-item-list-like">
-                                <img src="~/Content/images/facebook-like-icon.png" class="img-responsive" alt="like">
-                                <a class="a-hover-pointer a-hover-underline ">Đoàn Văn Tùng, Phạm Sỹ Hưng, Dư Hồng Quân</a>
-                            </div>
-                            <div class="timeline-item-action">
-                                <ul>
-                                    <li><a class="a-hover-pointer"><i class="fa fa-thumbs-up"></i>Thích</a></li>
-                                    <li><a class="a-hover-pointer"><i class="fa fa-comment-o"></i>Bình Luận</a></li>
-                                    <li><a class="a-hover-pointer"><i class="fa fa-share"></i>Chia Sẻ</a></li>
-                                </ul>
-                            </div>
-                            <div class="timeline-item-comment">
-                                <ul class="comment-level-1">
-                                    <li>
-                                        <div class="comment-item">
-                                            <div class="comment-avatar">
-                                                <img src="~/Content/images/3.png" class="img-responsive" alt="avatar">
-                                            </div>
-                                            <div class="comment-content">
-                                                <div>
-                                                    <a href="" class="a-hover-underline coment-content-fullname">Đoàn Văn Tùng</a>
-                                                    <span class="coment-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo facere in, assumenda nihil similique possimus. Veniam animi quas consequuntur debitis, temporibus deserunt voluptatem. Repellendus totam, mollitia incidunt vitae quod, atque!</span>
-                                                </div>
-                                                <div class="comment-content-action">
-                                                    <a class="a-hover-pointer a-hover-underline">Thích</a>
-                                                    <a class="a-hover-pointer a-hover-underline ">Bình luận</a>
-                                                </div>
-                                            </div>
+                                    <div class="timeline-item-title-event">
+                                        <div>
+                                            <a href="#" class="a-hover-underline">@item.EmployeeFullName</a>
+                                            <span> Đã đăng một nội dung</span>
                                         </div>
-                                        <ul class="comment-level-2">
-                                            <li>
-                                                <div class="comment-item">
-                                                    <div class="comment-avatar">
-                                                        <img src="~/Content/images/3.png" class="img-responsive" alt="avatar">
-                                                    </div>
-                                                    <div class="comment-content">
-                                                        <div>
-                                                            <a href="" class="a-hover-underline coment-content-fullname">Đoàn Văn Tùng</a>
-                                                            <span class="coment-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo facere in, assumenda nihil similique possimus. Veniam animi quas consequuntur debitis, temporibus deserunt voluptatem. Repellendus totam, mollitia incidunt vitae quod, atque!</span>
-                                                        </div>
-                                                        <div class="comment-content-action">
-                                                            <a class="a-hover-pointer a-hover-underline">Thích</a>
-                                                            <a class="a-hover-pointer a-hover-underline btn-show-Comment" onclick="openComment()">Bình luận</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="wrapper-input-comment" style="margin-left: 60px; visibility: hidden;">
-                                            <img src="~/Content/images/3.png" class="img-responsive" alt="">
-                                            <div class="input-comment">
-                                                <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" style="overflow:hidden"></textarea>
-                                                <ul class="input-comment-level-2-icon">
-                                                    <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
-                                                    <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
-                                                    <li><a class="a-hover-pointer"><i class="fa fa-paper-plane-o"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="wrapper-input-comment">
-                                    <img src="~/Content/images/3.png" class="img-responsive" alt="">
-                                    <div class="input-comment">
-                                        <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" style="overflow:hidden"></textarea>
-                                        <ul class="input-comment-level-2-icon">
-                                            <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
-                                            <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
-                                            <li><a class="a-hover-pointer"><i class="fa fa-paper-plane-o"></i></a></li>
-                                        </ul>
+                                        <span>@item.TimeLineDetailPostedTime.ToString("hh:mm:ss dd-MM-yyyy")</span>
                                     </div>
                                 </div>
+                                <div class="timeline-item-text">
+                                    <span>
+                                        @item.TimeLineDetailContent
+                                    </span>
+                                </div>
+                                @if (item.TimeLineImages != "1")
+                                {
+                                    <div class="timeline-item-image">
+                                        <img src="~/Content/Uploads/timelines/@item.TimeLineImages" class="img-responsive" alt="Hình ảnh" style="width: 100%;">
+                                    </div>
+                                }
+                                <div class="timeline-item-list-like">
+                                    <img src="~/Content/images/facebook-like-icon.png" class="img-responsive" alt="like">
+                                    @foreach (var item1 in ViewBag.LikeTimeline)
+                                    {
+                                        if (item.TimeLineDetailId == item1.TimeLineDetailId)
+                                        {
+                                            <a class="a-hover-pointer a-hover-underline list-like"> @item1.EmployeeFullname, </a>
+                                        }
+
+                                    }
+
+                                </div>
+                                <div class="timeline-item-action">
+                                    <ul>
+                                        <li>
+                                            @{var bl = false;
+                                                foreach (var item1 in ViewBag.LikeTimeline)
+                                                {
+                                                    if (item1.EmployeeId == ViewBag.EmployeeId && item.TimeLineDetailId == @item1.TimeLineDetailId)
+                                                    {
+                                                        if (bl == false)
+                                                        {
+                                                            <a onclick="likeTimeline(this)" data-id="@item.TimeLineDetailId" class="a-hover-pointer like" style="background-color:black"><i class="fa fa-thumbs-up"></i>Thích</a>
+                                                            bl = true;
+                                                        }
+                                                    }
+                                                }
+                                                if (bl == false)
+                                                {
+                                                    <a onclick="likeTimeline(this)" data-id="@item.TimeLineDetailId" class="a-hover-pointer unlike" style="background-color:transparent"><i class="fa fa-thumbs-up"></i>Thích</a>
+                                                }
+                                            }
+                                        </li>
+                                        <li><a class="a-hover-pointer"><i class="fa fa-comment-o"></i>Bình Luận</a></li>
+                                        <li><a class="a-hover-pointer"><i class="fa fa-share"></i>Chia Sẻ</a></li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item-comment">
+                                    <ul class="comment-level-1">
+                                        <li class="lst-Comment-TimeLineDetail-@item.TimeLineDetailId">
+
+                                            @foreach (var lstComment in ViewBag.lstCommentByGroup)
+                                            {
+                                                if (lstComment.TimeLineDetailId == item.TimeLineDetailId)
+                                                {
+                                                    if (lstComment.ParentId == 0)
+                                                    {
+                                                        <div class="comment-item comment-post">
+
+                                                            <div class="comment-avatar">
+                                                                <img src="~/Content/images/avatar/@lstComment.EmployeeAvatar" class="img-responsive" alt="avatar">
+                                                            </div>
+                                                            <div class="comment-content">
+
+                                                                <div class="">
+                                                                    <a href="" class="a-hover-underline coment-content-fullname">@lstComment.EmployeeFullname</a>
+                                                                    <span class="coment-content-text">@lstComment.CommentContent</span>
+                                                                </div>
+                                                                <div class="comment-content-action">
+                                                                    <a class="a-hover-pointer a-hover-underline">Thích</a>
+                                                                    <a class="a-hover-pointer a-hover-underline">Bình luận</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        foreach (var lstComment1 in ViewBag.lstCommentByGroup)
+                                                        {
+                                                            if (lstComment1.ParentId == lstComment.CommentId)
+                                                            {
+                                                                <ul class="comment-level-2">
+                                                                    <li>
+                                                                        <div class="comment-item lst-SubComment-Post-@item.TimeLineDetailId">
+
+                                                                            <div class="comment-avatar">
+                                                                                <img src="~/Content/images/avatar/@lstComment1.EmployeeAvatar" class="img-responsive" alt="avatar">
+                                                                            </div>
+                                                                            <div class="subcomment-content-post">
+                                                                                <div>
+                                                                                    <a href="" class="a-hover-underline coment-content-fullname">@lstComment1.EmployeeFullname</a>
+                                                                                    <span class="coment-content-text">@lstComment1.CommentContent</span>
+                                                                                </div>
+                                                                                <div class="comment-content-action">
+                                                                                    <a class="a-hover-pointer a-hover-underline">Thích</a>
+                                                                                    <a class="a-hover-pointer a-hover-underline">Bình luận</a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            }
+                                                        }
+                                                        <div class="wrapper-input-comment" style="margin-left: 60px;">
+                                                            <img src="~/Content/images/avatar/@ViewBag.Employee.EmployeeAvatar" class="img-responsive" alt="">
+                                                            <div class="input-comment">
+                                                                <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" class="Content-SubComment-TimeLineDetail-@lstComment.CommentId" style="overflow:hidden"></textarea>
+                                                                <ul class="input-comment-level-2-icon">
+                                                                    <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
+                                                                    <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
+                                                                    <li><a class="a-hover-pointer" data-id="@item.TimeLineDetailId" data-content="@lstComment.CommentId" onclick="submitSubCommentTimeLineDetail(this)"><i class="fa fa-paper-plane-o"></i></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                        </li>
+                                    </ul>
+                                    <div class="wrapper-input-comment" style="margin-top: 20px;">
+                                        <img src="~/Content/images/avatar/@ViewBag.Employee.EmployeeAvatar" class="img-responsive" alt="">
+                                        <div class="input-comment">
+                                            <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" id="Content-Comment-TimeLineDetail-@item.TimeLineDetailId" style="overflow:hidden"></textarea>
+                                            <ul class="input-comment-level-2-icon">
+                                                <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
+                                                <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
+                                                <li><a class="a-hover-pointer" data-id="@item.TimeLineDetailId" onclick="submitCommentTimeLineDetail(this)"><i class="fa fa-paper-plane-o"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                                                }
 
                         <div class="timeline-item">
 
@@ -204,3 +266,88 @@
     </div>
 </div>
 
+@section scripts {
+    <script>
+        $("#upload").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var img = $('<img>').attr('src', e.target.result);
+                    $('.selected-image').html(img);
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        function updateTimelineDescription(e) {
+            var content = $(e).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("updateTimelineDescription", "TimeLine")",
+                data: { content: content },
+                success: function (rps) {
+                    location.reload()
+                }
+            });
+        }
+
+        function likeTimeline(e) {
+            var TimelineDetailId = $(e).data("id");
+            if ($(e).hasClass("unlike")) {
+                $(e).removeClass("unlike");
+                $(e).addClass("like");
+                $(e).css("background-color", "black");
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("LikeTimeLineDetail", "TimeLine")",
+                    data: { id: TimelineDetailId },
+                    success: function (rps) {
+                        $(e).parents(".timeline-item-action").siblings(".timeline-item-list-like").html(rps);
+                    }
+                });
+
+            } else {
+                $(e).removeClass("like");
+                $(e).addClass("unlike");
+                $(e).css("background-color", "transparent");
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("unLikeTimeDetail", "TimeLine")",
+                    data: { id: TimelineDetailId },
+                    success: function (rps) {
+                        $(e).parents(".timeline-item-action").siblings(".timeline-item-list-like").html(rps);
+                    }
+                });
+            }
+        }
+
+        function submitCommentTimeLineDetail(e) {
+            var TimeLineDetailId = $(e).data("id");
+            var content = $("#Content-Comment-TimeLineDetail-" + TimeLineDetailId).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("CommentTimeLineDetail", "Timeline")",
+                data: { id: TimeLineDetailId, content: content },
+            success: function (rps) {
+                $(".lst-Comment-TimeLineDetail-" + TimeLineDetailId).html(rps);
+            }
+        });
+            $("#Content-Comment-TimeLineDetail-" + TimeLineDetailId).val("");
+        }
+        function submitSubCommentTimeLineDetail(e) {
+            var TimeLineDetailId = $(e).data("id");
+            var CommentId = $(e).data("content");
+            var content = $(".Content-SubComment-TimeLineDetail-" + CommentId).val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SubCommentTimeLineDetail", "TimeLine")",
+                data: { id: TimeLineDetailId, content: content, CommentId: CommentId },
+            success: function (rps) {
+                $(".lst-Comment-TimeLineDetail-" + TimeLineDetailId).html(rps);
+            }
+        });
+            $(".Content-SubComment-TimeLineDetail-" + CommentId).val("");
+        }
+        
+    </script>
+}

@@ -16,7 +16,7 @@ namespace QuanlyCV.Models
     {
         public int TimeLineImageId { get; set; }
         public int TimeLineDetailId { get; set; }
-        public string TimeLineImage1 { get; set; }
+        public string TimeLineImages { get; set; }
         public int TimeLineImageStatus { get; set; }
     
         public virtual TimeLineDetail TimeLineDetail { get; set; }

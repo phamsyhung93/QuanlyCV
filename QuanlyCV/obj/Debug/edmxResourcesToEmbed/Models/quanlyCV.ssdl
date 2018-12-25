@@ -251,7 +251,7 @@
     </Key>
     <Property Name="PostImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PostId" Type="int" Nullable="false" />
-    <Property Name="PostImage" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="PostImages" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="PostImageStatus" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Posts">
@@ -454,7 +454,7 @@
     </Key>
     <Property Name="TimeLineImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TimeLineDetailId" Type="int" Nullable="false" />
-    <Property Name="TimeLineImage" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="TimeLineImages" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="TimeLineImageStatus" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TimeLines">
@@ -464,6 +464,7 @@
     <Property Name="TimeLineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EmployeeId" Type="int" />
     <Property Name="TimeLineStatus" Type="int" Nullable="false" />
+    <Property Name="TimeLineDescription" Type="ntext" />
   </EntityType>
   <Association Name="FK__ChatDetai__ChatI__2645B050">
     <End Role="Chats" Type="Self.Chats" Multiplicity="1" />
@@ -921,7 +922,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__PostImage__PostI__7F2BE32F">
+  <Association Name="FK__PostImage__PostI__24E777C3">
     <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
     <End Role="PostImages" Type="Self.PostImages" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1257,7 +1258,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TimeLineI__TimeL__693CA210">
+  <Association Name="FK__TimeLineI__TimeL__2116E6DF">
     <End Role="TimeLineDetails" Type="Self.TimeLineDetails" Multiplicity="1" />
     <End Role="TimeLineImages" Type="Self.TimeLineImages" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1302,6 +1303,18 @@
     <Parameter Name="ProjectId" Type="int" Mode="In" />
     <Parameter Name="EmployeeId" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_getAllCommentByGroupId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getAllCommentByPostId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getAllCommentByTimelineDetailId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getAllCommentByTimeLineId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_getAllDepartmentByEmployeeId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
@@ -1312,11 +1325,25 @@
   <Function Name="sp_getAllEmployeeByRoleID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_getAllEmployeeLikePost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getAllEmployeeLikePostByPostid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getAllEmployeeLikeTimeLineDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getAllEmployeeLikeTimeLineDetailByDetailId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_getAllPermissionsNameByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getAllPostbyGroupID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_getAllProjectDiscussionsByProjectId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetAllTimeLineDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="employeeId" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_GetAllYEARByProjectType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_getEmployeeByDepartmentWhereDepartmentId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1328,8 +1355,17 @@
   <Function Name="sp_getEmployeeByDepartmentWhereEmployeeIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_getEmployeeByGroupMember" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_getEmployeeByRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_getEmployeeByRoleByDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getEmployeeByTimeLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="so" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getEmployeeCreateGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="so" Type="int" Mode="In" />
   </Function>
   <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1544,7 +1580,7 @@
       <End Role="GrantPermissions" EntitySet="GrantPermissions" />
       <End Role="Plans" EntitySet="Plans" />
     </AssociationSet>
-    <AssociationSet Name="FK__PostImage__PostI__7F2BE32F" Association="Self.FK__PostImage__PostI__7F2BE32F">
+    <AssociationSet Name="FK__PostImage__PostI__24E777C3" Association="Self.FK__PostImage__PostI__24E777C3">
       <End Role="Posts" EntitySet="Posts" />
       <End Role="PostImages" EntitySet="PostImages" />
     </AssociationSet>
@@ -1656,7 +1692,7 @@
       <End Role="TimeLines" EntitySet="TimeLines" />
       <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK__TimeLineI__TimeL__693CA210" Association="Self.FK__TimeLineI__TimeL__693CA210">
+    <AssociationSet Name="FK__TimeLineI__TimeL__2116E6DF" Association="Self.FK__TimeLineI__TimeL__2116E6DF">
       <End Role="TimeLineDetails" EntitySet="TimeLineDetails" />
       <End Role="TimeLineImages" EntitySet="TimeLineImages" />
     </AssociationSet>

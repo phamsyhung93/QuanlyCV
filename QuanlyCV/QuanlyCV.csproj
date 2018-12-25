@@ -316,6 +316,18 @@
     <Compile Include="Models\sp_getAllByProjectIdAndEmployeeId_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_getAllCommentByGroupId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllCommentByPostId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllCommentByTimelineDetailId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllCommentByTimeLineId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_getAllDepartmentByEmployeeId_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
@@ -328,7 +340,25 @@
     <Compile Include="Models\sp_getAllEmployeeByRoleID_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_getAllEmployeeLikePostByPostid_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllEmployeeLikePost_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllEmployeeLikeTimeLineDetailByDetailId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllEmployeeLikeTimeLineDetail_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getAllPostbyGroupID_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_getAllProjectDiscussionsByProjectId_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAllTimeLineDetail_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_getEmployeeByDepartmentWhereDepartmentId_Result.cs">
@@ -340,10 +370,19 @@
     <Compile Include="Models\sp_getEmployeeByDepartmentWhereEmployeeId_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_getEmployeeByGroupMember_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_getEmployeeByRoleByDepartment_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_getEmployeeByRole_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmployeeByTimeLine_Result.cs">
+      <DependentUpon>QuanLyCV.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getEmployeeCreateGroup_Result.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
@@ -367,6 +406,7 @@
     <Compile Include="Models\TimeLineDetail.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TimeLineDetailModel.cs" />
     <Compile Include="Models\TimeLineImage.cs">
       <DependentUpon>QuanLyCV.tt</DependentUpon>
     </Compile>
@@ -503,15 +543,20 @@
     <Content Include="Content\images\project-32.png" />
     <Content Include="Content\images\s1.jpg" />
     <Content Include="Content\images\set-permissions-32.png" />
-    <Content Include="Content\images\tuong-giai-an-1.jpg" />
-    <Content Include="Content\images\tuong-giai-an-2.jfif" />
-    <Content Include="Content\images\tuong-giai-an-3.jpg" />
-    <Content Include="Content\images\tuong-giai-an-4.jpg" />
-    <Content Include="Content\images\tuong-giai-an-5.jfif" />
-    <Content Include="Content\images\tuong-giai-an-6.jfif" />
-    <Content Include="Content\images\tuong-giai-an-7.jpg" />
-    <Content Include="Content\images\tuong-giai-an-8.jfif" />
-    <Content Include="Content\images\tuong-giai-an-9.jpg" />
+    <Content Include="Content\Uploads\animations.html" />
+    <Content Include="Content\Uploads\Bao-cao-CV-tuần-Phạm-Sỹ-Hưng.xlsx" />
+    <Content Include="Content\Uploads\buttons.html" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-1.jpg" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-2.jpg" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-3.jpg" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-4.jpg" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-5.jpg" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-6.jpg" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-7.jpg" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-8.jpg" />
+    <Content Include="Content\Uploads\Group\tuong-giai-an-9.jpg" />
+    <Content Include="Content\Uploads\timelines\Lighthouse.jpg" />
+    <Content Include="Content\Uploads\yêu câu bổ sung và giải thích chức năng CSDL web quản lý công việc.docx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -654,10 +699,18 @@
     <Content Include="Views\Folders\LoadModelAddFileByEmployee.cshtml" />
     <Content Include="Views\Home\searchFileByProject.cshtml" />
     <Content Include="Views\Home\LoadModelAddFileByProject.cshtml" />
+    <Content Include="Views\GroupPage\LikePost.cshtml" />
+    <Content Include="Views\GroupPage\unLikePost.cshtml" />
+    <Content Include="Views\GroupPage\CommentPost.cshtml" />
+    <Content Include="Views\GroupPage\SubCommentPost.cshtml" />
+    <Content Include="Views\TimeLine\LikeTimeLineDetail.cshtml" />
+    <Content Include="Views\TimeLine\unLikeTimeDetail.cshtml" />
+    <Content Include="Views\TimeLine\CommentTimeLineDetail.cshtml" />
+    <Content Include="Views\TimeLine\SubCommentTimeLineDetail.cshtml" />
+    <Content Include="Views\Home\SelectGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

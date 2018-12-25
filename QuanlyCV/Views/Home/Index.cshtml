@@ -804,6 +804,23 @@
             }
         });
 
+        $(".item-working").dblclick(function () {
+            // $(".item-working").removeClass("active");
+            $(".list-action").css("display", "none");
+            if ($(this).find("i").hasClass("fa-folder-o")) {
+                $(this).find("i.fa-folder-o").removeClass("fa-folder-o").addClass("fa-folder-open-o").hasClass("fa-folder-o");
+                $(this).siblings(':first').css("display", "block");
+                var workingId = $(this).data("id");
+                var projectId = $(this).data("content");
+                //IdFolder = workingId;
+                //IdProject = projectId;
+            } else {
+                $(this).find("i.fa-folder-open-o").removeClass("fa-folder-open-o").addClass("fa-folder-o").hasClass("fa-folder-open-o");
+                $(this).siblings(':first').css("display", "none");
+            }
+            // $(this).addClass("active");
+        });
+
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
             var ulli = document.getElementById("sub-parent");
@@ -846,6 +863,7 @@
 
         function chooseProject(e) {
             var ProjectId = $(e).data("id");
+            alert(ProjectId);
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("loadProgressWorking", "Home")",
@@ -881,5 +899,7 @@
                 }
             });
         }
+
+
     </script>
 }

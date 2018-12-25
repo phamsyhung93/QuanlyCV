@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using QuanlyCV.Models;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Script.Serialization;
 
 namespace QuanlyCV.Controllers
@@ -125,9 +127,20 @@ namespace QuanlyCV.Controllers
                 ViewBag.ProjectId = ProjectId;
                 var listFolderByProject = db.Folders.Where(x => x.ProjectId == ProjectId && x.FolderStatus == 1).ToList();
                 ViewBag.lstFolderByProject = listFolderByProject;
-                DepartmentEmployee d = db.DepartmentEmployees.SingleOrDefault(x => x.EmployeeId == id);
-                List<Form> f = db.Forms.Where(x => x.DepartmentId == d.DepartmentId).ToList();
-                ViewBag.Form = f;
+                //DepartmentEmployee d = db.DepartmentEmployees.SingleOrDefault(x => x.EmployeeId == id);
+                //List<Form> f = db.Forms.Where(x => x.DepartmentId == d.DepartmentId).ToList();
+                //List<string> nameFrom = new List<string>();
+                //string combindedString = "";
+                //for (int i = 0; i < f.Count; i++)
+                //{
+                //    nameFrom.Add(f[i].FormContent.ToString());
+                  
+                //}
+                //combindedString = string.Join(",", nameFrom.ToArray());
+                //var formContent = JsonConvert.DeserializeObject<List<FormContent>>(combindedString);
+                //ViewBag.FormContent = formContent;
+                //JObject json = JObject.Parse(combindedString);
+
                 return PartialView();
             }
             catch (Exception ex)
@@ -137,38 +150,7 @@ namespace QuanlyCV.Controllers
             }
         }
 
-        [HttpGet]
-        public JsonResult EmpDetails()
-        {
-            int id = (int)Session["EmployeeId"];
-            DepartmentEmployee d = db.DepartmentEmployees.SingleOrDefault(x => x.EmployeeId == id);
-            List<Form> f = db.Forms.Where(x => x.DepartmentId == d.DepartmentId).ToList();
-            List<string> nameFrom = new List<string>();
-            //List<FormContent> formContent;
-            
-            //for (int i = 0; i < f.Count; i++)
-            //{
-            //    nameFrom.Add(f[i].FormContent.ToString());
-            //    JavaScriptSerializer js = new JavaScriptSerializer();
-            //    //formContent = js.Deserialize<FormContent[]>(name);
-            //    //ViewBag.FormContent = formContent;
-            //}
-            //string combindedString = string.Join(",", nameFrom.ToArray());
-            //JObject json = JObject.Parse(combindedString);
-
-            //ViewBag.FormName = json;
-            //ViewBag.Form = f;
-            //Creating List
-            //    List<Employee> ObjEmp = new List<Employee>()
-            //    {
-            ////Adding records to list
-            //new Employee {Id=1,Name="Vithal Wadje",City="Latur",Address="Kabansangvi" },
-            //new Employee {Id=2,Name="Sudhir Wadje",City="Mumbai",Address="Kurla" }
-            //    };
-            //return list as Json
-            //return Json(formContent, JsonRequestBehavior.AllowGet);
-            return Json("True");
-        }
+        
         [HttpPost]
         public bool insertProjectDiscussions(string DiscussionContent)
         {
@@ -428,6 +410,35 @@ namespace QuanlyCV.Controllers
             }
         }
 
+        public ActionResult SelectGroup()
+        {
+            try
+            {
+                int id = (int)Session["EmployeeId"];
+                var lstGroupMemeber = db.GroupMembers.Where(x => x.GroupMemberStatus == 1 && x.EmployeeId == id).ToList();
+                ViewBag.lstGroupMemeber = lstGroupMemeber;
+                ViewBag.lstGroup = db.Groups.Where(x => x.GroupStatus == 1).ToList();
+                return View();
+                
+            }
+            catch (Exception ex)
+            {
+                return View();
+                throw;
+            }
+        }
+        public ActionResult getGroupId(int GroupId)
+        {
+            try
+            {
+                return RedirectToAction("Index", new RouteValueDictionary(new { controller = "GroupPage", action = "Index", id = GroupId }));
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("SelectGroup");
+                throw;
+            }
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

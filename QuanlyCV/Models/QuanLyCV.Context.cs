@@ -128,6 +128,55 @@ namespace QuanlyCV.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
+        public virtual ObjectResult<sp_getAllByProjectIdAndEmployeeId_Result> sp_getAllByProjectIdAndEmployeeId(Nullable<int> projectId, Nullable<int> employeeId)
+        {
+            var projectIdParameter = projectId.HasValue ?
+                new ObjectParameter("ProjectId", projectId) :
+                new ObjectParameter("ProjectId", typeof(int));
+    
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllByProjectIdAndEmployeeId_Result>("sp_getAllByProjectIdAndEmployeeId", projectIdParameter, employeeIdParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllCommentByGroupId_Result> sp_getAllCommentByGroupId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllCommentByGroupId_Result>("sp_getAllCommentByGroupId", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllCommentByPostId_Result> sp_getAllCommentByPostId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllCommentByPostId_Result>("sp_getAllCommentByPostId", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllCommentByTimelineDetailId_Result> sp_getAllCommentByTimelineDetailId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllCommentByTimelineDetailId_Result>("sp_getAllCommentByTimelineDetailId", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllCommentByTimeLineId_Result> sp_getAllCommentByTimeLineId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllCommentByTimeLineId_Result>("sp_getAllCommentByTimeLineId", soParameter);
+        }
+    
         public virtual ObjectResult<sp_getAllDepartmentByEmployeeId_Result> sp_getAllDepartmentByEmployeeId(Nullable<int> so)
         {
             var soParameter = so.HasValue ?
@@ -142,6 +191,52 @@ namespace QuanlyCV.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllEmployeeByDepartment_Result>("sp_GetAllEmployeeByDepartment");
         }
     
+        public virtual ObjectResult<sp_GetAllEmployeeByProjectID_Result> sp_GetAllEmployeeByProjectID(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllEmployeeByProjectID_Result>("sp_GetAllEmployeeByProjectID", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllEmployeeByRoleID_Result> sp_getAllEmployeeByRoleID(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllEmployeeByRoleID_Result>("sp_getAllEmployeeByRoleID", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllEmployeeLikePost_Result> sp_getAllEmployeeLikePost()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllEmployeeLikePost_Result>("sp_getAllEmployeeLikePost");
+        }
+    
+        public virtual ObjectResult<sp_getAllEmployeeLikePostByPostid_Result> sp_getAllEmployeeLikePostByPostid(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllEmployeeLikePostByPostid_Result>("sp_getAllEmployeeLikePostByPostid", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllEmployeeLikeTimeLineDetail_Result> sp_getAllEmployeeLikeTimeLineDetail()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllEmployeeLikeTimeLineDetail_Result>("sp_getAllEmployeeLikeTimeLineDetail");
+        }
+    
+        public virtual ObjectResult<sp_getAllEmployeeLikeTimeLineDetailByDetailId_Result> sp_getAllEmployeeLikeTimeLineDetailByDetailId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllEmployeeLikeTimeLineDetailByDetailId_Result>("sp_getAllEmployeeLikeTimeLineDetailByDetailId", soParameter);
+        }
+    
         public virtual ObjectResult<string> sp_getAllPermissionsNameByRoleId(Nullable<int> so)
         {
             var soParameter = so.HasValue ?
@@ -149,6 +244,33 @@ namespace QuanlyCV.Models
                 new ObjectParameter("so", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_getAllPermissionsNameByRoleId", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllPostbyGroupID_Result> sp_getAllPostbyGroupID(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllPostbyGroupID_Result>("sp_getAllPostbyGroupID", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getAllProjectDiscussionsByProjectId_Result> sp_getAllProjectDiscussionsByProjectId(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllProjectDiscussionsByProjectId_Result>("sp_getAllProjectDiscussionsByProjectId", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetAllTimeLineDetail_Result> sp_GetAllTimeLineDetail(Nullable<int> employeeId)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("employeeId", employeeId) :
+                new ObjectParameter("employeeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllTimeLineDetail_Result>("sp_GetAllTimeLineDetail", employeeIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> sp_GetAllYEARByProjectType()
@@ -183,6 +305,15 @@ namespace QuanlyCV.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByDepartmentWhereEmployeeIds_Result>("sp_getEmployeeByDepartmentWhereEmployeeIds", soParameter);
         }
     
+        public virtual ObjectResult<sp_getEmployeeByGroupMember_Result> sp_getEmployeeByGroupMember(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByGroupMember_Result>("sp_getEmployeeByGroupMember", soParameter);
+        }
+    
         public virtual ObjectResult<sp_getEmployeeByRole_Result> sp_getEmployeeByRole()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByRole_Result>("sp_getEmployeeByRole");
@@ -195,6 +326,24 @@ namespace QuanlyCV.Models
                 new ObjectParameter("so", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByRoleByDepartment_Result>("sp_getEmployeeByRoleByDepartment", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getEmployeeByTimeLine_Result> sp_getEmployeeByTimeLine(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeByTimeLine_Result>("sp_getEmployeeByTimeLine", soParameter);
+        }
+    
+        public virtual ObjectResult<sp_getEmployeeCreateGroup_Result> sp_getEmployeeCreateGroup(Nullable<int> so)
+        {
+            var soParameter = so.HasValue ?
+                new ObjectParameter("so", so) :
+                new ObjectParameter("so", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getEmployeeCreateGroup_Result>("sp_getEmployeeCreateGroup", soParameter);
         }
     
         public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
@@ -243,46 +392,6 @@ namespace QuanlyCV.Models
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
-        }
-    
-        public virtual ObjectResult<sp_getAllProjectDiscussionsByProjectId_Result> sp_getAllProjectDiscussionsByProjectId(Nullable<int> so)
-        {
-            var soParameter = so.HasValue ?
-                new ObjectParameter("so", so) :
-                new ObjectParameter("so", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllProjectDiscussionsByProjectId_Result>("sp_getAllProjectDiscussionsByProjectId", soParameter);
-        }
-    
-        public virtual ObjectResult<sp_GetAllEmployeeByProjectID_Result> sp_GetAllEmployeeByProjectID(Nullable<int> so)
-        {
-            var soParameter = so.HasValue ?
-                new ObjectParameter("so", so) :
-                new ObjectParameter("so", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllEmployeeByProjectID_Result>("sp_GetAllEmployeeByProjectID", soParameter);
-        }
-    
-        public virtual ObjectResult<sp_getAllEmployeeByRoleID_Result> sp_getAllEmployeeByRoleID(Nullable<int> so)
-        {
-            var soParameter = so.HasValue ?
-                new ObjectParameter("so", so) :
-                new ObjectParameter("so", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllEmployeeByRoleID_Result>("sp_getAllEmployeeByRoleID", soParameter);
-        }
-    
-        public virtual ObjectResult<sp_getAllByProjectIdAndEmployeeId_Result> sp_getAllByProjectIdAndEmployeeId(Nullable<int> projectId, Nullable<int> employeeId)
-        {
-            var projectIdParameter = projectId.HasValue ?
-                new ObjectParameter("ProjectId", projectId) :
-                new ObjectParameter("ProjectId", typeof(int));
-    
-            var employeeIdParameter = employeeId.HasValue ?
-                new ObjectParameter("EmployeeId", employeeId) :
-                new ObjectParameter("EmployeeId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAllByProjectIdAndEmployeeId_Result>("sp_getAllByProjectIdAndEmployeeId", projectIdParameter, employeeIdParameter);
         }
     }
 }
