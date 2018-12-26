@@ -177,8 +177,8 @@ namespace QuanlyCV.Controllers
                 m.CommentStatus = 1;
                 db.Comments.Add(m);
                 db.SaveChanges();
-                var lstCommentPost = db.sp_getAllCommentByPostId(id).ToList();
-                ViewBag.listCommentPost = lstCommentPost;
+                ViewBag.listCommentPost = db.sp_getAllCommentByPostId(id).ToList();
+                ViewBag.Employee = db.Employees.Find(employeeId);
                 return PartialView();
             }
             catch (Exception ex)
@@ -187,7 +187,7 @@ namespace QuanlyCV.Controllers
                 throw;
             }
         }
-        [HttpPost]
+
         public PartialViewResult SubCommentPost(int id, string content, int CommentId)
         {
             try
@@ -203,8 +203,10 @@ namespace QuanlyCV.Controllers
                 m.CommentStatus = 1;
                 db.Comments.Add(m);
                 db.SaveChanges();
-                var lstCommentPost = db.sp_getAllCommentByPostId(id).ToList();
-                ViewBag.listCommentPost = lstCommentPost;
+                ViewBag.listCommentPost = db.sp_getAllCommentByPostId(id).ToList();
+                int count = ViewBag.listCommentPost.Count;
+                ViewBag.lstComnetPost1 = db.sp_getAllCommentByPostId(id).ToList().Take(count);
+                ViewBag.Employee = db.Employees.Find(employeeId);
                 return PartialView();
             }
             catch (Exception ex)

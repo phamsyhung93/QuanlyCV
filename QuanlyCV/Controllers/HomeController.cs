@@ -127,14 +127,14 @@ namespace QuanlyCV.Controllers
                 ViewBag.ProjectId = ProjectId;
                 var listFolderByProject = db.Folders.Where(x => x.ProjectId == ProjectId && x.FolderStatus == 1).ToList();
                 ViewBag.lstFolderByProject = listFolderByProject;
-                //DepartmentEmployee d = db.DepartmentEmployees.SingleOrDefault(x => x.EmployeeId == id);
-                //List<Form> f = db.Forms.Where(x => x.DepartmentId == d.DepartmentId).ToList();
-                //List<string> nameFrom = new List<string>();
+                DepartmentEmployee d = db.DepartmentEmployees.SingleOrDefault(x => x.EmployeeId == id);
+                List<Form> f = db.Forms.Where(x => x.DepartmentId == d.DepartmentId).ToList();
+                List<string> nameFrom = new List<string>();
                 //string combindedString = "";
                 //for (int i = 0; i < f.Count; i++)
                 //{
                 //    nameFrom.Add(f[i].FormContent.ToString());
-                  
+
                 //}
                 //combindedString = string.Join(",", nameFrom.ToArray());
                 //var formContent = JsonConvert.DeserializeObject<List<FormContent>>(combindedString);

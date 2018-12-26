@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-8">
+            <div class="col-xs-12 col-md-8" style="margin-bottom:20px;">
                 <div class="row">
                     <div class="timeline-right" style="margin-left: 5px;">
                         <div class="timeline-content">
@@ -338,6 +338,8 @@
             var TimeLineDetailId = $(e).data("id");
             var CommentId = $(e).data("content");
             var content = $(".Content-SubComment-TimeLineDetail-" + CommentId).val();
+            alert(CommentId +" - " + content );
+
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("SubCommentTimeLineDetail", "TimeLine")",
@@ -348,6 +350,6 @@
         });
             $(".Content-SubComment-TimeLineDetail-" + CommentId).val("");
         }
-        
+
     </script>
 }

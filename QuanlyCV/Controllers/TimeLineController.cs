@@ -162,8 +162,8 @@ namespace QuanlyCV.Controllers
                 m.CommentStatus = 1;
                 db.Comments.Add(m);
                 db.SaveChanges();
-                var lstCommentTimeLineDetail = db.sp_getAllCommentByTimelineDetailId(id).ToList();
-                ViewBag.listCommentlstTimeLineDetail = lstCommentTimeLineDetail;
+                ViewBag.listCommentlstTimeLineDetail = db.sp_getAllCommentByTimelineDetailId(id).ToList();
+                ViewBag.Employee = db.Employees.Find(employeeId);
                 return PartialView();
             }
             catch (Exception ex)
@@ -187,8 +187,8 @@ namespace QuanlyCV.Controllers
                 m.CommentStatus = 1;
                 db.Comments.Add(m);
                 db.SaveChanges();
-                var lstCommentTimeLineDetail = db.sp_getAllCommentByTimelineDetailId(id).ToList();
-                ViewBag.listCommentlstTimeLineDetail = lstCommentTimeLineDetail;
+                ViewBag.listCommentlstTimeLineDetail = db.sp_getAllCommentByTimelineDetailId(id).ToList();
+                ViewBag.Employee = db.Employees.Find(employeeId);
                 return PartialView();
             }
             catch (Exception ex)

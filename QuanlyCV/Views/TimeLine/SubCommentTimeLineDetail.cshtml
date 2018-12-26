@@ -1,64 +1,97 @@
-﻿
-@foreach (var lstComment in ViewBag.listCommentlstTimeLineDetail)
-{
-
-    if (lstComment.ParentId == 0)
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng nhập website quản lý công việc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="~/Content/css/font.css" type="text/css" />
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+</head>
+<body class="signup-body">
+    @foreach (var lstComment in ViewBag.listCommentlstTimeLineDetail)
     {
-        <div class="comment-item comment-post">
 
-            <div class="comment-avatar">
-                <img src="~/Content/images/avatar/@lstComment.EmployeeAvatar" class="img-responsive" alt="avatar">
-            </div>
-            <div class="comment-content">
-
-                <div class="">
-                    <a href="" class="a-hover-underline coment-content-fullname">@lstComment.EmployeeFullname</a>
-                    <span class="coment-content-text">@lstComment.CommentContent</span>
-                </div>
-                <div class="comment-content-action">
-                    <a class="a-hover-pointer a-hover-underline">Thích</a>
-                    <a class="a-hover-pointer a-hover-underline">Bình luận</a>
-                </div>
-            </div>
-        </div>
-
-        foreach (var lstComment1 in ViewBag.listCommentlstTimeLineDetail)
+        if (lstComment.ParentId == 0)
         {
-            if (lstComment1.ParentId == lstComment.CommentId)
-            {
-                <ul class="comment-level-2">
-                    <li>
-                        <div class="comment-item lst-SubComment-Post-@lstComment.TimeLineDetailId">
+            <div class="comment-item comment-post">
 
-                            <div class="comment-avatar">
-                                <img src="~/Content/images/avatar/@lstComment1.EmployeeAvatar" class="img-responsive" alt="avatar">
-                            </div>
-                            <div class="subcomment-content-post">
-                                <div>
-                                    <a href="" class="a-hover-underline coment-content-fullname">@lstComment1.EmployeeFullname</a>
-                                    <span class="coment-content-text">@lstComment1.CommentContent</span>
-                                </div>
-                                <div class="comment-content-action">
-                                    <a class="a-hover-pointer a-hover-underline">Thích</a>
-                                    <a class="a-hover-pointer a-hover-underline">Bình luận</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            }
+                <div class="comment-avatar">
+                    <img src="~/Content/images/avatar/@lstComment.EmployeeAvatar" class="img-responsive" alt="avatar">
+                </div>
+                <div class="comment-content">
 
-        }
-        <div class="wrapper-input-comment" style="margin-left: 60px;">
-            <img src="~/Content/images/avatar/@ViewBag.Employee.EmployeeAvatar" class="img-responsive" alt="">
-            <div class="input-comment">
-                <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" id="Content-SubComment-Post-@lstComment.TimeLineDetailId" style="overflow:hidden"></textarea>
-                <ul class="input-comment-level-2-icon">
-                    <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
-                    <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
-                    <li><a class="a-hover-pointer" data-id="@lstComment.TimeLineDetailId" data-content="@lstComment.CommentId" onclick="submitSubCommentTimeLineDetail(this)"><i class="fa fa-paper-plane-o"></i></a></li>
-                </ul>
+                    <div class="">
+                        <a href="" class="a-hover-underline coment-content-fullname">@lstComment.EmployeeFullname</a>
+                        <span class="coment-content-text">@lstComment.CommentContent</span>
+                    </div>
+                    <div class="comment-content-action">
+                        <a class="a-hover-pointer a-hover-underline">Thích</a>
+                        <a class="a-hover-pointer a-hover-underline">Bình luận</a>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            foreach (var lstComment1 in ViewBag.listCommentlstTimeLineDetail)
+            {
+                if (lstComment1.ParentId == lstComment.CommentId)
+                {
+                    <ul class="comment-level-2">
+                        <li>
+                            <div class="comment-item lst-SubComment-Post-@lstComment.TimeLineDetailId">
+
+                                <div class="comment-avatar">
+                                    <img src="~/Content/images/avatar/@lstComment1.EmployeeAvatar" class="img-responsive" alt="avatar">
+                                </div>
+                                <div class="subcomment-content-post">
+                                    <div>
+                                        <a href="" class="a-hover-underline coment-content-fullname">@lstComment1.EmployeeFullname</a>
+                                        <span class="coment-content-text">@lstComment1.CommentContent</span>
+                                    </div>
+                                    <div class="comment-content-action">
+                                        <a class="a-hover-pointer a-hover-underline">Thích</a>
+                                        <a class="a-hover-pointer a-hover-underline">Bình luận</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                }
+
+            }
+            <div class="wrapper-input-comment" style="margin-left: 60px;">
+                <img src="~/Content/images/avatar/@ViewBag.Employee.EmployeeAvatar" class="img-responsive" alt="">
+                <div class="input-comment">
+                    <textarea name="" rows="1" onkeyup="textAreaAdjust(this)" class="Content-SubComment-TimeLineDetail-@lstComment.CommentId" style="overflow:hidden"></textarea>
+                    <ul class="input-comment-level-2-icon">
+                        <li><a class="a-hover-pointer"><i class="fa fa-smile-o"></i></a></li>
+                        <li><a class="a-hover-pointer"><i class="fa fa-picture-o"></i></a></li>
+                        <li><a class="a-hover-pointer" data-id="@lstComment.TimeLineDetailId" data-content="@lstComment.CommentId" onclick="submitSubCommentTimeLineDetail(this)"><i class="fa fa-paper-plane-o"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        }
     }
-}
+    <script>
+        function submitSubCommentTimeLineDetail(e) {
+            var TimeLineDetailId = $(e).data("id");
+            var CommentId = $(e).data("content");
+            var content = $(".Content-SubComment-TimeLineDetail-" + CommentId).val();
+            alert(CommentId +" - " + content );
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SubCommentTimeLineDetail", "TimeLine")",
+                data: { id: TimeLineDetailId, content: content, CommentId: CommentId },
+            success: function (rps) {
+                $(".lst-Comment-TimeLineDetail-" + TimeLineDetailId).html(rps);
+            }
+        });
+        $(".Content-SubComment-TimeLineDetail-" + CommentId).val("");
+        }
+    </script>
+    </body>
+</html>
